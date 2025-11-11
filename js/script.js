@@ -9,6 +9,7 @@ AOS.init();
 const textArray = [
   "IT student",
   "Programmer",
+  "Future ERP Consultant",
 ];
 
 const typingElement = document.getElementById('typing-text');
