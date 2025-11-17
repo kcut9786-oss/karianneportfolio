@@ -266,12 +266,12 @@ nav ul li a:hover::after {
 }
 
 /* Delay classes for staggering (Starting at 1.5s display time + 0.5s fade out = 2s total load time) */
-.delay-1 { animation-delay: 2.0s; } /* Adjusted from 3.2s */
+.delay-1 { animation-delay: 2.0s; } 
 .delay-2 { animation-delay: 2.2s; }
 .delay-3 { animation-delay: 2.4s; }
 .delay-4 { animation-delay: 2.6s; }
 .delay-5 { animation-delay: 2.8s; }
-.delay-6 { animation-delay: 3.0s; } /* Adjusted from 4.2s */
+.delay-6 { animation-delay: 3.0s; } /* Image wrapper entrance */
 
 
 .hero .content .greeting {
