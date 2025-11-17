@@ -225,7 +225,7 @@ nav ul li a:hover::after {
   display: flex;
   justify-content: space-between;
   padding: 100px 10% 80px; 
-  min-height: 90vh;
+  min-height: 90vh; /* Keeps content visible on initial load */
   position: relative; 
   z-index: 1; 
   perspective: 1000px;
@@ -417,14 +417,16 @@ nav ul li a:hover::after {
 
 
 /* ============================================== */
-/* EDUCATION SECTION STYLES (NEW CARD DESIGN) */
+/* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
 /* ============================================== */
 .education {
-    /* REDUCED PADDING for screen fit */
-    padding: 60px 10%; 
-    min-height: 80vh;
+    /* REDUCED PADDING for screen fit (was 60px) */
+    padding: 40px 10%; 
+    /* NEW: Setting min-height to help fit the content exactly */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center; /* Center vertically in the small space */
     text-align: center;
 }
 
@@ -434,10 +436,9 @@ nav ul li a:hover::after {
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 2.8rem; /* Slightly reduced font size */
     color: var(--primary-purple);
-    /* Reduced margin */
-    margin-bottom: 30px; 
+    margin-bottom: 25px; /* Reduced margin */
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -447,7 +448,7 @@ nav ul li a:hover::after {
 .timeline {
     position: relative;
     padding: 10px 0;
-    margin-top: 30px;
+    margin-top: 15px; /* Reduced margin */
 }
 
 /* The main vertical line */
@@ -464,8 +465,7 @@ nav ul li a:hover::after {
 
 .timeline-item {
     position: relative;
-    /* Reduced margin */
-    margin-bottom: 35px; 
+    margin-bottom: 30px; /* Reduced margin */
 }
 
 /* Items on the left side of the line */
@@ -487,12 +487,11 @@ nav ul li a:hover::after {
 /* NEW: Card container style */
 .timeline-content.edu-card {
     position: relative;
-    background: #141416; /* Darker black background */
+    background: #141416; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    /* Reduced padding */
-    padding: 15px 20px; 
+    padding: 15px 20px; /* Condensed padding */
     text-align: left !important; 
     transition: transform 0.3s ease;
 }
@@ -506,13 +505,12 @@ nav ul li a:hover::after {
 .edu-header {
     display: flex;
     align-items: center;
-    /* Reduced margin */
-    margin-bottom: 10px; 
+    margin-bottom: 10px; /* Condensed margin */
 }
 
 .edu-logo {
-    width: 40px; /* Slightly reduced logo size */
-    height: 40px;
+    width: 35px; /* Further reduced logo size */
+    height: 35px;
     object-fit: contain;
     border-radius: 8px;
     filter: none; 
@@ -524,21 +522,21 @@ nav ul li a:hover::after {
 }
 
 .timeline-degree {
-    font-size: 1.1rem; /* Slightly reduced font size */
+    font-size: 1rem; /* Reduced font size */
     font-weight: 600;
     color: var(--text-light);
     margin-bottom: 0;
 }
 
 .timeline-institution {
-    font-size: 0.85rem; /* Slightly reduced font size */
+    font-size: 0.8rem; /* Reduced font size */
     color: var(--secondary-text);
     margin-bottom: 0;
     text-shadow: 0 0 1px var(--primary-purple);
 }
 
 .location {
-    font-size: 0.85rem; /* Slightly reduced font size */
+    font-size: 0.8rem; /* Reduced font size */
     color: var(--primary-purple);
 }
 
@@ -548,22 +546,21 @@ nav ul li a:hover::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Reduced margin */
-    margin-bottom: 10px; 
+    margin-bottom: 8px; /* Condensed margin */
     padding-top: 5px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .edu-date {
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.75rem; /* Reduced font size */
     color: var(--secondary-text);
     font-family: 'Poppins', sans-serif;
 }
 
 .edu-status {
-    padding: 3px 8px; /* Reduced padding */
+    padding: 2px 6px; /* Reduced padding */
     border-radius: 5px;
-    font-size: 0.7rem; /* Reduced font size */
+    font-size: 0.65rem; /* Reduced font size */
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -581,7 +578,7 @@ nav ul li a:hover::after {
 
 /* --- Description is the last element --- */
 .timeline-description {
-    font-size: 0.9rem; /* Reduced font size */
+    font-size: 0.85rem; /* Reduced font size */
     line-height: 1.4;
     color: var(--secondary-text);
     margin-bottom: 0; 
@@ -591,8 +588,8 @@ nav ul li a:hover::after {
 /* The circular dot on the line */
 .timeline-dot {
     position: absolute;
-    width: 15px; /* Slightly reduced size */
-    height: 15px; /* Slightly reduced size */
+    width: 14px; /* Reduced size */
+    height: 14px; /* Reduced size */
     border-radius: 50%;
     background: var(--dark-bg);
     border: 3px solid var(--primary-purple);
