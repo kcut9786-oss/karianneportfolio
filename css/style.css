@@ -224,8 +224,9 @@ nav ul li a:hover::after {
 .hero {
   display: flex;
   justify-content: space-between;
-  padding: 100px 10% 80px; 
-  min-height: 90vh; /* Keeps content visible on initial load */
+  /* Aggressive padding reduction for Home page fit */
+  padding: 80px 10% 40px; 
+  min-height: 100vh; /* Ensures full height */
   position: relative; 
   z-index: 1; 
   perspective: 1000px;
@@ -322,7 +323,8 @@ nav ul li a:hover::after {
 }
 
 #typing-text { color: var(--primary-purple); margin-left: 8px; text-shadow: 0 0 5px var(--primary-purple); }
-.hero .description { font-size: 1.1rem; line-height: 1.7; color: var(--secondary-text); margin-bottom: 40px; }
+/* Reduced bottom margin for multi-paragraph description */
+.hero .description { font-size: 1.1rem; line-height: 1.7; color: var(--secondary-text); margin-bottom: 15px; } 
 
 /* Social Media Icons */
 .social-links { display: flex; gap: 20px; }
@@ -387,9 +389,8 @@ nav ul li a:hover::after {
 }
 
 /* ============================================== */
-/* ABOUT ME SECTION STYLES (REMOVED) */
+/* GENERAL SECTION STYLES (Projects, Contact) */
 /* ============================================== */
-/* General Placeholder Section Styling */
 .projects, .contact, .about {
     padding: 100px 10%;
     min-height: 80vh;
@@ -420,13 +421,13 @@ nav ul li a:hover::after {
 /* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
 /* ============================================== */
 .education {
-    /* REDUCED PADDING for screen fit (was 60px) */
-    padding: 40px 10%; 
-    /* NEW: Setting min-height to help fit the content exactly */
-    min-height: 100vh;
+    /* AGGRESSIVE PADDING REDUCTION (was 60px) */
+    padding: 30px 10% 40px; 
+    /* Ensures minimum height is met, but vertical space is tight */
+    min-height: 100vh; 
     display: flex;
     justify-content: center;
-    align-items: center; /* Center vertically in the small space */
+    align-items: center; /* Center content vertically */
     text-align: center;
 }
 
@@ -436,9 +437,9 @@ nav ul li a:hover::after {
 }
 
 .section-title {
-    font-size: 2.8rem; /* Slightly reduced font size */
+    font-size: 2.8rem; 
     color: var(--primary-purple);
-    margin-bottom: 25px; /* Reduced margin */
+    margin-bottom: 25px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -447,8 +448,8 @@ nav ul li a:hover::after {
 
 .timeline {
     position: relative;
-    padding: 10px 0;
-    margin-top: 15px; /* Reduced margin */
+    padding: 5px 0; /* Reduced padding */
+    margin-top: 15px;
 }
 
 /* The main vertical line */
@@ -465,7 +466,7 @@ nav ul li a:hover::after {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 30px; /* Reduced margin */
+    margin-bottom: 25px; /* Reduced margin */
 }
 
 /* Items on the left side of the line */
@@ -491,7 +492,7 @@ nav ul li a:hover::after {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    padding: 15px 20px; /* Condensed padding */
+    padding: 10px 15px; /* Aggressively reduced padding */
     text-align: left !important; 
     transition: transform 0.3s ease;
 }
@@ -505,11 +506,11 @@ nav ul li a:hover::after {
 .edu-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Condensed margin */
+    margin-bottom: 8px; /* Further reduced margin */
 }
 
 .edu-logo {
-    width: 35px; /* Further reduced logo size */
+    width: 35px; 
     height: 35px;
     object-fit: contain;
     border-radius: 8px;
@@ -522,21 +523,21 @@ nav ul li a:hover::after {
 }
 
 .timeline-degree {
-    font-size: 1rem; /* Reduced font size */
+    font-size: 1rem; 
     font-weight: 600;
     color: var(--text-light);
     margin-bottom: 0;
 }
 
 .timeline-institution {
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.8rem; 
     color: var(--secondary-text);
     margin-bottom: 0;
     text-shadow: 0 0 1px var(--primary-purple);
 }
 
 .location {
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.8rem; 
     color: var(--primary-purple);
 }
 
@@ -546,21 +547,21 @@ nav ul li a:hover::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px; /* Condensed margin */
+    margin-bottom: 5px; /* Further reduced margin */
     padding-top: 5px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .edu-date {
-    font-size: 0.75rem; /* Reduced font size */
+    font-size: 0.7rem; /* Further reduced font size */
     color: var(--secondary-text);
     font-family: 'Poppins', sans-serif;
 }
 
 .edu-status {
-    padding: 2px 6px; /* Reduced padding */
+    padding: 2px 5px; /* Reduced padding */
     border-radius: 5px;
-    font-size: 0.65rem; /* Reduced font size */
+    font-size: 0.6rem; /* Reduced font size */
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -578,8 +579,8 @@ nav ul li a:hover::after {
 
 /* --- Description is the last element --- */
 .timeline-description {
-    font-size: 0.85rem; /* Reduced font size */
-    line-height: 1.4;
+    font-size: 0.8rem; /* Reduced font size */
+    line-height: 1.3;
     color: var(--secondary-text);
     margin-bottom: 0; 
 }
@@ -588,8 +589,8 @@ nav ul li a:hover::after {
 /* The circular dot on the line */
 .timeline-dot {
     position: absolute;
-    width: 14px; /* Reduced size */
-    height: 14px; /* Reduced size */
+    width: 12px; /* Further reduced size */
+    height: 12px; /* Further reduced size */
     border-radius: 50%;
     background: var(--dark-bg);
     border: 3px solid var(--primary-purple);
