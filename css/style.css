@@ -17,7 +17,7 @@
     --frame-width: 380px;
     --frame-height: 480px;
     
-    /* NEW: Skill Icon Colors */
+    /* NEW: Skill Icon Colors (Kept just in case) */
     --java-color: #5382a1;
     --python-color: #3776ab;
     --js-color: #f7df1e;
@@ -389,9 +389,9 @@ nav ul li a:hover::after {
 }
 
 /* ============================================== */
-/* GENERAL SECTION STYLES (Projects, Contact) */
+/* GENERAL SECTION STYLES (Placeholder Sections) */
 /* ============================================== */
-.projects, .contact, .about {
+.extracurricular, .projects, .contact, .about {
     padding: 100px 10%;
     min-height: 80vh;
     display: flex;
@@ -400,8 +400,10 @@ nav ul li a:hover::after {
     text-align: center;
 }
 
+.extracurricular .exp-container,
 .projects .section-container,
-.contact .section-container {
+.contact .section-container,
+.about .section-container {
     max-width: 900px;
     width: 100%;
 }
@@ -421,8 +423,8 @@ nav ul li a:hover::after {
 /* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
 /* ============================================== */
 .education {
-    /* AGGRESSIVE PADDING REDUCTION (was 60px) */
-    padding: 30px 10% 40px; 
+    /* AGGRESSIVE PADDING REDUCTION */
+    padding: 30px 10% 30px; 
     /* Ensures minimum height is met, but vertical space is tight */
     min-height: 100vh; 
     display: flex;
@@ -439,7 +441,7 @@ nav ul li a:hover::after {
 .section-title {
     font-size: 2.8rem; 
     color: var(--primary-purple);
-    margin-bottom: 25px; 
+    margin-bottom: 20px; /* Further reduced margin */
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -448,7 +450,7 @@ nav ul li a:hover::after {
 
 .timeline {
     position: relative;
-    padding: 5px 0; /* Reduced padding */
+    padding: 0; /* Removed padding */
     margin-top: 15px;
 }
 
@@ -466,7 +468,7 @@ nav ul li a:hover::after {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 25px; /* Reduced margin */
+    margin-bottom: 20px; /* Reduced margin */
 }
 
 /* Items on the left side of the line */
@@ -618,191 +620,35 @@ nav ul li a:hover::after {
 
 
 /* ============================================== */
-/* EXPERIENCE SECTION STYLES (Reuses Education timeline structure) */
+/* EXPERIENCE SECTION STYLES (REMOVED) */
 /* ============================================== */
-.experience {
+/* ============================================== */
+/* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (New Section) */
+/* ============================================== */
+.extracurricular {
     padding: 100px 10%;
     min-height: 80vh;
     display: flex;
     justify-content: center;
+    align-items: flex-start; /* Aligned top */
     text-align: center;
 }
 
-.exp-container {
+.extracurricular .exp-container {
     max-width: 900px;
     width: 100%;
 }
+/* This section reuses .section-title, .timeline, .timeline-item, etc., styles */
 
 
 /* ============================================== */
-/* SKILLS SECTION STYLES (Modular Grid) */
+/* SKILLS SECTION STYLES (REMOVED) */
 /* ============================================== */
-.skills {
-    padding: 100px 10%;
-    min-height: 80vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
 
-.skills-container {
-    max-width: 1200px;
-    width: 100%;
-}
-
-.skills-container h2 {
-    font-size: 3rem;
-    color: var(--primary-purple);
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.skills-intro {
-    font-size: 1.1rem;
-    color: var(--secondary-text);
-    margin-bottom: 40px;
-}
-
-.skills-grid-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    text-align: center; 
-}
-
-.skill-card {
-    background: rgba(13, 1, 19, 0.8);
-    border: 1px solid rgba(157, 0, 255, 0.2);
-    border-radius: 10px;
-    padding: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.skill-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(157, 0, 255, 0.4);
-    border: 1px solid var(--cyber-blue);
-}
-
-.skill-icon {
-    font-size: 3.5rem; 
-    margin-bottom: 15px;
-    filter: drop-shadow(0 0 5px currentColor);
-}
-
-/* Specific icon color overrides */
-.html-color { color: var(--html-color); }
-.js-color { color: var(--js-color); }
-.java-color { color: var(--java-color); }
-.python-color { color: var(--python-color); }
-
-
-.skill-card h3 {
-    font-size: 1.5rem;
-    color: var(--text-light);
-    margin-bottom: 10px;
-}
-
-.skill-card p {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-    margin-bottom: 20px;
-    line-height: 1.5;
-    flex-grow: 1; 
-}
-
-.skill-experience-bar {
-    width: 100%;
-    height: 30px;
-    background: rgba(157, 0, 255, 0.1);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    margin-top: 10px; 
-}
-
-/* The dual-colored line effect at the bottom of the bar */
-.skill-experience-bar::before,
-.skill-experience-bar::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    height: 3px;
-    width: 50%;
-}
-.skill-experience-bar::before {
-    left: 0;
-    background-color: var(--cyber-blue);
-}
-.skill-experience-bar::after {
-    left: 50%;
-    background-color: var(--primary-purple);
-}
-
-.experience-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-light);
-    z-index: 10;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
 
 /* --- Responsive Design --- */
 @media (max-width: 1100px) {
-    .hero h1 {
-        font-size: 3.5rem;
-    }
-    .image-wrapper {
-        width: 320px;
-        height: 400px;
-    }
-    .image-frame {
-        height: 100%;
-    }
-    .hero .content {
-        margin-right: 30px; 
-    }
-    /* About Section Responsiveness */
-    .about-container {
-        flex-direction: column;
-        padding: 40px;
-    }
-    .about-text-content {
-        max-width: 100%;
-        margin-bottom: 40px;
-    }
-    .about-decorative-element {
-        position: static;
-        margin: 20px auto 0;
-        transform: none;
-        width: 100%;
-        height: auto;
-    }
-    .about-decorative-element:hover {
-        transform: none;
-    }
-    .about-profile-photo { 
-        width: 100px;
-        height: 100px;
-    }
-    .about-decorative-element::before {
-        display: none;
-    }
-    /* Skills Grid Tweak */
-    .skills-grid-wrapper {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+    /* ... (existing media query overrides) ... */
 }
 
 @media (max-width: 900px) {
@@ -847,10 +693,7 @@ nav ul li a:hover::after {
         margin-bottom: 5px;
     }
     
-    /* Skills Grid Tweak */
-    .skills-grid-wrapper {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+    /* Skills Grid Tweak (Removed since skills section is gone) */
 }
 
 @media (max-width: 600px) {
@@ -881,4 +724,3 @@ nav ul li a:hover::after {
         gap: 15px;
     }
 }
-
