@@ -391,21 +391,14 @@ nav ul li a:hover::after {
 /* ============================================== */
 /* GENERAL SECTION STYLES (Placeholder Sections) */
 /* ============================================== */
-.extracurricular, .projects, .contact, .about {
+/* Reset default styles for removed sections to be placeholders */
+.projects, .contact, .about {
     padding: 100px 10%;
     min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     text-align: center;
-}
-
-.extracurricular .exp-container,
-.projects .section-container,
-.contact .section-container,
-.about .section-container {
-    max-width: 900px;
-    width: 100%;
 }
 
 .section-title {
@@ -440,7 +433,7 @@ nav ul li a:hover::after {
 .section-title {
     font-size: 2.8rem; 
     color: var(--primary-purple);
-    margin-bottom: 25px; 
+    margin-bottom: 20px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -449,7 +442,7 @@ nav ul li a:hover::after {
 
 .timeline {
     position: relative;
-    padding: 0; 
+    padding: 0; /* Removed padding */
     margin-top: 15px;
 }
 
@@ -467,7 +460,7 @@ nav ul li a:hover::after {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 20px; /* Reduced margin */
+    margin-bottom: 25px; /* Reduced margin */
 }
 
 /* Items on the left side of the line */
@@ -618,28 +611,28 @@ nav ul li a:hover::after {
 
 
 /* ============================================== */
-/* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (NEW GRID) */
+/* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (NEW DESIGN) */
 /* ============================================== */
-.extracurricular {
+.activities {
     /* AGGRESSIVE PADDING REDUCTION */
-    padding: 60px 10%;
-    min-height: 100vh;
+    padding: 40px 10%; 
+    min-height: 100vh; /* Ensures full height */
     display: flex;
     justify-content: center;
-    align-items: center; /* Center vertically */
+    align-items: center;
     text-align: center;
 }
 
-.extracurricular .exp-container {
-    max-width: 1100px;
+.activities-container {
+    max-width: 1000px;
     width: 100%;
 }
 
-.activity-media-grid {
+.activities-grid {
     display: grid;
-    /* 3 columns wide */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    /* Two columns to fit content side-by-side */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 30px;
     margin-top: 30px;
 }
 
@@ -647,59 +640,78 @@ nav ul li a:hover::after {
     background: #141416;
     border: 1px solid var(--primary-purple);
     border-radius: 10px;
-    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    text-align: left;
+    height: 100%; /* Ensures cards stretch vertically */
 }
 
 .activity-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 25px var(--cyber-blue);
-}
-
-.media-placeholder {
-    width: 100%;
-    /* 16:9 Aspect Ratio */
-    aspect-ratio: 16/9; 
-    overflow: hidden;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.activity-media {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.video-placeholder {
-    background-color: #2b004a; /* Dark purple for video look */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--primary-purple);
-    font-family: var(--code-font);
-    font-size: 0.9rem;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(157, 0, 255, 0.4);
+    border: 1px solid var(--cyber-blue);
 }
 
 .activity-title {
-    font-size: 1.1rem;
-    color: var(--text-light);
+    font-size: 1.5rem;
+    color: var(--cyber-blue);
     margin-bottom: 5px;
 }
 
 .activity-meta {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--primary-purple);
-    font-family: var(--code-font);
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+    margin-bottom: 15px;
 }
+
+.media-placeholder {
+    width: 100%;
+    /* Fixed height for media placeholders */
+    height: 250px; 
+    background: #000;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--secondary-text);
+    font-family: var(--code-font);
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+.activity-description {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    line-height: 1.5;
+}
+
 
 /* --- Responsive Design --- */
 @media (max-width: 1100px) {
-    /* ... (existing media query overrides) ... */
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    .image-wrapper {
+        width: 320px;
+        height: 400px;
+    }
+    .image-frame {
+        height: 100%;
+    }
+    .hero .content {
+        margin-right: 30px; 
+    }
+    /* Skills Grid Tweak (Removed since skills section is gone) */
+    
+    /* Activities Grid Collapse */
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 900px) {
@@ -718,7 +730,6 @@ nav ul li a:hover::after {
         left: 60px;
         padding-left: 20px;
         padding-right: 20px;
-        /* Reset text alignment for mobile */
         text-align: left; 
     }
     .timeline-item:nth-child(odd) .timeline-dot,
@@ -738,13 +749,12 @@ nav ul li a:hover::after {
 
     /* Logo adjustment on small screens */
     .timeline-institution {
-        /* Reset flex container properties on small screens */
         display: block !important;
         text-align: left !important;
         margin-bottom: 5px;
     }
     
-    /* Skills Grid Tweak (No longer needed, but keeping for reference) */
+    /* Skills Grid Tweak (Removed since skills section is gone) */
 }
 
 @media (max-width: 600px) {
