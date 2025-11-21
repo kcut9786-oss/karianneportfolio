@@ -1,8 +1,5 @@
 // js/script.js
 
-// Initialize AOS (Animate On Scroll) library
-// AOS.init(); // REMOVED
-
 // --- Typing Animation Script ---
 
 // The array of texts to be typed
