@@ -1,7 +1,7 @@
 // js/script.js
 
 // Initialize AOS (Animate On Scroll) library
-AOS.init();
+// AOS.init(); // REMOVED
 
 // --- Typing Animation Script ---
 
