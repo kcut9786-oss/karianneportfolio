@@ -108,6 +108,9 @@
 
 /* --- Global Styles --- */
 body {
+  /* FIX: Disable vertical scrolling globally */
+  overflow-y: hidden;
+  
   background: var(--dark-bg);
   color: var(--text-light);
   min-height: 100vh;
