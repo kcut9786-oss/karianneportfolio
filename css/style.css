@@ -449,8 +449,8 @@ nav ul li a:hover::after {
     transition: all 0.3s ease; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
 }
 .image-btn:hover { background: var(--cyber-blue); color: var(--dark-bg); box-shadow: 0 0 35px var(--cyber-blue); transform: scale(1.05); }
-.image-btn i { transition: transform 0.3s ease; }
-.image-btn:hover i { transform: translateX(5px); }
+.image-btn i { transition: transform 0.3s ease; } /* NEW: Added transition for the icon */
+.image-btn:hover i { transform: translateX(5px); } /* FIX: Ensures it moves right */
 
 
 /* --- Typing Animation Cursor Style --- */
@@ -516,12 +516,9 @@ nav ul li a:hover::after {
     box-shadow: 0 0 35px var(--cyber-blue); 
     transform: scale(1.05); 
 }
-.edu-btn i { 
-    transition: transform 0.3s ease; 
-}
-.edu-btn:hover i { 
-    transform: translateX(5px); 
-}
+.edu-btn i { transition: transform 0.3s ease; } /* FIX: Added transition for the icon */
+.edu-btn:hover i { transform: translateX(5px); } /* FIX: Ensures it moves right */
+
 
 /* NEW: Previous button style (Muted color) */
 .prev-btn {
@@ -548,11 +545,11 @@ nav ul li a:hover::after {
     transform: scale(1.05); 
 }
 .prev-btn i { 
-    transform: rotate(180deg); /* Point left */
+    transform: none; /* FIX: Removed rotation so it points left (fa-arrow-left) */
     transition: transform 0.3s ease; 
 }
 .prev-btn:hover i { 
-    transform: rotate(180deg) translateX(5px); 
+    transform: translateX(-5px); /* FIX: Move left on hover */
 }
 
 /* NEW: Layout wrapper for buttons */
