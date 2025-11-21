@@ -493,7 +493,7 @@ nav ul li a:hover::after {
 
 /* NEW: Button Style for Education Section */
 .edu-btn {
-    margin-top: 20px; /* Space below timeline */
+    /* This button is now the NEXT button (right-aligned) */
     display: flex; 
     justify-content: center;
     align-items: center; 
@@ -509,8 +509,6 @@ nav ul li a:hover::after {
     text-decoration: none; 
     text-transform: uppercase; 
     letter-spacing: 1px;
-    margin-left: auto;
-    margin-right: auto;
 }
 .edu-btn:hover { 
     background: var(--cyber-blue); 
@@ -523,6 +521,50 @@ nav ul li a:hover::after {
 }
 .edu-btn:hover i { 
     transform: translateX(5px); 
+}
+
+/* NEW: Previous button style (Muted color) */
+.prev-btn {
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    gap: 8px; 
+    background: none;
+    color: var(--secondary-text); 
+    padding: 10px 20px; 
+    font-weight: 700; 
+    border-radius: 5px;
+    border: 2px solid var(--secondary-text); 
+    box-shadow: none;
+    transition: all 0.3s ease; 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+.prev-btn:hover { 
+    background: rgba(255, 255, 255, 0.1); 
+    color: var(--text-light); 
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05); 
+}
+.prev-btn i { 
+    transform: rotate(180deg); /* Point left */
+    transition: transform 0.3s ease; 
+}
+.prev-btn:hover i { 
+    transform: rotate(180deg) translateX(5px); 
+}
+
+/* NEW: Layout wrapper for buttons */
+.navigation-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.navigation-row.only-prev {
+    /* If only one button is present, justify it to the start (left) */
+    justify-content: flex-start;
 }
 
 
