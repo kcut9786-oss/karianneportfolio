@@ -7,7 +7,7 @@
 
 /* --- THEME COLORS (Futuristic Dark/Cyber Purple) --- */
 :root {
-    --primary-purple: #9d00ff;      /* Deep, vibrant purple for accents */
+    --primary-purple: #9d0dff;      /* Deep, vibrant purple for accents */
     --dark-bg: #0d0113;             /* Near-black, deep space background */
     --text-light: #e0e0e0;          /* Bright white/light gray text */
     --header-bg: rgba(13, 1, 19, 0.95); /* Nearly opaque header */
@@ -22,6 +22,7 @@
     --python-color: #3776ab;
     --js-color: #f7df1e;
     --html-color: #e34c26;
+    --neon-green: #39ff14; /* Defined a standard neon green color */
 }
 
 /* --- Keyframe Animations --- */
@@ -63,6 +64,45 @@
 @keyframes fade-slide-in {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+
+/* SMOOTH FADE ANIMATION KEYFRAMES for Cheerdance Card */
+@keyframes smooth-swap-front {
+    0% { opacity: 1; }
+    45% { opacity: 1; } /* Hold full opacity */
+    55% { opacity: 0; } /* Start smooth fade out */
+    100% { opacity: 0; } /* Hold zero opacity */
+}
+@keyframes smooth-swap-back {
+    0% { opacity: 0; }
+    45% { opacity: 0; }
+    55% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+/* NEW: SLOW FADE ANIMATION KEYFRAMES for Academic/Cultural Card (3 Images, 6s cycle) 
+   NOTE: This animation is now intentionally unused for the Academic card, 
+         but preserved for the Cheerdance swap if needed later.
+*/
+@keyframes swap-academic-1 { 
+    0% { opacity: 1; }
+    30% { opacity: 1; }
+    36% { opacity: 0; } 
+    100% { opacity: 0; }
+}
+@keyframes swap-academic-2 { 
+    0% { opacity: 0; }
+    30% { opacity: 0; }
+    36% { opacity: 1; } 
+    63% { opacity: 1; } 
+    69% { opacity: 0; } 
+    100% { opacity: 0; }
+}
+@keyframes swap-academic-3 { 
+    0% { opacity: 0; }
+    63% { opacity: 0; }
+    69% { opacity: 1; }
+    100% { opacity: 1; } 
 }
 
 
@@ -131,7 +171,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 10%;
+  /* MODIFIED: Reduced vertical padding from 20px to 15px */
+  padding: 15px 10%;
   background-color: var(--header-bg);
   box-shadow: 0 4px 15px rgba(0,0,0,0.6);
   position: sticky; 
@@ -224,9 +265,10 @@ nav ul li a:hover::after {
 .hero {
   display: flex;
   justify-content: space-between;
-  /* Aggressive padding reduction for Home page fit */
-  padding: 80px 10% 40px; 
-  min-height: 100vh; /* Ensures full height */
+  /* MODIFIED: Reduced padding from 80px 10% 40px to 50px 10% 20px */
+  padding: 50px 10% 20px; 
+  /* MODIFIED: Ensures full height minus navigation space for no scroll */
+  min-height: calc(100vh - 85px); 
   position: relative; 
   z-index: 1; 
   perspective: 1000px;
@@ -258,6 +300,8 @@ nav ul li a:hover::after {
   z-index: 2; 
   margin-right: 50px; 
   animation: wobble 15s infinite alternate ease-in-out;
+  /* MODIFIED: Added small bottom margin to reduce space after content */
+  margin-bottom: 20px; 
 }
 
 /* APPLY STAGGERED ANIMATION (For Hero load only) */
@@ -284,7 +328,8 @@ nav ul li a:hover::after {
 }
 
 .hero .content .hello-greeting {
-    font-size: 1.4rem; 
+    /* MODIFIED: Reduced font size from 1.4rem to 1.2rem */
+    font-size: 1.2rem; 
     font-weight: 600;
     color: var(--primary-purple);
     margin-bottom: 5px; 
@@ -294,9 +339,11 @@ nav ul li a:hover::after {
 
 /* H1 Glitch Effect */
 .hero h1 {
-  font-size: 4rem; 
+  /* MODIFIED: Reduced font size from 3rem to 2rem */
+  font-size: 2rem; 
   color: var(--text-light);
-  margin-bottom: 10px; 
+  /* MODIFIED: Reduced margin-bottom from 10px to 5px */
+  margin-bottom: 5px; 
   font-weight: 900; 
   letter-spacing: 2px;
   position: relative;
@@ -317,14 +364,28 @@ nav ul li a:hover::after {
 
 /* Typing Animation Container */
 .hero .typing-container {
-  font-size: 1.6rem; font-weight: 600; min-height: 45px; 
-  display: flex; align-items: center; margin-bottom: 30px; 
+  /* MODIFIED: Reduced font size from 1.6rem to 1.4rem */
+  font-size: 1.4rem; 
+  font-weight: 600; 
+  /* MODIFIED: Reduced min-height from 45px to 40px */
+  min-height: 40px; 
+  display: flex; align-items: center; 
+  /* MODIFIED: Reduced margin-bottom from 30px to 20px */
+  margin-bottom: 20px; 
   font-family: var(--code-font);
 }
 
 #typing-text { color: var(--primary-purple); margin-left: 8px; text-shadow: 0 0 5px var(--primary-purple); }
 /* Reduced bottom margin for multi-paragraph description */
-.hero .description { font-size: 1.1rem; line-height: 1.7; color: var(--secondary-text); margin-bottom: 15px; } 
+.hero .description { 
+    /* MODIFIED: Reduced font size from 1.1rem to 1rem */
+    font-size: 1rem; 
+    /* MODIFIED: Reduced line-height from 1.7 to 1.6 */
+    line-height: 1.6; 
+    color: var(--secondary-text); 
+    /* MODIFIED: Reduced margin-bottom from 15px to 10px */
+    margin-bottom: 10px; 
+} 
 
 /* Social Media Icons */
 .social-links { display: flex; gap: 20px; }
@@ -343,9 +404,14 @@ nav ul li a:hover::after {
 
 /* --- IMAGE STYLES (Hero) --- */
 .image-wrapper {
-    position: relative; width: var(--frame-width); height: var(--frame-height);
+    /* MODIFIED: Reduced width from 380px to 350px */
+    width: 350px; 
+    /* MODIFIED: Reduced height from 480px to 440px */
+    height: 440px;
     display: flex; flex-direction: column; align-items: center; z-index: 2;
-    padding-top: 20px; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    /* MODIFIED: Reduced top padding from 20px to 10px */
+    padding-top: 10px; 
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     transform-style: preserve-3d;
 }
 .image-frame {
@@ -372,7 +438,9 @@ nav ul li a:hover::after {
 }
 .image-wrapper:hover .image-details { transform: rotate(0deg) scale(1.1); box-shadow: 0 0 20px var(--cyber-blue), 0 0 40px rgba(0, 255, 255, 0.5); }
 .image-btn {
-    margin-top: 30px; display: flex; align-items: center; gap: 8px; background: none;
+    /* MODIFIED: Reduced margin-top from 30px to 20px */
+    margin-top: 20px; 
+    display: flex; align-items: center; gap: 8px; background: none;
     color: var(--cyber-blue); padding: 12px 25px; font-weight: 700; border-radius: 5px;
     border: 2px solid var(--cyber-blue); box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
     transition: all 0.3s ease; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
@@ -391,16 +459,6 @@ nav ul li a:hover::after {
 /* ============================================== */
 /* GENERAL SECTION STYLES (Placeholder Sections) */
 /* ============================================== */
-/* Reset default styles for removed sections to be placeholders */
-.projects, .contact, .about {
-    padding: 100px 10%;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
-}
-
 .section-title {
     font-size: 3rem;
     color: var(--primary-purple);
@@ -411,17 +469,17 @@ nav ul li a:hover::after {
     padding-bottom: 5px;
 }
 
-
 /* ============================================== */
 /* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
 /* ============================================== */
 .education {
-    /* AGGRESSIVE PADDING REDUCTION */
-    padding: 30px 10% 30px; 
-    min-height: 100vh; 
+    /* MODIFIED: Reduced padding from 30px 10% to 20px 10% */
+    padding: 20px 10% 20px; 
+    /* Calulate min-height to account for reduced padding and nav height. */
+    min-height: calc(100vh - 65px); 
     display: flex;
     justify-content: center;
-    align-items: center; /* Center content vertically */
+    align-items: center; 
     text-align: center;
 }
 
@@ -430,10 +488,46 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+/* NEW: Button Style for Education Section */
+.edu-btn {
+    margin-top: 20px; /* Space below timeline */
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    gap: 8px; 
+    background: none;
+    color: var(--cyber-blue); 
+    padding: 10px 20px; 
+    font-weight: 700; 
+    border-radius: 5px;
+    border: 2px solid var(--cyber-blue); 
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease; 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.edu-btn:hover { 
+    background: var(--cyber-blue); 
+    color: var(--dark-bg); 
+    box-shadow: 0 0 35px var(--cyber-blue); 
+    transform: scale(1.05); 
+}
+.edu-btn i { 
+    transition: transform 0.3s ease; 
+}
+.edu-btn:hover i { 
+    transform: translateX(5px); 
+}
+
+
 .section-title {
     font-size: 2.8rem; 
     color: var(--primary-purple);
-    margin-bottom: 20px; 
+    /* MODIFIED: Reduced margin-bottom from 20px to 15px */
+    margin-bottom: 15px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -442,8 +536,9 @@ nav ul li a:hover::after {
 
 .timeline {
     position: relative;
-    padding: 0; /* Removed padding */
-    margin-top: 15px;
+    padding: 0; 
+    /* MODIFIED: Reduced margin-top from 15px to 10px */
+    margin-top: 10px;
 }
 
 /* The main vertical line */
@@ -460,7 +555,8 @@ nav ul li a:hover::after {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 25px; /* Reduced margin */
+    /* MODIFIED: Reduced margin-bottom from 25px to 18px */
+    margin-bottom: 18px; 
 }
 
 /* Items on the left side of the line */
@@ -485,8 +581,9 @@ nav ul li a:hover::after {
     background: #141416; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* MODIFIED: Reduced padding from 10px 15px to 8px 12px */
+    padding: 8px 12px; 
     border-radius: 10px;
-    padding: 10px 15px; /* Aggressively reduced padding */
     text-align: left !important; 
     transition: transform 0.3s ease;
 }
@@ -500,7 +597,8 @@ nav ul li a:hover::after {
 .edu-header {
     display: flex;
     align-items: center;
-    margin-bottom: 8px; /* Further reduced margin */
+    /* MODIFIED: Reduced margin-bottom from 8px to 5px */
+    margin-bottom: 5px; 
 }
 
 .edu-logo {
@@ -509,7 +607,8 @@ nav ul li a:hover::after {
     object-fit: contain;
     border-radius: 8px;
     filter: none; 
-    margin-right: 10px;
+    /* MODIFIED: Reduced margin-right from 10px to 8px */
+    margin-right: 8px;
 }
 
 .edu-info {
@@ -517,21 +616,23 @@ nav ul li a:hover::after {
 }
 
 .timeline-degree {
-    font-size: 1rem; 
+    /* MODIFIED: Reduced font size from 1rem to 0.95rem */
+    font-size: 0.95rem; 
     font-weight: 600;
     color: var(--text-light);
     margin-bottom: 0;
 }
 
 .timeline-institution {
-    font-size: 0.8rem; 
+    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
+    font-size: 0.75rem; 
     color: var(--secondary-text);
     margin-bottom: 0;
     text-shadow: 0 0 1px var(--primary-purple);
 }
 
 .location {
-    font-size: 0.8rem; 
+    font-size: 0.75rem; 
     color: var(--primary-purple);
 }
 
@@ -541,20 +642,23 @@ nav ul li a:hover::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px; /* Further reduced margin */
-    padding-top: 5px;
+    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
+    margin-bottom: 3px; 
+    /* MODIFIED: Reduced padding-top from 5px to 3px */
+    padding-top: 3px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .edu-date {
-    font-size: 0.7rem; /* Further reduced font size */
+    font-size: 0.7rem; 
     color: var(--secondary-text);
     font-family: 'Poppins', sans-serif;
 }
 
 .edu-status {
-    padding: 2px 5px; /* Reduced padding */
-    font-size: 0.6rem; /* Reduced font size */
+    padding: 2px 5px; 
+    border-radius: 5px;
+    font-size: 0.6rem; 
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -572,8 +676,10 @@ nav ul li a:hover::after {
 
 /* --- Description is the last element --- */
 .timeline-description {
-    font-size: 0.8rem; /* Reduced font size */
-    line-height: 1.3;
+    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
+    font-size: 0.75rem; 
+    /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
+    line-height: 1.2;
     color: var(--secondary-text);
     margin-bottom: 0; 
 }
@@ -582,8 +688,8 @@ nav ul li a:hover::after {
 /* The circular dot on the line */
 .timeline-dot {
     position: absolute;
-    width: 12px; /* Further reduced size */
-    height: 12px; /* Further reduced size */
+    width: 12px; 
+    height: 12px; 
     border-radius: 50%;
     background: var(--dark-bg);
     border: 3px solid var(--primary-purple);
@@ -614,12 +720,12 @@ nav ul li a:hover::after {
 /* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (NEW DESIGN) */
 /* ============================================== */
 .activities {
-    /* AGGRESSIVE PADDING REDUCTION */
-    padding: 40px 10%; 
-    min-height: 100vh; /* Ensures full height */
+    /* MODIFIED: Reduced padding to the bare minimum (3px top/bottom) */
+    padding: 3px 5% 3px; 
+    min-height: calc(100vh - 65px); 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     text-align: center;
 }
 
@@ -628,12 +734,26 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+.section-title {
+    /* MODIFIED: Reduced font size */
+    font-size: 2.2rem; 
+    color: var(--primary-purple);
+    /* MODIFIED: Reduced margin-bottom from 8px to 5px */
+    margin-bottom: 5px; 
+    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
+    border-bottom: 3px solid var(--cyber-blue);
+    display: inline-block;
+    /* MODIFIED: Reduced bottom padding */
+    padding-bottom: 3px;
+}
+
 .activities-grid {
     display: grid;
-    /* Two columns to fit content side-by-side */
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: repeat(2, 1fr); 
+    /* MODIFIED: Reduced gap from 8px to 5px */
+    gap: 5px; 
+    /* MODIFIED: Reduced margin-top from 8px to 5px */
+    margin-top: 5px;
 }
 
 .activity-card {
@@ -641,13 +761,14 @@ nav ul li a:hover::after {
     border: 1px solid var(--primary-purple);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    padding: 20px;
+    /* MODIFIED: Reduced padding from 4px to 3px */
+    padding: 3px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column; 
     align-items: flex-start;
     text-align: left;
-    height: 100%; /* Ensures cards stretch vertically */
+    height: auto; 
 }
 
 .activity-card:hover {
@@ -657,37 +778,182 @@ nav ul li a:hover::after {
 }
 
 .activity-title {
-    font-size: 1.5rem;
+    /* MODIFIED: Reduced font size */
+    font-size: 0.9rem; 
     color: var(--cyber-blue);
-    margin-bottom: 5px;
+    margin-bottom: 0; 
 }
 
 .activity-meta {
-    font-size: 0.85rem;
+    /* MODIFIED: Reduced font size */
+    font-size: 0.55rem;
     color: var(--secondary-text);
-    margin-bottom: 15px;
+    /* MODIFIED: Reduced margin-bottom from 2px to 1px */
+    margin-bottom: 1px;
 }
 
+/* Media Placeholder (Used for English Club/Cheerdance) */
 .media-placeholder {
     width: 100%;
-    /* Fixed height for media placeholders */
-    height: 250px; 
+    /* MODIFIED: Further reduced height from 35% to 30% */
+    padding-top: 30%; 
+    height: 0; 
     background: #000;
     border: 2px dashed rgba(255, 255, 255, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
+    /* MODIFIED: Reduced margin-bottom from 1px to 0 */
+    margin-bottom: 0; 
     color: var(--secondary-text);
     font-family: var(--code-font);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    overflow: hidden;
+    position: relative; 
+    display: block; 
+}
+
+/* Style for the actual image inside the placeholder */
+.club-officer-image, .cheerdance-image, .activity-grid-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* FIX: Ensure image covers the 16:9 placeholder without distortion */
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease; 
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); 
+}
+
+/* --- HOVER EFFECT FOR HIGHLIGHTING YOU (The person on the left) --- */
+.media-placeholder:hover .english-club-officer {
+    /* Increased zoom to 1.5x and adjusted shift to center on the person on the left */
+    transform: scale(1.5) translateX(-15%); 
+    
+    /* FIX: White Outline/Border and Brightness for Clarity */
+    box-shadow: 0 0 0 3px white, 0 0 15px rgba(255, 255, 255, 0.8);
+    
+    /* Enhance clarity and brightness */
+    filter: brightness(1.3) drop-shadow(0 0 3px #ffffff); 
+}
+/* ------------------------------------------------------------------- */
+
+/* Styles for Cheerdance Dual Image Layout */
+.cheerdance-swap-container {
+    /* Inherits 30% ratio from .media-placeholder */
+    padding-top: 30%; 
+    position: relative;
+    background: #000; 
+    border: none;
+    margin-bottom: 0;
+}
+
+/* Hover logic for the slow photo swap */
+.media-placeholder:hover .image-front {
+    animation: smooth-swap-front 2s infinite alternate ease-in-out; 
+}
+.media-placeholder:hover .image-back {
+    animation: smooth-swap-back 2s infinite alternate ease-in-out; 
+}
+
+/* Styles for Academic/Cultural 3-Image Grid (Side-by-Side Logic) */
+.academic-grid-container {
+    /* OVERRIDE: Remove padding-top/height set by .media-placeholder */
+    padding-top: 0;
+    height: auto; 
+    background: #000;
+    border: none;
+    margin-bottom: 0;
+    display: flex; /* Use flexbox to line up thumbnails */
+    gap: 2px; /* Small gap between images */
     overflow: hidden;
 }
 
-.activity-description {
+.academic-thumbnail {
+    width: 33.33%; /* Each image takes 1/3 of the space */
+    height: auto; 
+    object-fit: cover; 
+    display: block;
+    aspect-ratio: 1 / 1; /* Keep images square to maintain layout integrity */
+}
+
+/* REMOVED ALL SWAP ANIMATION LOGIC FOR THIS CARD */
+
+
+/* NEW: Styles for video links (Cheerdance card only) */
+.video-links {
+    /* MODIFIED: Reduced top padding/margin to 0 */
+    margin-top: 0; 
+    padding-top: 0; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    /* MODIFIED: Smaller gap in button area */
+    gap: 3px; 
+    text-align: center;
+}
+
+.video-cta {
+    /* MODIFIED: Smaller CTA text */
+    font-size: 0.65rem; 
+    color: var(--primary-purple);
+    margin: 0;
+    width: 100%; 
+}
+
+.video-btn {
+    flex-grow: 1;
+    /* MODIFIED: Smallest possible button padding */
+    padding: 1px 3px; 
+    background: var(--primary-purple);
+    color: var(--dark-bg) !important;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.6rem; 
+    transition: background 0.3s;
+    text-align: center;
+    white-space: nowrap;
+}
+.video-btn:hover {
+    background: var(--cyber-blue);
+}
+/* END NEW STYLING */
+
+
+/* Style for the card with no media (e.g., Other Achievements) */
+.activity-card.no-media-card {
+    /* Now sits correctly beside Academic card due to grid layout */
+    grid-column: auto; 
+    height: auto; 
+}
+.activity-card.no-media-card .media-placeholder {
+    display: none; 
+}
+
+.no-style-list {
+    list-style: none;
+    padding-left: 0;
+    /* MODIFIED: Increased margin-top for spacing */
+    margin-top: 3px; 
+}
+.no-style-list li {
+    /* Font size remains 0.9rem */
     font-size: 0.9rem;
     color: var(--secondary-text);
-    line-height: 1.5;
+    /* MODIFIED: Reduced margin-bottom from 3px to 1px */
+    margin-bottom: 1px; 
+    /* Line height remains 1.3 */
+    line-height: 1.3; 
+}
+
+.activity-description {
+    /* MODIFIED: Increased font size for better readability */
+    font-size: 0.8rem; 
+    line-height: 1.3; 
+    /* MODIFIED: Increased margin-bottom for spacing */
+    margin-bottom: 5px; 
+    color: var(--secondary-text);
 }
 
 
@@ -706,11 +972,13 @@ nav ul li a:hover::after {
     .hero .content {
         margin-right: 30px; 
     }
-    /* Skills Grid Tweak (Removed since skills section is gone) */
-    
-    /* Activities Grid Collapse */
+    /* Activities Grid Collapse to 1 column */
     .activities-grid {
         grid-template-columns: 1fr;
+    }
+    .activity-card.no-media-card {
+        /* Ensures achievements card only takes 1 column when the grid collapses */
+        grid-column: span 1; 
     }
 }
 
@@ -754,7 +1022,6 @@ nav ul li a:hover::after {
         margin-bottom: 5px;
     }
     
-    /* Skills Grid Tweak (Removed since skills section is gone) */
 }
 
 @media (max-width: 600px) {
@@ -779,9 +1046,5 @@ nav ul li a:hover::after {
     }
     .social-links {
         justify-content: center;
-    }
-    .stats-grid {
-        flex-direction: column;
-        gap: 15px;
     }
 }
