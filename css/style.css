@@ -8,7 +8,7 @@
 /* --- THEME COLORS (Futuristic Dark/Cyber Purple) --- */
 :root {
     --primary-purple: #9d0dff;      /* Deep, vibrant purple for accents */
-    --dark-bg: #0d0113;             /* Near-black, deep space background */
+    --dark-bg: #0d0113;             /* Near-black, deep space space background */
     --text-light: #e0e0e0;          /* Bright white/light gray text */
     --header-bg: rgba(13, 1, 19, 0.95); /* Nearly opaque header */
     --secondary-text: #b3b3b3;      /* Muted light gray */
@@ -449,8 +449,14 @@ nav ul li a:hover::after {
     transition: all 0.3s ease; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
 }
 .image-btn:hover { background: var(--cyber-blue); color: var(--dark-bg); box-shadow: 0 0 35px var(--cyber-blue); transform: scale(1.05); }
-.image-btn i { transition: transform 0.3s ease; } /* NEW: Added transition for the icon */
-.image-btn:hover i { transform: translateX(5px); } /* FIX: Ensures it moves right */
+.image-btn i { 
+    /* NEW: Next button arrow default orientation (right) */
+    transition: transform 0.3s ease; 
+}
+.image-btn:hover i { 
+    /* NEW: Next button arrow hover movement (right) */
+    transform: translateX(5px); 
+}
 
 
 /* --- Typing Animation Cursor Style --- */
@@ -493,7 +499,7 @@ nav ul li a:hover::after {
 
 /* NEW: Button Style for Education Section */
 .edu-btn {
-    /* This button is now the NEXT button (right-aligned) */
+    /* This button is the NEXT button */
     display: flex; 
     justify-content: center;
     align-items: center; 
@@ -516,11 +522,16 @@ nav ul li a:hover::after {
     box-shadow: 0 0 35px var(--cyber-blue); 
     transform: scale(1.05); 
 }
-.edu-btn i { transition: transform 0.3s ease; } /* FIX: Added transition for the icon */
-.edu-btn:hover i { transform: translateX(5px); } /* FIX: Ensures it moves right */
+.edu-btn i { 
+    /* NEW: Next button arrow default orientation (right) */
+    transition: transform 0.3s ease; 
+}
+.edu-btn:hover i { 
+    /* NEW: Next button arrow hover movement (right) */
+    transform: translateX(5px); 
+}
 
-
-/* NEW: Previous button style (Muted color) */
+/* NEW: Previous button style (Back button) */
 .prev-btn {
     display: flex; 
     justify-content: center;
@@ -545,11 +556,12 @@ nav ul li a:hover::after {
     transform: scale(1.05); 
 }
 .prev-btn i { 
-    transform: none; /* FIX: Removed rotation so it points left (fa-arrow-left) */
+    /* FIX: Remove rotation - fa-arrow-left now points left naturally */
     transition: transform 0.3s ease; 
 }
 .prev-btn:hover i { 
-    transform: translateX(-5px); /* FIX: Move left on hover */
+    /* NEW: Previous button arrow hover movement (left) */
+    transform: translateX(-5px); 
 }
 
 /* NEW: Layout wrapper for buttons */
@@ -996,6 +1008,29 @@ nav ul li a:hover::after {
     /* MODIFIED: Increased margin-bottom for spacing */
     margin-bottom: 5px; 
     color: var(--secondary-text);
+}
+
+/* NEW: Navigation Row Styles */
+/* NEXT button arrows (image-btn, edu-btn) */
+.image-btn i,
+.edu-btn i { 
+    /* The fa-arrow-right icon points right by default */
+    transition: transform 0.3s ease; 
+}
+.image-btn:hover i,
+.edu-btn:hover i { 
+    /* Moves right (forward) on hover */
+    transform: translateX(5px); 
+}
+
+/* PREVIOUS button arrows (prev-btn) */
+.prev-btn i { 
+    /* The fa-arrow-left icon points left by default (no rotation needed) */
+    transition: transform 0.3s ease; 
+}
+.prev-btn:hover i { 
+    /* Moves left (backward) on hover */
+    transform: translateX(-5px); 
 }
 
 
