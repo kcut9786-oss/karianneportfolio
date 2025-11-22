@@ -8,7 +8,7 @@
 /* --- THEME COLORS (Futuristic Dark/Cyber Purple) --- */
 :root {
     --primary-purple: #9d0dff;      /* Deep, vibrant purple for accents */
-    --dark-bg: #0d0113;             /* Near-black, deep space space background */
+    --dark-bg: #0d0113;             /* Near-black, deep space background */
     --text-light: #e0e0e0;          /* Bright white/light gray text */
     --header-bg: rgba(13, 1, 19, 0.95); /* Nearly opaque header */
     --secondary-text: #b3b3b3;      /* Muted light gray */
@@ -1033,6 +1033,18 @@ nav ul li a:hover::after {
     transform: translateX(-5px); 
 }
 
+/* NEW: Layout wrapper for buttons */
+.navigation-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.navigation-row.only-prev {
+    /* If only one button is present, justify it to the start (left) */
+    justify-content: flex-start;
+}
+
 
 /* --- Responsive Design --- */
 @media (max-width: 1100px) {
@@ -1125,3 +1137,4 @@ nav ul li a:hover::after {
         justify-content: center;
     }
 }
+
