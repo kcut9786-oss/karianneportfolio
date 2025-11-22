@@ -449,14 +449,8 @@ nav ul li a:hover::after {
     transition: all 0.3s ease; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
 }
 .image-btn:hover { background: var(--cyber-blue); color: var(--dark-bg); box-shadow: 0 0 35px var(--cyber-blue); transform: scale(1.05); }
-.image-btn i { 
-    /* NEW: Next button arrow default orientation (right) */
-    transition: transform 0.3s ease; 
-}
-.image-btn:hover i { 
-    /* NEW: Next button arrow hover movement (right) */
-    transform: translateX(5px); 
-}
+.image-btn i { transition: transform 0.3s ease; }
+.image-btn:hover i { transform: translateX(5px); }
 
 
 /* --- Typing Animation Cursor Style --- */
@@ -523,11 +517,9 @@ nav ul li a:hover::after {
     transform: scale(1.05); 
 }
 .edu-btn i { 
-    /* NEW: Next button arrow default orientation (right) */
     transition: transform 0.3s ease; 
 }
 .edu-btn:hover i { 
-    /* NEW: Next button arrow hover movement (right) */
     transform: translateX(5px); 
 }
 
@@ -556,7 +548,7 @@ nav ul li a:hover::after {
     transform: scale(1.05); 
 }
 .prev-btn i { 
-    /* FIX: Remove rotation - fa-arrow-left now points left naturally */
+    /* The fa-arrow-left icon points left by default (no rotation needed) */
     transition: transform 0.3s ease; 
 }
 .prev-btn:hover i { 
@@ -1010,41 +1002,6 @@ nav ul li a:hover::after {
     color: var(--secondary-text);
 }
 
-/* NEW: Navigation Row Styles */
-/* NEXT button arrows (image-btn, edu-btn) */
-.image-btn i,
-.edu-btn i { 
-    /* The fa-arrow-right icon points right by default */
-    transition: transform 0.3s ease; 
-}
-.image-btn:hover i,
-.edu-btn:hover i { 
-    /* Moves right (forward) on hover */
-    transform: translateX(5px); 
-}
-
-/* PREVIOUS button arrows (prev-btn) */
-.prev-btn i { 
-    /* The fa-arrow-left icon points left by default (no rotation needed) */
-    transition: transform 0.3s ease; 
-}
-.prev-btn:hover i { 
-    /* Moves left (backward) on hover */
-    transform: translateX(-5px); 
-}
-
-/* NEW: Layout wrapper for buttons */
-.navigation-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-}
-.navigation-row.only-prev {
-    /* If only one button is present, justify it to the start (left) */
-    justify-content: flex-start;
-}
-
 
 /* --- Responsive Design --- */
 @media (max-width: 1100px) {
@@ -1137,4 +1094,3 @@ nav ul li a:hover::after {
         justify-content: center;
     }
 }
-
