@@ -1024,9 +1024,10 @@ nav ul li a:hover::after {
     height: 300px; 
     margin: 30px auto 40px; 
     transform: none; 
+    box-shadow: none; 
     z-index: 10; 
     /* Background Heart Image */
-    background-image: url('images/heart.png'); /* Using provided heart image */
+    background-image: url('images/heart.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
