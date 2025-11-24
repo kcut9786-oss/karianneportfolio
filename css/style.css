@@ -1020,25 +1020,25 @@ nav ul li a:hover::after {
 /* --- Staggered Overlapping Frame CSS (Mimicking LOVE Frame) --- */
 .family-heart-display {
     position: relative;
-    width: 320px; /* Base size for image cluster */
-    height: 300px; 
+    /* Increased width to accommodate side frames */
+    width: 400px; 
+    height: 350px; 
     margin: 30px auto 40px; 
     transform: none; 
     box-shadow: none; 
     z-index: 10; 
     /* Background Heart Image */
-    /* THIS IS THE KEY LINE: Setting heart.png as the background image */
     background-image: url('images/heart.png'); 
-    background-size: contain;
+    background-size: 80%; /* Adjusted size to leave room for the frames */
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center 70%; /* Moved down slightly to center the heart base */
 }
 
 .heart-image {
     position: absolute;
-    width: 150px; /* Image size */
-    height: 150px;
-    /* Styles for the custom frame (circular for center, rounded for sides) */
+    width: 130px; /* Image size (slightly smaller to fit the heart background) */
+    height: 130px;
+    /* Styles for the custom frame */
     border: 5px solid var(--primary-purple); /* Thicker border for frame effect */
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); 
     overflow: hidden;
@@ -1061,28 +1061,37 @@ nav ul li a:hover::after {
 
 /* Positioning for Overlapping Effect (Mimicking LOVE Frame) */
 
-/* 1. Top Image (Represents the central circular 'O' frame) */
+/* 1. Top Image (Mimics the Circular 'O' frame in the middle) */
 .family-heart-display .top-img {
-    top: 50px;
-    left: 85px; 
+    width: 100px; /* Smaller circle */
+    height: 100px;
+    top: 100px;
+    left: 150px; 
     border-radius: 50%; /* Circular */
-    z-index: 5; 
+    z-index: 7; /* Put this one on top */
+    transform: rotate(0deg);
 }
 
-/* 2. Bottom-Left Image (Represents a rectangular side frame) */
+/* 2. Bottom-Left Image (Mimics the top-left frame) */
 .family-heart-display .bottom-left-img {
-    top: 150px;
-    left: 0; 
-    border-radius: 30px; /* Rounded rectangle */
-    z-index: 4;
+    width: 150px; /* Rectangular frame */
+    height: 120px;
+    top: 50px;
+    left: 50px; 
+    border-radius: 10px; 
+    z-index: 5;
+    transform: rotate(-5deg); /* Slanted like the LOVE frame */
 }
 
-/* 3. Bottom-Right Image (Represents another rectangular side frame) */
+/* 3. Bottom-Right Image (Mimics the bottom-right frame) */
 .family-heart-display .bottom-right-img {
-    top: 180px;
-    left: 170px; 
-    border-radius: 30px; /* Rounded rectangle */
-    z-index: 3;
+    width: 150px; /* Rectangular frame */
+    height: 120px;
+    top: 190px;
+    left: 200px; 
+    border-radius: 10px; 
+    z-index: 6;
+    transform: rotate(5deg); /* Slanted like the LOVE frame */
 }
 
 
@@ -1212,6 +1221,4 @@ nav ul li a:hover::after {
     .social-links {
         justify-content: center;
     }
-}
-
 }
