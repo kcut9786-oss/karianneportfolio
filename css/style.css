@@ -1027,6 +1027,7 @@ nav ul li a:hover::after {
     box-shadow: none; 
     z-index: 10; 
     /* Background Heart Image */
+    /* THIS IS THE KEY LINE: Setting heart.png as the background image */
     background-image: url('images/heart.png'); 
     background-size: contain;
     background-repeat: no-repeat;
@@ -1211,4 +1212,6 @@ nav ul li a:hover::after {
     .social-links {
         justify-content: center;
     }
+}
+
 }
