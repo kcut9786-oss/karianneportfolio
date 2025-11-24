@@ -476,10 +476,10 @@ nav ul li a:hover::after {
 /* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
 /* ============================================== */
 .education {
-    /* MODIFIED: Reduced padding from 30px 10% to 20px 10% */
-    padding: 20px 10% 20px; 
-    /* Calulate min-height to account for reduced padding and nav height. */
-    min-height: calc(100vh - 65px); 
+    /* MODIFIED: Increased padding to guarantee full screen occupation */
+    padding: 30px 10% 40px; 
+    /* Ensures minimum height is met */
+    min-height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -489,6 +489,8 @@ nav ul li a:hover::after {
 .edu-container {
     max-width: 900px;
     width: 100%;
+    /* ADDED: Extra margin to push buttons down and ensure bottom padding works effectively */
+    margin-bottom: 20px; 
 }
 
 /* NEW: Button Style for Education Section */
@@ -548,11 +550,9 @@ nav ul li a:hover::after {
     transform: scale(1.05); 
 }
 .prev-btn i { 
-    /* The fa-arrow-left icon points left by default (no rotation needed) */
     transition: transform 0.3s ease; 
 }
 .prev-btn:hover i { 
-    /* NEW: Previous button arrow hover movement (left) */
     transform: translateX(-5px); 
 }
 
@@ -766,8 +766,8 @@ nav ul li a:hover::after {
 /* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (NEW DESIGN) */
 /* ============================================== */
 .activities {
-    /* MODIFIED: Reduced padding to the bare minimum (3px top/bottom) */
-    padding: 3px 5% 3px; 
+    /* MODIFIED: Reduced padding to make content fit */
+    padding: 10px 5% 10px; 
     min-height: calc(100vh - 65px); 
     display: flex;
     justify-content: center;
@@ -784,8 +784,8 @@ nav ul li a:hover::after {
     /* MODIFIED: Reduced font size */
     font-size: 2.2rem; 
     color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom from 8px to 5px */
-    margin-bottom: 5px; 
+    /* MODIFIED: Reduced margin-bottom */
+    margin-bottom: 3px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -796,9 +796,9 @@ nav ul li a:hover::after {
 .activities-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-    /* MODIFIED: Reduced gap from 8px to 5px */
+    /* MODIFIED: Reduced gap */
     gap: 5px; 
-    /* MODIFIED: Reduced margin-top from 8px to 5px */
+    /* MODIFIED: Reduced margin-top */
     margin-top: 5px;
 }
 
@@ -807,7 +807,7 @@ nav ul li a:hover::after {
     border: 1px solid var(--primary-purple);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    /* MODIFIED: Reduced padding from 4px to 3px */
+    /* MODIFIED: Reduced padding */
     padding: 3px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
@@ -834,19 +834,19 @@ nav ul li a:hover::after {
     /* MODIFIED: Reduced font size */
     font-size: 0.55rem;
     color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 2px to 1px */
+    /* MODIFIED: Reduced margin-bottom */
     margin-bottom: 1px;
 }
 
 /* Media Placeholder (Used for English Club/Cheerdance) */
 .media-placeholder {
     width: 100%;
-    /* MODIFIED: Further reduced height from 35% to 30% */
-    padding-top: 30%; 
+    /* MODIFIED: Reduced height for compression */
+    padding-top: 25%; 
     height: 0; 
     background: #000;
     border: 2px dashed rgba(255, 255, 255, 0.2);
-    /* MODIFIED: Reduced margin-bottom from 1px to 0 */
+    /* MODIFIED: Reduced margin-bottom */
     margin-bottom: 0; 
     color: var(--secondary-text);
     font-family: var(--code-font);
@@ -885,7 +885,7 @@ nav ul li a:hover::after {
 /* Styles for Cheerdance Dual Image Layout */
 .cheerdance-swap-container {
     /* Inherits 30% ratio from .media-placeholder */
-    padding-top: 30%; 
+    padding-top: 25%; 
     position: relative;
     background: #000; 
     border: none;
@@ -918,7 +918,8 @@ nav ul li a:hover::after {
     height: auto; 
     object-fit: cover; 
     display: block;
-    aspect-ratio: 1 / 1; /* Keep images square to maintain layout integrity */
+    /* MODIFIED: Reduced aspect ratio height for compression */
+    aspect-ratio: 4 / 3; 
 }
 
 /* REMOVED ALL SWAP ANIMATION LOGIC FOR THIS CARD */
@@ -954,10 +955,8 @@ nav ul li a:hover::after {
     background: var(--primary-purple);
     color: var(--dark-bg) !important;
     font-weight: 600;
-    border-radius: 4px;
-    text-decoration: none;
     font-size: 0.6rem; 
-    transition: background 0.3s;
+    transition: transform 0.3s ease;
     text-align: center;
     white-space: nowrap;
 }
@@ -980,26 +979,144 @@ nav ul li a:hover::after {
 .no-style-list {
     list-style: none;
     padding-left: 0;
-    /* MODIFIED: Increased margin-top for spacing */
-    margin-top: 3px; 
+    /* MODIFIED: Reduced margin-top */
+    margin-top: 2px; 
 }
 .no-style-list li {
-    /* Font size remains 0.9rem */
-    font-size: 0.9rem;
+    /* MODIFIED: Reduced font size slightly */
+    font-size: 0.8rem;
     color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 3px to 1px */
-    margin-bottom: 1px; 
-    /* Line height remains 1.3 */
-    line-height: 1.3; 
+    /* MODIFIED: Reduced margin-bottom */
+    margin-bottom: 0; 
+    line-height: 1.25; 
 }
 
 .activity-description {
-    /* MODIFIED: Increased font size for better readability */
-    font-size: 0.8rem; 
-    line-height: 1.3; 
-    /* MODIFIED: Increased margin-bottom for spacing */
-    margin-bottom: 5px; 
+    /* MODIFIED: Reduced font size slightly */
+    font-size: 0.75rem; 
+    line-height: 1.2; 
+    /* MODIFIED: Reduced margin */
+    margin-bottom: 2px; 
     color: var(--secondary-text);
+}
+
+/* ============================================== */
+/* NEW: My Family Page Styling (STAGGERED FRAME DESIGN) */
+/* ============================================== */
+.family-page {
+    /* Set to full height and centered */
+    padding: 20px 10% 20px; 
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+}
+.family-container {
+    max-width: 900px;
+    width: 100%;
+}
+
+/* --- Staggered Overlapping Frame CSS (Mimicking LOVE Frame) --- */
+.family-heart-display {
+    position: relative;
+    width: 320px; /* Base size for image cluster */
+    height: 300px; 
+    margin: 30px auto 40px; 
+    transform: none; 
+    z-index: 10; 
+    /* Background Heart Image */
+    background-image: url('images/heart.png'); /* Using provided heart image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.heart-image {
+    position: absolute;
+    width: 150px; /* Image size */
+    height: 150px;
+    /* Styles for the custom frame (circular for center, rounded for sides) */
+    border: 5px solid var(--primary-purple); /* Thicker border for frame effect */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); 
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #1a012e;
+}
+
+.heart-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px var(--primary-purple);
+    z-index: 11;
+}
+
+.heart-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none; 
+}
+
+/* Positioning for Overlapping Effect (Mimicking LOVE Frame) */
+
+/* 1. Top Image (Represents the central circular 'O' frame) */
+.family-heart-display .top-img {
+    top: 50px;
+    left: 85px; 
+    border-radius: 50%; /* Circular */
+    z-index: 5; 
+}
+
+/* 2. Bottom-Left Image (Represents a rectangular side frame) */
+.family-heart-display .bottom-left-img {
+    top: 150px;
+    left: 0; 
+    border-radius: 30px; /* Rounded rectangle */
+    z-index: 4;
+}
+
+/* 3. Bottom-Right Image (Represents another rectangular side frame) */
+.family-heart-display .bottom-right-img {
+    top: 180px;
+    left: 170px; 
+    border-radius: 30px; /* Rounded rectangle */
+    z-index: 3;
+}
+
+
+/* NEW: Navigation Row Styles */
+/* NEXT button arrows (image-btn, edu-btn) */
+.image-btn i,
+.edu-btn i { 
+    /* The fa-arrow-right icon points right by default */
+    transition: transform 0.3s ease; 
+}
+.image-btn:hover i,
+.edu-btn:hover i { 
+    /* Moves right (forward) on hover */
+    transform: translateX(5px); 
+}
+
+/* PREVIOUS button arrows (prev-btn) */
+.prev-btn i { 
+    /* The fa-arrow-left icon points left by default (no rotation needed) */
+    transition: transform 0.3s ease; 
+}
+.prev-btn:hover i { 
+    /* Moves left (backward) on hover */
+    transform: translateX(-5px); 
+}
+
+/* NEW: Layout wrapper for buttons */
+.navigation-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.navigation-row.only-prev {
+    /* If only one button is present, justify it to the start (left) */
+    justify-content: flex-start;
 }
 
 
