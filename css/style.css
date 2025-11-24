@@ -1001,7 +1001,7 @@ nav ul li a:hover::after {
 }
 
 /* ============================================== */
-/* NEW: My Family Page Styling (STAGGERED FRAME DESIGN) */
+/* UPDATED: My Family Page Styling (LOVE FRAME DESIGN) */
 /* ============================================== */
 .family-page {
     /* Set to full height and centered */
@@ -1017,33 +1017,30 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
-/* --- Staggered Overlapping Frame CSS (Mimicking LOVE Frame) --- */
+/* --- Love Frame Container (Now larger and centered) --- */
 .family-heart-display {
     position: relative;
-    /* Increased width to accommodate side frames */
-    width: 400px; 
+    /* Increased size to accommodate four frames */
+    width: 450px; 
     height: 350px; 
     margin: 30px auto 40px; 
-    transform: none; 
-    box-shadow: none; 
     z-index: 10; 
-    /* Background Heart Image */
-    background-image: url('images/heart.png'); 
-    background-size: 80%; /* Adjusted size to leave room for the frames */
-    background-repeat: no-repeat;
-    background-position: center 70%; /* Moved down slightly to center the heart base */
+    /* REMOVED: background-image: url('images/heart.png'); */
+    background: transparent; /* Clear the background */
 }
 
 .heart-image {
     position: absolute;
-    width: 130px; /* Image size (slightly smaller to fit the heart background) */
-    height: 130px;
-    /* Styles for the custom frame */
-    border: 5px solid var(--primary-purple); /* Thicker border for frame effect */
+    /* Standardized frame size */
+    width: 140px; 
+    height: 140px;
+    border: 4px solid var(--primary-purple); 
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); 
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #1a012e;
+    z-index: 5; /* Ensure frames overlap the main structure if it existed */
+    border-radius: 5px; /* Default square frames */
 }
 
 .heart-image:hover {
@@ -1059,40 +1056,61 @@ nav ul li a:hover::after {
     transform: none; 
 }
 
-/* Positioning for Overlapping Effect (Mimicking LOVE Frame) */
+/* ---------------------------------------------------- */
+/* --- NEW FRAME POSITIONS AND SHAPES (Approximation) --- */
+/* ---------------------------------------------------- */
 
-/* 1. Top Image (Mimics the Circular 'O' frame in the middle) */
-.family-heart-display .top-img {
-    width: 100px; /* Smaller circle */
-    height: 100px;
+/* L FRAME (Top Left, Tilted Rectangle) */
+.l-frame {
+    top: 5px;
+    left: 20px; 
+    transform: rotate(-10deg);
+    /* Mimic the curved/wavy top frame shape using border-radius and slight clipping */
+    border-radius: 40px 10px 5px 20px;
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+    width: 160px;
+    height: 120px;
+}
+
+/* O FRAME (Center, Circle) */
+.o-frame {
     top: 100px;
-    left: 150px; 
+    left: 155px; 
     border-radius: 50%; /* Circular */
-    z-index: 7; /* Put this one on top */
-    transform: rotate(0deg);
+    width: 100px;
+    height: 100px;
+    z-index: 10; /* Bring the O frame forward for overlap */
 }
 
-/* 2. Bottom-Left Image (Mimics the top-left frame) */
-.family-heart-display .bottom-left-img {
-    width: 150px; /* Rectangular frame */
+/* V FRAME (Bottom Left/Center) - Tilted Rectangle */
+.v-frame {
+    top: 200px;
+    left: 40px; 
+    transform: rotate(10deg);
+    border-radius: 5px 20px 40px 10px;
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0% 90%);
+    width: 160px;
     height: 120px;
-    top: 50px;
-    left: 50px; 
-    border-radius: 10px; 
-    z-index: 5;
-    transform: rotate(-5deg); /* Slanted like the LOVE frame */
 }
 
-/* 3. Bottom-Right Image (Mimics the bottom-right frame) */
-.family-heart-display .bottom-right-img {
-    width: 150px; /* Rectangular frame */
+/* E FRAME (Bottom Right) - Standard Rectangle */
+.e-frame {
+    top: 200px;
+    left: 270px; 
+    transform: rotate(-5deg);
+    width: 160px;
     height: 120px;
-    top: 190px;
-    left: 200px; 
-    border-radius: 10px; 
-    z-index: 6;
-    transform: rotate(5deg); /* Slanted like the LOVE frame */
+    border-radius: 10px 40px 20px 5px;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
 }
+
+/* The complex "LOVE" wooden structure cannot be perfectly replicated with CSS without using background images 
+   or multiple complex ::before/::after elements. This positioning simulates the visual flow.
+   To add the heart/wooden shape, you would use a fifth, non-photo element or a background image that you design.
+   
+   If you want the **RED HEART** from the previous design back, uncomment the following line and clear the positioning:
+   .family-heart-display { background-image: url('images/heart.png'); background-size: 80% auto; background-repeat: no-repeat; background-position: center center; }
+*/
 
 
 /* NEW: Navigation Row Styles */
@@ -1220,5 +1238,32 @@ nav ul li a:hover::after {
     }
     .social-links {
         justify-content: center;
+    }
+    /* Family Page adjustments for small screens */
+    .family-heart-display {
+        width: 100%; 
+        height: 400px;
+        max-width: 320px; 
+    }
+    .l-frame {
+        left: 0;
+        top: 0;
+    }
+    .o-frame {
+        left: 50%;
+        top: 100px;
+        transform: translateX(-50%);
+    }
+    .v-frame {
+        left: 0;
+        top: 220px;
+        transform: rotate(0deg);
+        border-radius: 5px;
+        clip-path: none;
+    }
+    .e-frame {
+        right: 0;
+        left: auto;
+        top: 30px;
     }
 }
