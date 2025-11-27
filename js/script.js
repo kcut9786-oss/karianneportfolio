@@ -49,5 +49,4 @@ function type() {
 }
 
 // Start the typing animation after a small delay on page load
-// The function call is removed to disable the typing animation effect.
-// setTimeout(type, 1000);
+setTimeout(type, 1000); // Uncommented this line to start the animation
