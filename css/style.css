@@ -23,6 +23,11 @@
     --js-color: #f7df1e;
     --html-color: #e34c26;
     --neon-green: #39ff14; /* Defined a standard neon green color */
+
+    /* ADDED: Wood Grain and Shadow Colors for Family Page */
+    --frame-wood-light: #c29d72;
+    --frame-wood-dark: #8c6742;
+    --frame-shadow: rgba(0, 0, 0, 0.4);
 }
 
 /* --- Keyframe Animations --- */
@@ -1001,7 +1006,7 @@ nav ul li a:hover::after {
 }
 
 /* ============================================== */
-/* RESTORED: My Family Page Styling (Heart Background) */
+/* REVISED: My Family Page Styling (LOVE Photo Frame) */
 /* ============================================== */
 .family-page {
     /* Set to full height and centered */
@@ -1017,87 +1022,238 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
-/* --- Heart Frame Container (RESTORED HEART BACKGROUND) --- */
-.family-heart-display {
+/* --- Main LOVE Frame Container (New Structure) --- */
+.love-photo-frame-display {
     position: relative;
-    /* Size adjusted to fit the heart image as the main background */
-    width: 380px; 
-    height: 380px; 
+    /* Overall size of the entire component */
+    width: 550px; 
+    height: 450px; 
     margin: 30px auto 40px; 
     z-index: 10; 
-    
-    /* KEY: Insert the heart image as the background */
-    background-image: url('images/heart.png'); 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: transparent; 
+    transform: scale(0.9); /* Slight overall scaling to help fit */
 }
 
-.heart-image {
+/* --- Frame Parts (The photo holders) --- */
+.frame-part {
     position: absolute;
-    /* Standardized frame size for overlaying the heart */
-    width: 120px; 
-    height: 120px;
-    border: 4px solid var(--primary-purple); 
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); 
+    /* Wood texture/color */
+    background: linear-gradient(135deg, var(--frame-wood-light), var(--frame-wood-dark));
+    box-shadow: 4px 4px 8px var(--frame-shadow); 
     overflow: hidden;
+    z-index: 15; /* Ensure frames are on top of the heart/text background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #1a012e;
-    z-index: 11; /* Ensure frames are on top of the background heart */
-    border-radius: 10px; /* Default frame shape */
 }
 
-.heart-image:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px var(--primary-purple);
-    z-index: 12;
+.frame-part:hover {
+    transform: scale(1.05) rotate(0); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 20;
 }
 
-.heart-image img {
+.photo-window {
+    /* Inner area for the photo */
+    width: calc(100% - 20px); 
+    height: calc(100% - 20px);
+    background-color: #f0f0f0; /* Light border/background for the photo */
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.photo-window img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: none; 
+    display: block;
 }
 
 /* ---------------------------------------------------- */
-/* --- FRAME POSITIONS OVER HEART SHAPE (Customized) --- */
+/* --- SPECIFIC FRAME SHAPES, SIZES, AND POSITIONS --- */
 /* ---------------------------------------------------- */
 
-/* Top-Left Frame (Positioned over the left curve of the heart) */
+/* Top-Left Frame (L) */
 .l-frame {
-    top: 50px;
-    left: 20px; 
-    transform: rotate(-15deg);
-    border-radius: 15px;
+    width: 180px; 
+    height: 140px;
+    top: 0px;
+    left: 0px; 
+    transform: rotate(-5deg);
+    /* Irregular rectangle shape based on photo */
+    border-radius: 20px 50px 10px 40px; 
+    padding: 10px;
 }
 
-/* Center-Circle Frame (Positioned near the center/dip of the heart) */
+/* Center-Circle Frame (O) */
 .o-frame {
-    top: 150px;
-    left: 130px; 
+    width: 120px;
+    height: 120px;
+    top: 100px;
+    left: 215px; 
     border-radius: 50%; /* Circular */
-    width: 80px;
-    height: 80px;
-    z-index: 15; /* Highest Z-index for central element */
-    transform: rotate(5deg);
+    z-index: 25; /* Highest Z-index for central element */
+    box-shadow: 0 0 10px var(--frame-shadow), inset 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+}
+.o-frame .photo-window {
+    border-radius: 50%;
 }
 
-/* Bottom-Left Frame (Positioned over the bottom-left edge) */
+
+/* Bottom-Left Frame (V) */
 .v-frame {
+    width: 180px;
+    height: 120px;
     top: 250px;
-    left: 80px; 
-    transform: rotate(10deg);
-    border-radius: 10px;
+    left: 50px; 
+    transform: rotate(5deg);
+    /* Irregular rectangle shape based on photo */
+    border-radius: 10px 40px 20px 50px; 
+    padding: 10px;
 }
 
-/* Right Frame (Positioned over the right curve of the heart) */
+/* Bottom-Right Frame (E) */
 .e-frame {
+    width: 180px;
+    height: 120px;
+    top: 250px;
+    left: 320px; 
+    transform: rotate(-5deg);
+    /* Irregular rectangle shape based on photo */
+    border-radius: 40px 10px 50px 20px; 
+    padding: 10px;
+}
+
+
+/* --- Decorative LOVE Background Shapes --- */
+
+/* Heart Shape (Encircles the O) */
+.love-background-shape {
+    /* Main body (resembles the lower part of the heart) */
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 100px;
+    left: 170px;
+    background: linear-gradient(135deg, var(--frame-wood-light), var(--frame-wood-dark));
+    transform: rotate(-45deg);
+    border-radius: 0 50% 0 50%;
+    box-shadow: 4px 4px 8px var(--frame-shadow); 
+    z-index: 12;
+}
+.love-background-shape::before,
+.love-background-shape::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: inherit;
+    border-radius: 50%;
+    box-shadow: inherit;
+    z-index: 12;
+}
+.love-background-shape::before {
+    /* Top-left curve */
+    top: -90px;
+    left: 0;
+}
+.love-background-shape::after {
+    /* Top-right curve */
+    top: 0;
+    left: 90px;
+}
+
+
+/* Decorative Text (L, V, E) - Made to look like wood */
+.love-text-l, .love-text-v, .love-text-e {
+    position: absolute;
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--frame-wood-dark);
+    text-shadow: 2px 2px 5px var(--frame-shadow);
+    font-family: 'Times New Roman', serif; /* Use a classic serif font to mimic the wood lettering */
+    z-index: 13;
+    -webkit-text-stroke: 1px var(--frame-wood-light); /* Outline for separation */
+    opacity: 0.8;
+}
+
+.love-text-l {
+    content: "L";
     top: 120px;
-    left: 240px; 
+    left: 150px;
     transform: rotate(15deg);
-    border-radius: 15px;
+    font-size: 90px;
+}
+
+.love-text-v {
+    content: "V";
+    font-size: 70px;
+    top: 220px;
+    left: 280px;
+    transform: rotate(5deg);
+    font-size: 80px;
+}
+
+.love-text-e {
+    content: "E";
+    font-size: 70px;
+    top: 170px;
+    left: 360px;
+    transform: rotate(-10deg);
+}
+
+/* Overlap corrections */
+.love-text-l { z-index: 16; }
+.love-text-v { z-index: 16; }
+.love-text-e { z-index: 16; }
+
+/* Responsive Adjustments for LOVE Frame */
+@media (max-width: 600px) {
+    .love-photo-frame-display {
+        width: 100%; 
+        height: 380px; 
+        max-width: 320px; 
+        transform: scale(1.0); /* Remove scaling */
+    }
+    
+    .l-frame {
+        width: 120px; 
+        height: 100px;
+        top: 0px;
+        left: 0px; 
+    }
+    
+    .o-frame {
+        width: 80px;
+        height: 80px;
+        top: 70px;
+        left: 50%; 
+        transform: translateX(-50%);
+    }
+
+    .v-frame {
+        width: 120px;
+        height: 100px;
+        top: 200px;
+        left: 5px; 
+    }
+    
+    .e-frame {
+        width: 120px;
+        height: 100px;
+        top: 200px;
+        left: auto;
+        right: 5px;
+    }
+    
+    .love-background-shape {
+        display: none; /* Hide complex heart on small screens */
+    }
+    
+    .love-text-l, .love-text-v, .love-text-e {
+        display: none; /* Hide decorative text on small screens */
+    }
 }
 
 
@@ -1227,32 +1383,5 @@ nav ul li a:hover::after {
     .social-links {
         justify-content: center;
     }
-    /* Family Page adjustments for small screens */
-    .family-heart-display {
-        width: 100%; 
-        height: 400px;
-        max-width: 320px; 
-    }
-    /* Adjusted frame positions for smaller screen to fit within the heart shape */
-    .l-frame {
-        left: 0px;
-        top: 20px;
-        transform: rotate(-10deg);
-    }
-    .o-frame {
-        left: 50%;
-        top: 120px;
-        transform: translateX(-50%) rotate(5deg);
-    }
-    .v-frame {
-        left: 20px;
-        top: 250px;
-        transform: rotate(10deg);
-    }
-    .e-frame {
-        right: 0px;
-        left: auto;
-        top: 100px;
-    }
+    /* Family Page adjustments for small screens are handled in the love-photo-frame-display block above */
 }
-
