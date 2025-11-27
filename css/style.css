@@ -24,10 +24,20 @@
     --html-color: #e34c26;
     --neon-green: #39ff14; /* Defined a standard neon green color */
 
-    /* ADDED: Wood Grain and Shadow Colors for Family Page */
-    --frame-wood-light: #c29d72;
-    --frame-wood-dark: #8c6742;
-    --frame-shadow: rgba(0, 0, 0, 0.4);
+    /* ADDED: Wood Grain and Shadow Colors for Family Page (Adjusted for warmer tone like in the photo) */
+    --frame-wood-light: #d4a57b; /* Lighter, warmer wood tone */
+    --frame-wood-dark: #a87d5a;  /* Darker, warmer wood tone */
+    --frame-shadow: rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    --frame-highlight: rgba(255, 255, 255, 0.5); /* Added for fake reflection */
+    
+    /* NEW: Diary Colors */
+    --diary-spine: #4a2f80; /* Darker purple/indigo for the spine */
+    --diary-paper-bg: #f7f7e8; /* Off-white, slightly cream paper */
+    --diary-text: #333333; /* Dark text for paper */
+    --diary-shadow: rgba(0, 0, 0, 0.4);
+    --ruling-line: rgba(100, 100, 200, 0.3); /* Light blue/purple for ruling */
+    --margin-line: rgba(255, 100, 100, 0.5); /* Light red for margin */
+    --handwriting-font: 'Gochi Hand', cursive; /* The handwriting font */
 }
 
 /* --- Keyframe Animations --- */
@@ -84,32 +94,6 @@
     55% { opacity: 1; }
     100% { opacity: 1; }
 }
-
-/* NEW: SLOW FADE ANIMATION KEYFRAMES for Academic/Cultural Card (3 Images, 6s cycle) 
-   NOTE: This animation is now intentionally unused for the Academic card, 
-         but preserved for the Cheerdance swap if needed later.
-*/
-@keyframes swap-academic-1 { 
-    0% { opacity: 1; }
-    30% { opacity: 1; }
-    36% { opacity: 0; } 
-    100% { opacity: 0; }
-}
-@keyframes swap-academic-2 { 
-    0% { opacity: 0; }
-    30% { opacity: 0; }
-    36% { opacity: 1; } 
-    63% { opacity: 1; } 
-    69% { opacity: 0; } 
-    100% { opacity: 0; }
-}
-@keyframes swap-academic-3 { 
-    0% { opacity: 0; }
-    63% { opacity: 0; }
-    69% { opacity: 1; }
-    100% { opacity: 1; } 
-}
-
 
 /* --- Global Styles --- */
 body {
@@ -178,7 +162,6 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   /* MODIFIED: Reduced vertical padding from 20px to 15px */
   padding: 15px 10%;
   background-color: var(--header-bg);
@@ -233,7 +216,7 @@ nav ul li a.nav-active {
 
 /* Base style for the underline lines */
 nav ul li a::before,
-nav ul li a::after {
+nav ul ul li a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -410,7 +393,7 @@ nav ul li a:hover::after {
 }
 .social-links .social-icon:hover i { color: var(--dark-bg); text-shadow: none; }
 
-/* --- IMAGE STYLES (Hero) --- */
+/* --- IMAGE STYLES (Hero) */
 .image-wrapper {
     /* MODIFIED: Reduced width from 380px to 350px */
     width: 350px; 
@@ -434,7 +417,7 @@ nav ul li a:hover::after {
     width: 100%; height: 100%; object-fit: contain; border-radius: 8px; display: block;
     filter: grayscale(0.2) brightness(0.95); transition: transform 0.4s ease, filter 0.4s ease; 
 }
-.image-wrapper:hover { transform: translateY(-15px) rotateY(8deg) rotateX(2deg); box-shadow: 0 20px 40px rgba(0, 0, 0, 1.0); }
+.image-wrapper:hover { transform: translateY(-15px) rotateY(8deg) rotateX(2deg); box-shadow: 20px 40px rgba(0, 0, 0, 1.0); }
 .image-wrapper:hover .image-frame { box-shadow: 0 0 70px var(--primary-purple); animation-play-state: paused; }
 .image-wrapper:hover .profile-img { transform: scale(1.08) rotate(1deg); filter: grayscale(0) brightness(1.05); }
 .image-details {
@@ -483,7 +466,6 @@ nav ul li a:hover::after {
 .education {
     /* MODIFIED: Increased padding to guarantee full screen occupation */
     padding: 30px 10% 40px; 
-    /* Ensures minimum height is met */
     min-height: 100vh; 
     display: flex;
     justify-content: center;
@@ -640,7 +622,7 @@ nav ul li a:hover::after {
 }
 .timeline-content.edu-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(157, 0, 255, 0.3);
+    box-shadow: 8px 20px rgba(157, 0, 255, 0.3);
 }
 
 
@@ -756,6 +738,7 @@ nav ul li a:hover::after {
     right: 48%; /* Left side */
 }
 
+/* Items on the right side of the line */
 .timeline-item:nth-child(even) .timeline-dot {
     left: 48%; /* Right side */
 }
@@ -768,12 +751,12 @@ nav ul li a:hover::after {
 
 
 /* ============================================== */
-/* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (NEW DESIGN) */
+/* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (BUTTON LEAK FIX) */
 /* ============================================== */
 .activities {
-    /* MODIFIED: Reduced padding to make content fit */
-    padding: 10px 5% 10px; 
-    min-height: calc(100vh - 65px); 
+    /* MODIFIED: Increased vertical padding to ensure the top nav bar covers the previous section */
+    padding: 30px 3% 10px; 
+    min-height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -781,7 +764,7 @@ nav ul li a:hover::after {
 }
 
 .activities-container {
-    max-width: 1000px;
+    max-width: 100%; /* Allow container to stretch for horizontal layout */
     width: 100%;
 }
 
@@ -794,17 +777,20 @@ nav ul li a:hover::after {
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
-    /* MODIFIED: Reduced bottom padding */
     padding-bottom: 3px;
 }
 
+/* --- HORIZONTAL 4-COLUMN LAYOUT --- */
 .activities-grid {
     display: grid;
+    /* Default to 2 columns for smaller/medium screens */
     grid-template-columns: repeat(2, 1fr); 
     /* MODIFIED: Reduced gap */
     gap: 5px; 
     /* MODIFIED: Reduced margin-top */
     margin-top: 5px;
+    /* RESTORED: Padding to push content away from the bottom of the viewport */
+    padding-bottom: 20px; 
 }
 
 .activity-card {
@@ -812,47 +798,61 @@ nav ul li a:hover::after {
     border: 1px solid var(--primary-purple);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    /* MODIFIED: Reduced padding */
-    padding: 3px;
+    /* MODIFIED: Reduced padding to 2px for maximization */
+    padding: 2px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column; 
-    align-items: flex-start;
-    text-align: left;
-    height: auto; 
+    /* MODIFIED: Changed height to 100% to fill the column height */
+    height: 100%; 
 }
+
+/* New: Centering the content wrapper (used for padding) */
+.activity-card .activity-content {
+    padding: 5px; /* Added internal padding to keep content off the edges */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+}
+
 
 .activity-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(157, 0, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     border: 1px solid var(--cyber-blue);
 }
 
 .activity-title {
-    /* MODIFIED: Reduced font size */
-    font-size: 0.9rem; 
+    /* MODIFIED: Increased font size (from 0.95rem) */
+    font-size: 1.05rem; 
     color: var(--cyber-blue);
     margin-bottom: 0; 
+    text-align: center; /* Center the title */
+    width: 100%;
 }
 
 .activity-meta {
-    /* MODIFIED: Reduced font size */
-    font-size: 0.55rem;
+    /* MODIFIED: Increased font size (from 0.6rem) */
+    font-size: 0.7rem; 
     color: var(--secondary-text);
     /* MODIFIED: Reduced margin-bottom */
-    margin-bottom: 1px;
+    margin-bottom: 5px; /* Increased margin for better separation */
+    text-align: center; /* Center the meta info */
+    width: 100%;
 }
 
 /* Media Placeholder (Used for English Club/Cheerdance) */
 .media-placeholder {
     width: 100%;
-    /* MODIFIED: Reduced height for compression */
-    padding-top: 25%; 
+    /* MODIFIED: Increased ratio from 25% to 30% for much taller image */
+    padding-top: 30%; 
     height: 0; 
     background: #000;
     border: 2px dashed rgba(255, 255, 255, 0.2);
     /* MODIFIED: Reduced margin-bottom */
-    margin-bottom: 0; 
+    margin-bottom: 5px; /* Increased margin for separation */
     color: var(--secondary-text);
     font-family: var(--code-font);
     font-size: 0.8rem;
@@ -868,7 +868,7 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    /* FIX: Ensure image covers the 16:9 placeholder without distortion */
+    /* FIX: Ensure image covers the placeholder without distortion */
     object-fit: cover;
     transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease; 
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); 
@@ -889,12 +889,12 @@ nav ul li a:hover::after {
 
 /* Styles for Cheerdance Dual Image Layout */
 .cheerdance-swap-container {
-    /* Inherits 30% ratio from .media-placeholder */
-    padding-top: 25%; 
+    /* Inherits ratio from .media-placeholder */
+    padding-top: 30%; /* Increased ratio */
     position: relative;
     background: #000; 
     border: none;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 /* Hover logic for the slow photo swap */
@@ -912,10 +912,12 @@ nav ul li a:hover::after {
     height: auto; 
     background: #000;
     border: none;
-    margin-bottom: 0;
+    /* MODIFIED: Increased bottom margin */
+    margin-bottom: 5px;
     display: flex; /* Use flexbox to line up thumbnails */
     gap: 2px; /* Small gap between images */
     overflow: hidden;
+    width: 100%;
 }
 
 .academic-thumbnail {
@@ -923,31 +925,29 @@ nav ul li a:hover::after {
     height: auto; 
     object-fit: cover; 
     display: block;
-    /* MODIFIED: Reduced aspect ratio height for compression */
+    /* MODIFIED: Adjusted aspect ratio for taller images */
     aspect-ratio: 4 / 3; 
 }
-
-/* REMOVED ALL SWAP ANIMATION LOGIC FOR THIS CARD */
-
 
 /* NEW: Styles for video links (Cheerdance card only) */
 .video-links {
     /* MODIFIED: Reduced top padding/margin to 0 */
-    margin-top: 0; 
-    padding-top: 0; 
+    margin-top: auto; /* Push links to the bottom */
+    padding-top: 5px; 
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-wrap: wrap; 
-    justify-content: space-between;
+    justify-content: center; /* Center the buttons/CTA */
     align-items: center;
-    /* MODIFIED: Smaller gap in button area */
+    /* MODIFIED: Small gap in button area */
     gap: 3px; 
     text-align: center;
+    width: 100%;
 }
 
 .video-cta {
-    /* MODIFIED: Smaller CTA text */
-    font-size: 0.65rem; 
+    /* MODIFIED: Increased font size (from 0.7rem) */
+    font-size: 0.8rem; 
     color: var(--primary-purple);
     margin: 0;
     width: 100%; 
@@ -956,11 +956,11 @@ nav ul li a:hover::after {
 .video-btn {
     flex-grow: 1;
     /* MODIFIED: Smallest possible button padding */
-    padding: 1px 3px; 
+    padding: 3px 5px; /* Slightly larger button padding */
     background: var(--primary-purple);
     color: var(--dark-bg) !important;
     font-weight: 600;
-    font-size: 0.6rem; 
+    font-size: 0.7rem; /* Increased font size (from 0.6rem) */
     transition: transform 0.3s ease;
     text-align: center;
     white-space: nowrap;
@@ -973,9 +973,9 @@ nav ul li a:hover::after {
 
 /* Style for the card with no media (e.g., Other Achievements) */
 .activity-card.no-media-card {
-    /* Now sits correctly beside Academic card due to grid layout */
+    /* Ensures this card maintains its place in the grid layout */
     grid-column: auto; 
-    height: auto; 
+    height: 100%; /* Fill space vertically */
 }
 .activity-card.no-media-card .media-placeholder {
     display: none; 
@@ -985,34 +985,51 @@ nav ul li a:hover::after {
     list-style: none;
     padding-left: 0;
     /* MODIFIED: Reduced margin-top */
-    margin-top: 2px; 
+    margin-top: 5px; /* Increased margin */
+    width: 100%;
+    /* Ensure list text is justified */
+    text-align: justify;
 }
 .no-style-list li {
-    /* MODIFIED: Reduced font size slightly */
-    font-size: 0.8rem;
+    /* MODIFIED: Increased font size (from 0.8rem) */
+    font-size: 0.9rem; 
     color: var(--secondary-text);
     /* MODIFIED: Reduced margin-bottom */
-    margin-bottom: 0; 
+    margin-bottom: 5px; /* Added spacing to list items */
     line-height: 1.25; 
+    text-align: justify; /* Justify text inside list items */
+    padding: 0 5px; /* Add slight horizontal padding */
 }
 
 .activity-description {
-    /* MODIFIED: Reduced font size slightly */
+    /* MODIFIED: Increased font size from 0.8rem to 0.75rem */
     font-size: 0.75rem; 
-    line-height: 1.2; 
-    /* MODIFIED: Reduced margin */
-    margin-bottom: 2px; 
+    /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
+    line-height: 1.2;
     color: var(--secondary-text);
+    margin-bottom: 0; 
 }
 
+/* ADDED: Move the navigation row up */
+.activities .navigation-row {
+    /* RESTORED: Margin to push the button down relative to the content */
+    margin-top: 20px; 
+    position: relative;
+    z-index: 100; 
+}
+
+
 /* ============================================== */
-/* REVISED: My Family Page Styling (LOVE Photo Frame) */
+/* REVISED: My Family Page Styling (Diary/Book Design) */
 /* ============================================== */
 .family-page {
-    /* Set to full height and centered */
-    padding: 20px 10% 20px; 
-    min-height: 100vh; 
+    /* Keep the fix for the button cut-off */
+    padding: 20px 10% 50px; 
+    /* Keep this min-height calculation for button visibility */
+    min-height: calc(100vh - 50px); 
     display: flex;
+    flex-direction: column; /* Stack title/book/button vertically */
+    margin-top: 0; 
     justify-content: center;
     align-items: center; 
     text-align: center;
@@ -1020,239 +1037,380 @@ nav ul li a:hover::after {
 .family-container {
     max-width: 900px;
     width: 100%;
+    margin-bottom: 0; 
 }
 
-/* --- Main LOVE Frame Container (New Structure) --- */
-.love-photo-frame-display {
+.family-page .section-title {
+    margin-top: 0; 
+    margin-bottom: 20px; 
+}
+
+.family-page .description {
+    display: none; /* Hide the previous description */
+}
+
+/* --- DIARY/OPEN BOOK CONTAINER --- */
+.diary-container {
     position: relative;
-    /* Overall size of the entire component */
-    width: 550px; 
-    height: 450px; 
-    margin: 30px auto 40px; 
-    z-index: 10; 
-    transform: scale(0.9); /* Slight overall scaling to help fit */
-}
-
-/* --- Frame Parts (The photo holders) --- */
-.frame-part {
-    position: absolute;
-    /* Wood texture/color */
-    background: linear-gradient(135deg, var(--frame-wood-light), var(--frame-wood-dark));
-    box-shadow: 4px 4px 8px var(--frame-shadow); 
-    overflow: hidden;
-    z-index: 15; /* Ensure frames are on top of the heart/text background */
+    width: 850px; 
+    /* MODIFIED: Reduced height again from 520px to 480px to ensure vertical fit */
+    height: 480px; 
+    max-width: 90vw;
+    /* MODIFIED: Reduced max-height again */
+    max-height: 70vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.frame-part:hover {
-    transform: scale(1.05) rotate(0); 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    z-index: 20;
-}
-
-.photo-window {
-    /* Inner area for the photo */
-    width: calc(100% - 20px); 
-    height: calc(100% - 20px);
-    background-color: #f0f0f0; /* Light border/background for the photo */
-    border-radius: inherit;
+    /* MODIFIED: Reduced vertical margin to give more space around the book */
+    margin: 5px auto 5px; 
+    box-shadow: 0 10px 40px var(--diary-shadow);
+    background: var(--diary-spine);
+    border-radius: 5px;
     overflow: hidden;
+    /* Use perspective for 3D open effect */
+    perspective: 1500px;
 }
 
-.photo-window img {
+/* --- BOOK SPINE --- */
+.diary-spine-deco {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 30px; /* Central spine width */
+    height: 100%;
+    background: linear-gradient(to right, #2a1e4a, var(--diary-spine), #2a1e4a);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7) inset;
+    z-index: 10;
+}
+
+/* --- LEFT AND RIGHT PAGES --- */
+.diary-page {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-color: var(--diary-paper-bg);
+    border-radius: 0;
+    /* FIX: Increased vertical padding from 20px to 30px for more internal space */
+    padding: 30px 40px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /* Reset alignment for manual absolute positioning on the left page */
+    align-items: center; 
+    color: var(--diary-text);
+    
+    /* 3D Transform for the open book effect - Slightly flatter */
+    transform-origin: 100% 50%; /* Right page hinges on the right edge */
+    transform: rotateY(-5deg); /* Less rotation */
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 
+        5px 0 15px rgba(0, 0, 0, 0.1), /* Softer shadow */
+        inset 1px 0 3px rgba(0, 0, 0, 0.1); 
+    z-index: 5;
+    
+    /* ADDED: Ruled Paper Lines */
+    background-image: 
+        linear-gradient(to bottom, transparent 30px, var(--ruling-line) 30px, var(--ruling-line) 31px, transparent 31px);
+    background-size: 100% 32px; /* Set line spacing */
+    background-position: 0 10px; /* Offset to start lines correctly */
+}
+
+/* LEFT PAGE: Use relative positioning for photo wrapper */
+.diary-page.left {
+    transform-origin: 0% 50%; 
+    transform: rotateY(5deg); 
+    box-shadow: 
+        -5px 0 15px rgba(0, 0, 0, 0.1), 
+        inset -1px 0 3px rgba(0, 0, 0, 0.1); 
+    
+    /* Change flex behavior to allow absolute positioning of internal elements */
+    align-items: flex-start; 
+    position: relative;
+}
+/* Ensure the Heading is still centered on the left page */
+.diary-page.left h3 {
+    width: 100%;
+    text-align: center;
+    position: relative; /* Keep it in flow */
+}
+
+/* Margin Line for Diary Pages */
+.diary-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--margin-line);
+    z-index: 6;
+}
+.diary-page.left::before {
+    right: 20px; /* Margin on the right side of the left page */
+}
+.diary-page.right::before {
+    left: 20px; /* Margin on the left side of the right page */
+}
+
+
+/* --- DIARY CONTENT: Photos and Text --- */
+.diary-page h3 {
+    font-size: 1.5rem;
+    color: var(--diary-spine);
+    /* MODIFIED: Reduced margin-bottom slightly for the heading */
+    margin-bottom: 5px; 
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+    font-family: var(--handwriting-font); /* Apply handwriting font to headings */
+}
+
+/* NEW: Individual Photo Titles */
+.diary-page .photo-title {
+    position: absolute;
+    font-family: var(--handwriting-font);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--diary-text);
+    z-index: 15;
+    white-space: nowrap;
+}
+.diary-page .photo-title.title-top-left {
+    top: 45px; /* Above the top-left photo */
+    left: 40px; 
+    transform: rotate(-3deg);
+}
+.diary-page .photo-title.title-bottom-right {
+    /* FIX: Set top position to match the 'Dad and Self' title's vertical alignment */
+    top: 45px; 
+    right: 35px; 
+    transform: rotate(2deg);
+}
+.diary-page .hidden-title {
+    visibility: hidden; /* Hide the flow title */
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Default photo container (mostly horizontal) */
+.diary-photo {
+    /* Use absolute positioning or default to flow layout depending on the page */
+    position: relative; 
+    width: 65%; 
+    padding-top: 35%; 
+    height: 0; 
+    margin-bottom: 5px; 
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffffff; 
+    transition: transform 0.3s ease;
+    transform: rotate(-1deg); 
+}
+
+/* NEW: Vertical Frame Style Override */
+.diary-photo.vertical-frame {
+    /* Base Vertical sizing */
+    width: 40%; 
+    padding-top: 55%; 
+    height: 0; 
+    margin: 0; /* Remove default margin for precise placement */
+}
+
+/* SPECIAL POSITIONING FOR LEFT PAGE (Two vertical pictures) */
+
+.diary-page.left .diary-photo.top-left {
+    position: absolute;
+    /* FIX: Adjust top position down slightly to clear the newly aligned title (45px) */
+    top: 70px; 
+    left: 40px; 
+    transform: rotate(-3deg);
+    z-index: 11;
+}
+
+.diary-page.left .diary-photo.bottom-right {
+    position: absolute;
+    /* FIX: Set top position to align pictures visually */
+    top: 70px; 
+    right: 40px; 
+    transform: rotate(2deg);
+    z-index: 12;
+}
+
+/* LEFT PAGE CAPTIONS/DESCRIPTION */
+.diary-page.left .photo-caption {
+    position: absolute;
+    /* Reset flow control */
+    width: auto;
+    left: auto;
+    right: auto;
+    /* Reset margins for captions under absolute photos */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.diary-page.left .photo-caption.central-description {
+    /* Center the new description text */
+    /* FIX: Adjusted bottom position to place it higher (30px) */
+    bottom: 30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Takes up most of the page width */
+    text-align: center;
+    font-size: 1rem; /* Slightly smaller for the body text */
+    font-style: normal;
+}
+
+/* Right page content positioning */
+.diary-page.right {
+    /* Ensure right page content is centered when one photo is present */
+    align-items: center;
+}
+.diary-page.right .diary-photo.vertical-frame {
+    /* Override absolute positioning from .left page */
+    position: relative; 
+    /* Center the block element */
+    /* FIX: Make the image bigger (50% width, 65% padding-top) */
+    width: 50%; 
+    padding-top: 65%;
+    margin-top: 20px; 
+    margin-bottom: 5px; 
+    transform: rotate(1deg);
+}
+
+.diary-photo img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    filter: sepia(0.1);
+    transition: transform 0.3s ease;
 }
 
-/* ---------------------------------------------------- */
-/* --- SPECIFIC FRAME SHAPES, SIZES, AND POSITIONS --- */
-/* ---------------------------------------------------- */
-
-/* Top-Left Frame (L) */
-.l-frame {
-    width: 180px; 
-    height: 140px;
-    top: 0px;
-    left: 0px; 
-    transform: rotate(-5deg);
-    /* Irregular rectangle shape based on photo */
-    border-radius: 20px 50px 10px 40px; 
-    padding: 10px;
+/* Remove alternate rotation which clashes with absolute position transforms */
+.diary-photo:nth-child(even) {
+    transform: rotate(-1deg); 
 }
 
-/* Center-Circle Frame (O) */
-.o-frame {
-    width: 120px;
-    height: 120px;
-    top: 100px;
-    left: 215px; 
-    border-radius: 50%; /* Circular */
-    z-index: 25; /* Highest Z-index for central element */
-    box-shadow: 0 0 10px var(--frame-shadow), inset 0 0 5px rgba(0, 0, 0, 0.3);
-    padding: 5px;
+.diary-photo:hover {
+    transform: scale(1.05) rotate(0deg); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
-.o-frame .photo-window {
-    border-radius: 50%;
+.diary-photo:hover img {
+    transform: scale(1.1);
+    filter: sepia(0);
 }
 
-
-/* Bottom-Left Frame (V) */
-.v-frame {
-    width: 180px;
-    height: 120px;
-    top: 250px;
-    left: 50px; 
-    transform: rotate(5deg);
-    /* Irregular rectangle shape based on photo */
-    border-radius: 10px 40px 20px 50px; 
-    padding: 10px;
+.photo-caption {
+    font-family: var(--handwriting-font); 
+    font-size: 1.1rem; 
+    font-style: italic;
+    color: var(--diary-text);
+    /* FIX: Ensure caption is visible (Relative captions) */
+    margin-top: -3px;
+    margin-bottom: 5px; 
+    padding: 0 5px;
+    text-align: center;
 }
-
-/* Bottom-Right Frame (E) */
-.e-frame {
-    width: 180px;
-    height: 120px;
-    top: 250px;
-    left: 320px; 
-    transform: rotate(-5deg);
-    /* Irregular rectangle shape based on photo */
-    border-radius: 40px 10px 50px 20px; 
-    padding: 10px;
+/* Ensure the standard caption style applies only to the right page's caption */
+.diary-page.right .photo-caption {
+    position: relative;
+    width: 80%;
 }
 
 
-/* --- Decorative LOVE Background Shapes --- */
-
-/* Heart Shape (Encircles the O) */
-.love-background-shape {
-    /* Main body (resembles the lower part of the heart) */
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    top: 100px;
-    left: 170px;
-    background: linear-gradient(135deg, var(--frame-wood-light), var(--frame-wood-dark));
-    transform: rotate(-45deg);
-    border-radius: 0 50% 0 50%;
-    box-shadow: 4px 4px 8px var(--frame-shadow); 
-    z-index: 12;
-}
-.love-background-shape::before,
-.love-background-shape::after {
-    content: '';
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: inherit;
-    border-radius: 50%;
-    box-shadow: inherit;
-    z-index: 12;
-}
-.love-background-shape::before {
-    /* Top-left curve */
-    top: -90px;
-    left: 0;
-}
-.love-background-shape::after {
-    /* Top-right curve */
-    top: 0;
-    left: 90px;
+/* --- Responsive Adjustments for Diary --- */
+@media (max-width: 900px) {
+    .diary-container {
+        width: 95vw;
+        height: 400px; 
+    }
 }
 
-
-/* Decorative Text (L, V, E) - Made to look like wood */
-.love-text-l, .love-text-v, .love-text-e {
-    position: absolute;
-    font-size: 80px;
-    font-weight: 900;
-    color: var(--frame-wood-dark);
-    text-shadow: 2px 2px 5px var(--frame-shadow);
-    font-family: 'Times New Roman', serif; /* Use a classic serif font to mimic the wood lettering */
-    z-index: 13;
-    -webkit-text-stroke: 1px var(--frame-wood-light); /* Outline for separation */
-    opacity: 0.8;
-}
-
-.love-text-l {
-    content: "L";
-    top: 120px;
-    left: 150px;
-    transform: rotate(15deg);
-    font-size: 90px;
-}
-
-.love-text-v {
-    content: "V";
-    font-size: 70px;
-    top: 220px;
-    left: 280px;
-    transform: rotate(5deg);
-    font-size: 80px;
-}
-
-.love-text-e {
-    content: "E";
-    font-size: 70px;
-    top: 170px;
-    left: 360px;
-    transform: rotate(-10deg);
-}
-
-/* Overlap corrections */
-.love-text-l { z-index: 16; }
-.love-text-v { z-index: 16; }
-.love-text-e { z-index: 16; }
-
-/* Responsive Adjustments for LOVE Frame */
 @media (max-width: 600px) {
-    .love-photo-frame-display {
-        width: 100%; 
-        height: 380px; 
-        max-width: 320px; 
-        transform: scale(1.0); /* Remove scaling */
+    .diary-container {
+        /* On mobile, collapse to a single, stacked page */
+        width: 95vw;
+        height: auto;
+        flex-direction: column;
+        transform: none;
+        box-shadow: 0 5px 20px var(--diary-shadow);
+        overflow-y: auto;
     }
-    
-    .l-frame {
-        width: 120px; 
-        height: 100px;
-        top: 0px;
-        left: 0px; 
+    .diary-page, .diary-page.left {
+        width: 100%;
+        height: auto;
+        transform: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 20px 15px;
+        /* Add a visible split line on mobile */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        /* Remove ruling on mobile for cleaner look */
+        background-image: none; 
+        padding: 20px 20px; /* Reset padding for mobile */
+        /* Reset positioning on mobile */
+        align-items: center;
     }
-    
-    .o-frame {
-        width: 80px;
-        height: 80px;
-        top: 70px;
-        left: 50%; 
-        transform: translateX(-50%);
+    /* Remove margin lines on mobile */
+    .diary-page::before,
+    .diary-page.left::before,
+    .diary-page.right::before {
+        display: none;
+    }
+    /* Reset page specific overrides for mobile stacking */
+    .diary-page.left .diary-photo.top-left,
+    .diary-page.left .diary-photo.bottom-right,
+    .diary-page.left .photo-caption.central-description,
+    .diary-page .photo-title {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        transform: none;
+        width: 100%;
+        text-align: center;
+    }
+    .diary-page .photo-title {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .diary-page.left .photo-caption {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .diary-page.left .photo-caption.central-description {
+        font-size: 1.1rem;
     }
 
-    .v-frame {
-        width: 120px;
-        height: 100px;
-        top: 200px;
-        left: 5px; 
+
+    .diary-page.right {
+        border-bottom: none;
     }
-    
-    .e-frame {
-        width: 120px;
-        height: 100px;
-        top: 200px;
-        left: auto;
-        right: 5px;
+    .diary-spine-deco {
+        display: none;
     }
-    
-    .love-background-shape {
-        display: none; /* Hide complex heart on small screens */
+    .diary-photo {
+        /* Adjusted ratio for mobile to look better vertically */
+        padding-top: 65%;
+        /* Revert width on mobile back to 100% of the mobile page */
+        width: 100%; 
+        height: 0; 
     }
-    
-    .love-text-l, .love-text-v, .love-text-e {
-        display: none; /* Hide decorative text on small screens */
+    /* Mobile Override for Vertical frame to look good in portrait view */
+    .diary-photo.vertical-frame {
+        width: 80%; /* Don't make it full width */
+        padding-top: 100%; 
+        margin-bottom: 10px;
+    }
+
+    .family-page .section-title {
+        margin-bottom: 10px;
     }
 }
 
@@ -1294,6 +1452,42 @@ nav ul li a:hover::after {
 
 
 /* --- Responsive Design --- */
+/* 4-COLUMN LAYOUT for standard laptops and above */
+@media (min-width: 1200px) {
+    .activities-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .activity-card {
+        /* Set a flexible minimum height that works well for four columns */
+        min-height: 400px; 
+    }
+    /* Ensure achievements card doesn't suddenly stretch across two columns if it's placed last */
+    .activity-card.no-media-card {
+        grid-column: auto;
+    }
+}
+
+/* 2-COLUMN LAYOUT for medium screens (e.g., larger tablets, small laptops) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .activity-card {
+        min-height: auto; 
+    }
+}
+
+/* 1-COLUMN LAYOUT for mobile/small tablets */
+@media (max-width: 767px) {
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+    .activity-card {
+        min-height: auto; 
+    }
+}
+
+/* General overrides */
 @media (max-width: 1100px) {
     .hero h1 {
         font-size: 3.5rem;
@@ -1308,25 +1502,12 @@ nav ul li a:hover::after {
     .hero .content {
         margin-right: 30px; 
     }
-    /* Activities Grid Collapse to 1 column */
-    .activities-grid {
-        grid-template-columns: 1fr;
-    }
-    .activity-card.no-media-card {
-        /* Ensures achievements card only takes 1 column when the grid collapses */
-        grid-column: span 1; 
-    }
 }
 
 @media (max-width: 900px) {
-    /* Existing media query overrides (Unchanged) */
-    
     /* Education/Experience Timeline Collapse to Single Column */
     .timeline::before {
         left: 20px; 
-    }
-    .timeline-item {
-        margin-bottom: 40px;
     }
     .timeline-item:nth-child(odd) .timeline-content,
     .timeline-item:nth-child(even) .timeline-content {
@@ -1344,20 +1525,6 @@ nav ul li a:hover::after {
     .timeline-item:hover .timeline-dot {
         transform: translate(-50%, -50%) scale(1.3);
     }
-    .timeline-item:nth-child(odd) .timeline-content {
-        padding-right: 20px;
-    }
-    .section-title {
-        margin-bottom: 30px;
-    }
-
-    /* Logo adjustment on small screens */
-    .timeline-institution {
-        display: block !important;
-        text-align: left !important;
-        margin-bottom: 5px;
-    }
-    
 }
 
 @media (max-width: 600px) {
@@ -1383,5 +1550,4 @@ nav ul li a:hover::after {
     .social-links {
         justify-content: center;
     }
-    /* Family Page adjustments for small screens are handled in the love-photo-frame-display block above */
 }
