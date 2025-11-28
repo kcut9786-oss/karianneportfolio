@@ -1002,7 +1002,7 @@ nav ul li a:hover::after {
 }
 
 .activity-description {
-    /* MODIFIED: Increased font size from 0.8rem to 0.75rem */
+    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
     font-size: 0.75rem; 
     /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
     line-height: 1.2;
@@ -1180,7 +1180,7 @@ nav ul li a:hover::after {
     transform: rotate(-3deg);
 }
 .diary-page .photo-title.title-bottom-right {
-    /* FIX: Set top position to match the 'Dad and Self' title's vertical alignment */
+    /* FIX: Set top position to match the 'Dad and Self' title's vertical alignment (45px) */
     top: 45px; 
     right: 35px; 
     transform: rotate(2deg);
@@ -1319,6 +1319,51 @@ nav ul li a:hover::after {
 .diary-page.right .photo-caption {
     position: relative;
     width: 80%;
+}
+
+
+/* --- Styles for the New Batchmates Section --- */
+.batchmates {
+    padding: 50px 10%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.batchmates-container {
+    max-width: 1000px;
+    width: 100%;
+}
+.batchmates-description {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin-bottom: 30px;
+    max-width: 800px;
+    line-height: 1.6;
+}
+.batchmates-photo-wrapper {
+    width: 100%;
+    max-width: 900px; 
+    padding: 10px;
+    background: #141416;
+    border: 2px solid var(--cyber-blue);
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.batchmates-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.5s ease;
+    filter: brightness(0.9);
+}
+.batchmates-photo:hover {
+    transform: scale(1.03);
+    filter: brightness(1.0);
 }
 
 
