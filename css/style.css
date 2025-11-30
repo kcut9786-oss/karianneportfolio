@@ -994,6 +994,8 @@ nav ul li a::after {
     color: var(--secondary-text);
     margin-bottom: 0; 
     padding: 0 5px; /* slight horizontal padding inside content box */
+    /* ADDED: Justify text */
+    text-align: justify;
 }
 
 
@@ -1023,7 +1025,8 @@ nav ul li a::after {
     /* MODIFIED: Reduced margin-bottom from 5px to 3px */
     margin-bottom: 3px; 
     line-height: 1.4; 
-    text-align: left; 
+    /* CHANGED: Align list items to justify (was left) */
+    text-align: justify;
     padding: 0 10px; /* Indent list items slightly */
 }
 
