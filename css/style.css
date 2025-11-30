@@ -1527,6 +1527,8 @@ nav ul li a::after {
     padding-left: 5px; /* Add padding for scrollbar visibility */
 }
 .names-list.girls-list li {
+    /* ADDED: Increased font size for girls' names (was 0.6rem inherited) */
+    font-size: 0.8rem;
     /* Push list item content to the right edge of its container */
     padding-right: 0; 
     padding-left: 0;
