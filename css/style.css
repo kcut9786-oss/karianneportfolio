@@ -834,7 +834,7 @@ nav ul li a::after {
 }
 
 .activity-title {
-    /* MODIFIED: Increased font size from 0.9rem to 1.1rem */
+    /* MODIFIED: Increased font size for better readability (was 0.9rem) */
     font-size: 1.1rem; 
     color: var(--cyber-blue);
     /* MODIFIED: Reduced margin-bottom from 3px to 2px */
@@ -845,7 +845,7 @@ nav ul li a::after {
 }
 
 .activity-meta {
-    /* MODIFIED: Increased font size from 0.65rem to 0.8rem */
+    /* MODIFIED: Increased font size for better readability (was 0.65rem) */
     font-size: 0.8rem; 
     color: var(--secondary-text);
     /* MODIFIED: Reduced margin-bottom from 5px to 3px */
@@ -956,7 +956,7 @@ nav ul li a::after {
 }
 
 .video-cta {
-    /* MODIFIED: Increased font size from 0.65rem to 0.8rem */
+    /* MODIFIED: Increased font size for better readability (was 0.65rem) */
     font-size: 0.8rem; 
     color: var(--primary-purple);
     margin: 0;
@@ -972,7 +972,7 @@ nav ul li a::after {
     background: var(--primary-purple);
     color: var(--dark-bg) !important;
     font-weight: 600;
-    /* MODIFIED: Increased font size from 0.6rem to 0.7rem */
+    /* MODIFIED: Increased font size for better readability (was 0.6rem) */
     font-size: 0.7rem; 
     transition: transform 0.3s ease;
     text-decoration: none;
@@ -987,8 +987,8 @@ nav ul li a::after {
 
 
 .activity-description {
-    /* MODIFIED: Increased font size from 0.7rem to 0.9rem */
-    font-size: 0.9rem; 
+    /* MODIFIED: Increased font size for better readability (was 0.7rem) */
+    font-size: 0.85rem; 
     /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
     line-height: 1.2;
     color: var(--secondary-text);
@@ -1017,8 +1017,8 @@ nav ul li a::after {
     text-align: left; /* List should be left-justified within its container */
 }
 .no-style-list li {
-    /* MODIFIED: Increased font size from 0.7rem to 0.9rem */
-    font-size: 0.9rem; 
+    /* MODIFIED: Increased font size for better readability (was 0.7rem) */
+    font-size: 0.85rem; 
     color: var(--secondary-text);
     /* MODIFIED: Reduced margin-bottom from 5px to 3px */
     margin-bottom: 3px; 
