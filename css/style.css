@@ -223,7 +223,6 @@ nav ul li a.nav-active:hover {
     transform: scale(1.0); 
 }
 
-
 /* --- REMOVE ALL PSEUDO-ELEMENT UNDERLINE/FILL LOGIC --- */
 nav ul::after,
 nav ul li a::before,
@@ -1510,6 +1509,15 @@ nav ul li a::after {
        but keeping font small should help */
 }
 
+/* NEW: Specific style for Girls' List items (Larger font for better visibility) */
+.names-list.girls-list li {
+    font-size: 0.8rem; /* Increased font size */
+    /* Push list item content to the right edge of its container */
+    padding-right: 0; 
+    padding-left: 0;
+}
+
+
 /* Girls List Alignment - PUSH TO RIGHT */
 .names-list.girls-list {
     /* Overwrite names-list. Set text alignment to the right */
@@ -1526,11 +1534,7 @@ nav ul li a::after {
     padding: 0;
     padding-left: 5px; /* Add padding for scrollbar visibility */
 }
-.names-list.girls-list li {
-    /* Push list item content to the right edge of its container */
-    padding-right: 0; 
-    padding-left: 0;
-}
+/* .names-list.girls-list li already updated above for size */
 
 
 /* FIX: Push Back Button Down */
@@ -1602,8 +1606,15 @@ nav ul li a::after {
         max-height: 250px; 
     }
     .names-list li {
-        font-size: 0.75rem;
+        font-size: 0.75rem; /* Default size for all list items on mobile */
     }
+    /* NEW: Ensure girls' font size is larger on mobile too */
+    .names-list.girls-list li {
+        font-size: 0.9rem; /* Increased size for girls' names on mobile */
+        padding-right: 0; 
+        padding-left: 0;
+    }
+    
     .batchmates-photo-wrapper {
         order: -1; /* Move photo to the top */
         max-width: 90%;
