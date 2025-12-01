@@ -865,12 +865,49 @@ nav ul li a::after {
     margin-bottom: 3px; 
     color: var(--secondary-text);
     font-family: var(--code-font);
-    font-size: 0.8rem;
     overflow: hidden;
     position: relative; 
     display: block; 
     border-radius: 5px;
+    /* Set perspective for 3D flip effects */
+    perspective: 1000px;
 }
+
+/* New Flip Container */
+.flip-container {
+    position: absolute; /* Absolute position inside the padded media-placeholder */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+/* Flip on hover for Academic card */
+.academic-card-flip:hover .flip-container {
+    transform: rotateY(180deg);
+}
+
+.flip-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    top: 0;
+    left: 0;
+}
+
+.flip-front {
+    transform: rotateY(0deg);
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+}
+
 
 /* Style for the actual image inside the placeholder */
 .club-officer-image, .cheerdance-image, .activity-grid-image {
@@ -1450,20 +1487,49 @@ nav ul li a::after {
     align-items: center;
     justify-content: center;
 }
-.batchmates-photo {
-    /* Ensure the ENTIRE image is visible and scaled down */
-    object-fit: contain; 
-    display: block;
+/* REMOVED ORIGINAL HOVER STYLES THAT CONFLICT WITH JS MAGNIFIER */
+.batchmates-photo-wrapper:hover {
+    transform: none; 
+    box-shadow: none; 
+}
+.batchmates-photo-wrapper:hover .batchmates-photo { 
+    transform: none; 
+    filter: none; 
+}
+
+/* NEW MAGNIFICATION LENS STYLES */
+.magnify-container {
+    position: relative;
     width: 100%;
-    height: 100%; 
-    border-radius: 2px; 
-    transition: transform 0.5s ease;
-    filter: brightness(0.9);
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px; 
 }
-.batchmates-photo:hover {
-    transform: scale(1.01); 
-    filter: brightness(1.0);
+/* Ensure the image takes up the container space and has no conflicting hover styles */
+.magnify-container .batchmates-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    transition: none; 
+    filter: none; 
 }
+
+/* The Lens (Magnifying Glass) */
+.magnify-glass {
+    position: absolute;
+    border: 3px solid #eee;
+    border-radius: 50%;
+    cursor: none; 
+    width: 150px; /* Lens size */
+    height: 150px; /* Lens size */
+    opacity: 0; 
+    pointer-events: none; 
+    background-repeat: no-repeat;
+    background-color: white;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+    z-index: 100;
+}
+
 
 .batchmates-photo-wrapper .photo-caption {
     font-size: 0.65rem; 
@@ -1547,6 +1613,46 @@ nav ul li a::after {
 }
 
 
+/* --- FLIP CARD STYLES (Academic Achievements) --- */
+
+/* Inherits: .media-placeholder, .flip-container, .flip-image */
+/* The parent .media-placeholder already sets the perspective and ratio */
+.flip-container {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+/* Flip on hover for Academic card */
+.academic-card-flip:hover .flip-container {
+    transform: rotateY(180deg);
+}
+
+.flip-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    backface-visibility: hidden; /* Hide the reverse side of the element */
+    transition: transform 0.6s;
+    top: 0;
+    left: 0;
+    border-radius: 5px; /* Keep the same border radius as placeholder */
+}
+
+.flip-front {
+    transform: rotateY(0deg);
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+}
+
+
 /* FIX: Push Back Button Down */
 .batchmates .navigation-row {
     /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
@@ -1586,7 +1692,7 @@ nav ul li a::after {
         transform: translate(-50%, -50%);
     }
     .timeline-item:hover .timeline-dot {
-        transform: translate(-50%, -50%) scale(1.3);
+        transform: translate(-50%) scale(1.3);
     }
 
     /* Keep book size small on mid-screens */
@@ -1705,3 +1811,4 @@ nav ul li a::after {
         margin-bottom: 10px;
     }
 }
+
