@@ -1,1687 +1,385 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-/* --- THEME COLORS (Futuristic Dark/Cyber Purple) --- */
-:root {
-    --primary-purple: #9d0dff;      /* Deep, vibrant purple for accents */
-    --dark-bg: #0d0113;             /* Near-black, deep space background */
-    --text-light: #e0e0e0;          /* Bright white/light gray text */
-    --header-bg: rgba(13, 1, 19, 0.95); /* Nearly opaque header */
-    --secondary-text: #b3b3b3;      /* Muted light gray */
-    --cyber-blue: #00ffff;          /* Secondary accent color */
-    --code-font: 'Courier New', Courier, monospace;
-    --frame-width: 380px;
-    --frame-height: 480px;
-    
-    /* NEW: Skill Icon Colors (Kept just in case) */
-    --java-color: #5382a1;
-    --python-color: #3776ab;
-    --js-color: #f7df1e;
-    --html-color: #e34c26;
-    --neon-green: #39ff14; /* Defined a standard neon green color */
-
-    /* ADDED: Wood Grain and Shadow Colors for Family Page (Adjusted for warmer tone like in the photo) */
-    --frame-wood-light: #d4a57b; /* Lighter, warmer wood tone */
-    --frame-wood-dark: #a87d5a;  /* Darker, warmer wood tone */
-    --frame-shadow: rgba(0, 0, 0, 0.5); /* Stronger shadow */
-    --frame-highlight: rgba(255, 255, 255, 0.5); /* Added for fake reflection */
-    
-    /* NEW: Diary Colors */
-    --diary-spine: #4a2f80; /* Darker purple/indigo for the spine */
-    --diary-paper-bg: #f7f7e8; /* Off-white, slightly cream paper */
-    --diary-text: #333333; /* Dark text for paper */
-    --diary-shadow: rgba(0, 0, 0, 0.4);
-    --ruling-line: rgba(100, 100, 200, 0.3); /* Light blue/purple for ruling */
-    --margin-line: rgba(255, 100, 100, 0.5); /* Light red for margin */
-    --handwriting-font: 'Gochi Hand', cursive; /* The handwriting font */
-}
-
-/* --- Keyframe Animations --- */
-@keyframes wobble {
-    0%, 100% { transform: translate(1px, 1px) rotate(0deg); }
-    50% { transform: translate(-1px, -1px) rotate(-0.1deg); }
-}
-
-@keyframes glow-pulse {
-    0% { box-shadow: 0 0 20px rgba(157, 0, 255, 0.4); }
-    50% { box-shadow: 0 0 40px rgba(157, 0, 255, 0.7); }
-    100% { box-shadow: 0 0 20px rgba(157, 0, 255, 0.4); }
-}
-
-@keyframes glitch-anim {
-  0% { clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%); }
-  15% { clip-path: polygon(0 40%, 100% 40%, 100% 45%, 0 45%); }
-  30% { clip-path: polygon(0 60%, 100% 60%, 100% 65%, 0 65%); }
-  45% { clip-path: polygon(0 15%, 100% 15%, 100% 20%, 0 20%); }
-  60% { clip-path: polygon(0 55%, 100% 55%, 100% 60%, 0 60%); }
-  75% { clip-path: polygon(0 70%, 100% 70%, 100% 75%, 0 75%); }
-  100% { clip-path: polygon(0 80%, 100% 80%, 100% 85%, 0 85%); }
-}
-
-/* WELCOME SCREEN ANIMATIONS */
-@keyframes icon-fade {
-    0% { opacity: 0; transform: translateY(10px); }
-    50% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-out {
-    0% { opacity: 1; visibility: visible; }
-    99% { opacity: 0; visibility: visible; }
-    100% { opacity: 0; visibility: hidden; }
-}
-
-/* Staggered Content Entrance Animation (For Hero load only) */
-@keyframes fade-slide-in {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* SMOOTH FADE ANIMATION KEYFRAMES for Cheerdance Card */
-@keyframes smooth-swap-front {
-    0% { opacity: 1; }
-    45% { opacity: 1; } /* Hold full opacity */
-    55% { opacity: 0; } /* Start smooth fade out */
-    100% { opacity: 0; } /* Hold zero opacity */
-}
-@keyframes smooth-swap-back {
-    0% { opacity: 0; }
-    45% { opacity: 0; }
-    55% { opacity: 1; }
-    100% { opacity: 1; }
-}
-
-/* --- Global Styles --- */
-body {
-  /* FIX: Disable vertical scrolling globally */
-  overflow-y: hidden;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karianne Clarisse Talic | ERP-Focused IT Professional</title>
+  <link rel="stylesheet" href="css/style.css">
   
-  background: var(--dark-bg);
-  color: var(--text-light);
-  min-height: 100vh;
-  background-image: 
-    radial-gradient(var(--primary-purple) 0.5px, transparent 0.5px), 
-    radial-gradient(var(--primary-purple) 0.5px, transparent 0.5px);
-  background-size: 80px 80px;
-  background-position: 0 0, 40px 40px;
-}
-
-/* ============================================== */
-/* WELCOME OVERLAY STYLES */
-/* ============================================== */
-#welcome-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #0d0113 0%, #1a012e 100%);
-    z-index: 9999; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* REDUCED LOADING TIME */
-    animation: fade-out 0.5s ease-out 1.5s forwards; 
-}
-
-.welcome-content { animation: icon-fade 1.5s ease-out; }
-.welcome-icons { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
-.welcome-icons i {
-    font-size: 3rem;
-    color: var(--primary-purple);
-    text-shadow: 0 0 15px var(--primary-purple), 0 0 30px rgba(157, 0, 255, 0.5);
-    opacity: 0;
-    animation: icon-fade 1.5s ease-out forwards;
-}
-.welcome-icons i:nth-child(1) { animation-delay: 0.1s; }
-.welcome-icons i:nth-child(2) { animation-delay: 0.25s; }
-.welcome-icons i:nth-child(3) { animation-delay: 0.4s; }
-.welcome-text {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-light);
-    margin-bottom: 10px;
-}
-.welcome-text .portfolio-span {
-    color: var(--primary-purple);
-    text-shadow: 0 0 10px var(--primary-purple);
-}
-.welcome-subtext {
-    font-family: var(--code-font);
-    font-size: 1rem;
-    color: var(--secondary-text);
-}
-
-
-/* --- Navigation bar --- */
-nav {
-  display: flex;
-  justify-content: space-between;
-  /* MODIFIED: Reduced vertical padding from 20px to 15px */
-  padding: 15px 10%;
-  background-color: var(--header-bg);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-  /* FIX: Changed from sticky to fixed for permanent visibility */
-  position: fixed; 
-  top: 0;
-  width: 100%;
-  z-index: 2000; 
-}
-nav .logo {
-  font-size: 1.8rem; 
-  font-weight: 800;
-  color: var(--text-light);
-  font-family: var(--code-font);
-  transition: text-shadow 0.3s; 
-}
-nav .logo:hover {
-    text-shadow: 0 0 10px var(--primary-purple);
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 0;
-  position: relative; 
-}
-
-/* Nav Link Styling */
-nav ul li a {
-  text-decoration: none;
-  color: var(--secondary-text);
-  font-weight: 600;
-  transition: color 0.3s, background-color 0.3s; /* Smooth transition for color and background */
-  padding: 10px 15px;
-  display: block;
-  position: relative;
-  text-align: center;
-  z-index: 10; 
-  background: transparent; 
-}
-
-/* Active State: Solid Background Fill */
-nav ul li a.nav-active {
-    background-color: var(--cyber-blue);
-    color: var(--dark-bg); /* Dark text for contrast */
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Slight glow */
-}
-
-/* Hover State */
-nav ul li a:hover {
-    background-color: var(--cyber-blue);
-    color: var(--dark-bg);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-    transform: scale(1.05); /* Optional: slight scale effect on hover */
-}
-
-/* Ensure active state prevents scaling on hover to keep position fixed */
-nav ul li a.nav-active:hover {
-    transform: scale(1.0); 
-}
-
-/* --- REMOVE ALL PSEUDO-ELEMENT UNDERLINE/FILL LOGIC --- */
-nav ul::after,
-nav ul li a::before,
-nav ul li a::after {
-    content: none !important;
-    display: none !important;
-}
-/* --- END NAVIGATION STYLES --- */
-
-
-/* Hero section */
-.hero {
-  display: flex;
-  justify-content: space-between;
-  /* FIX: Reduced bottom padding to push content/button down */
-  padding: 100px 10% 0; /* FIX: Changed bottom padding to 0px */
-  /* FIX: Refined min-height calculation */
-  min-height: calc(100vh - 70px); /* Deduct approx nav bar height to push button lower */
-  position: relative; 
-  z-index: 1; 
-  perspective: 1000px;
-}
-/* Decorative background elements */
-.hero-bg-layer {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, var(--primary-purple) 0%, rgba(157, 0, 255, 0) 70%);
-    opacity: 0.2;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: 50%;
-}
-.layer-1 { top: 10%; left: 5%; }
-.layer-2 { bottom: 5%; right: 40%; transform: scale(0.7); }
-.layer-3 {
-    top: 50%; left: 50%; width: 500px; height: 500px;
-    transform: translate(-50%, -50%) scale(0.6);
-    background: radial-gradient(circle, var(--cyber-blue) 0%, rgba(0, 255, 255, 0) 70%);
-    opacity: 0.08;
-}
-
-
-/* LEFT SIDE TEXT STYLES (Content on the Left) */
-.hero .content {
-  max-width: 55%; 
-  z-index: 2; 
-  margin-right: 50px; 
-  animation: wobble 15s infinite alternate ease-in-out;
-  /* MODIFIED: Added small bottom margin to reduce space after content */
-  margin-bottom: 20px; 
-}
-
-/* APPLY STAGGERED ANIMATION (For Hero load only) */
-.content-anim {
-    opacity: 0;
-    animation: fade-slide-in 0.6s ease-out forwards;
-}
-
-
-.hero .content .greeting {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--secondary-text); 
-    margin-bottom: 5px; 
-    font-family: var(--code-font);
-}
-
-.hero .content .hello-greeting {
-    /* MODIFIED: Reduced font size from 1.4rem to 1.2rem */
-    font-size: 1.2rem; 
-    font-weight: 600;
-    color: var(--primary-purple);
-    margin-bottom: 5px; 
-    text-shadow: 0 0 8px rgba(157, 0, 255, 0.7); 
-}
-
-
-/* H1 Glitch Effect */
-.hero h1 {
-  /* MODIFIED: Reduced font size from 3rem to 2rem */
-  font-size: 2rem; 
-  color: var(--text-light);
-  /* MODIFIED: Reduced margin-bottom from 10px to 5px */
-  margin-bottom: 5px; 
-  font-weight: 900; 
-  letter-spacing: 2px;
-  position: relative;
-}
-
-.hero h1::before,
-.hero h1::after {
-  content: attr(data-glitch);
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: var(--dark-bg);
-  clip-path: polygon(0 0, 0 0, 0 0, 0 0); 
-}
-
-.hero h1::before { left: 3px; text-shadow: -3px 0 var(--cyber-blue); animation: glitch-anim 2s infinite linear alternate-reverse; }
-.hero h1::after { left: -3px; text-shadow: -3px 0 var(--primary-purple); animation: glitch-anim 3s infinite linear alternate-reverse; }
-
-
-/* Typing Animation Container */
-.hero .typing-container {
-  /* MODIFIED: Reduced font size from 1.6rem to 1.4rem */
-  font-size: 1.4rem; 
-  font-weight: 600; 
-  /* MODIFIED: Reduced min-height from 45px to 40px */
-  min-height: 40px; 
-  display: flex; align-items: center; 
-  /* MODIFIED: Reduced margin-bottom from 30px to 20px */
-  margin-bottom: 20px; 
-  font-family: var(--code-font);
-}
-
-#typing-text { color: var(--primary-purple); margin-left: 8px; text-shadow: 0 0 5px var(--primary-purple); }
-/* Reduced bottom margin for multi-paragraph description */
-.hero .description { 
-    /* MODIFIED: Reduced font size from 1.1rem to 1rem */
-    font-size: 1rem; 
-    /* MODIFIED: Reduced line-height from 1.7 to 1.6 */
-    line-height: 1.6; 
-    color: var(--secondary-text); 
-    /* MODIFIED: Reduced margin-bottom from 15px to 10px */
-    margin-bottom: 10px; 
-} 
-
-/* Social Media Icons */
-.social-links { display: flex; gap: 20px; }
-.social-links .social-icon {
-    width: 45px; height: 45px; background-color: rgba(13, 1, 19, 0.7); 
-    border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); transition: all 0.3s;
-    display: flex; justify-content: center; align-items: center;
-}
-.social-links .social-icon i { font-size: 20px; color: var(--primary-purple); text-shadow: 0 0 8px var(--primary-purple); }
-.social-links .social-icon:hover {
-    background-color: var(--primary-purple); transform: translateY(-8px); 
-    box-shadow: 0 0 20px var(--primary-purple); 
-}
-.social-links .social-icon:hover i { color: var(--dark-bg); text-shadow: none; }
-
-/* --- IMAGE STYLES (Hero) */
-.image-wrapper {
-    /* MODIFIED: Reduced width from 380px to 350px */
-    width: 350px; 
-    /* MODIFIED: Reduced height from 480px to 440px */
-    height: 440px;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    z-index: 2;
-    /* FIX: Removed top padding to allow full vertical flex control */
-    padding-top: 0; 
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-    transform-style: preserve-3d;
-}
-.image-frame {
-    width: 100%; height: 100%;
-    background: linear-gradient(145deg, var(--primary-purple), var(--dark-bg));
-    padding: 3px; border-radius: 10px; overflow: hidden; position: relative;
-    box-shadow: 0 0 30px rgba(157, 0, 255, 0.5); 
-    animation: glow-pulse 3s infinite alternate ease-in-out; 
-    transition: box-shadow 0.4s ease; 
-}
-.profile-img {
-    width: 100%; height: 100%; object-fit: contain; border-radius: 8px; display: block;
-    /* FIX: Add scale for photo hover animation */
-    transition: transform 0.3s ease, filter 0.4s ease, box-shadow 0.4s ease; 
-    filter: grayscale(0.2) brightness(0.95); 
-}
-.image-wrapper:hover { transform: translateY(-15px) rotateY(8deg) rotateX(2deg); box-shadow: 20px 40px rgba(0, 0, 0, 1.0); }
-.image-wrapper:hover .image-frame { box-shadow: 0 0 70px var(--primary-purple); animation-play-state: paused; }
-.image-wrapper:hover .profile-img { transform: scale(1.08) rotate(1deg); filter: grayscale(0) brightness(1.05); }
-.image-details {
-    /* FIX: Pushed top down to clear the navigation bar when the hero section padding is increased */
-    position: absolute; top: 10px; /* Adjusted to be slightly lower than fixed nav */
-    right: -20px; background: var(--header-bg);
-    border: 1px solid var(--cyber-blue); padding: 10px 15px; border-radius: 5px;
-    box-shadow: 0 0 10px var(--cyber-blue); font-family: var(--code-font);
-    font-size: 0.75rem; color: var(--cyber-blue); z-index: 10; white-space: nowrap;
-    transform: rotate(3deg); transition: all 0.4s ease-out; 
-}
-.image-wrapper:hover .image-details { transform: rotate(0deg) scale(1.1); box-shadow: 0 0 20px var(--cyber-blue), 0 0 40px rgba(0, 255, 255, 0.5); }
-.image-btn {
-    /* FIX: Used auto margin to push button to the bottom of the image-wrapper */
-    margin-top: auto; 
-    margin-bottom: 0; /* FIX: Reduced margin to 0 for flush fit */
-    display: flex; align-items: center; gap: 8px; background: none;
-    color: var(--cyber-blue); padding: 12px 25px; font-weight: 700; border-radius: 5px;
-    border: 2px solid var(--cyber-blue); box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    transition: all 0.3s ease; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
-}
-.image-btn:hover { background: var(--cyber-blue); color: var(--dark-bg); box-shadow: 0 0 35px var(--cyber-blue); transform: scale(1.05); }
-.image-btn i { transition: transform 0.3s ease; }
-.image-btn:hover i { transform: translateX(5px); }
-
-
-/* --- Typing Animation Cursor Style --- */
-.cursor {
-    display: inline-block; color: var(--cyber-blue); font-weight: 600;
-    text-shadow: 0 0 5px var(--cyber-blue); animation: blink 0.7s step-start infinite; 
-}
-
-/* ============================================== */
-/* GENERAL SECTION STYLES (Placeholder Sections) */
-/* ============================================== */
-.section-title {
-    font-size: 3rem;
-    color: var(--primary-purple);
-    margin-bottom: 50px;
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-/* ============================================== */
-/* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
-/* ============================================== */
-.education {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 10% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
-    /* Set min-height to take up the whole screen view */
-    min-height: calc(100vh - 5px); /* Adjusted min-height calculation */
-    /* FIX: Set to flex column to control vertical layout */
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start; /* Start content from top */
-    align-items: center; 
-    text-align: center;
-}
-
-.edu-container {
-    max-width: 900px;
-    width: 100%;
-    /* ADDED: Extra margin to push buttons down and ensure bottom padding works effectively */
-    margin-bottom: 0; /* FIX: Removed bottom margin */
-    /* FIX: Use flex-grow to push navigation row down */
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* NEW: Button Style for Education Section */
-.edu-btn {
-    /* This button is the NEXT button */
-    display: flex; 
-    justify-content: center;
-    align-items: center; 
-    gap: 8px; 
-    background: none;
-    color: var(--cyber-blue); 
-    padding: 10px 20px; 
-    font-weight: 700; 
-    border-radius: 5px;
-    border: 2px solid var(--cyber-blue); 
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    transition: all 0.3s ease; 
-    text-decoration: none; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-}
-.edu-btn:hover { 
-    background: var(--cyber-blue); 
-    color: var(--dark-bg); 
-    box-shadow: 0 0 35px var(--cyber-blue); 
-    transform: scale(1.05); 
-}
-.edu-btn i { 
-    transition: transform 0.3s ease; 
-}
-.edu-btn:hover i { 
-    transform: translateX(5px); 
-}
-
-/* NEW: Previous button style (Back button) */
-.prev-btn {
-    display: flex; 
-    justify-content: center;
-    align-items: center; 
-    gap: 8px; 
-    background: none;
-    color: var(--secondary-text); 
-    padding: 10px 20px; 
-    font-weight: 700; 
-    border-radius: 5px;
-    border: 2px solid var(--secondary-text); 
-    box-shadow: none;
-    transition: all 0.3s ease; 
-    text-decoration: none; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-}
-.prev-btn:hover { 
-    background: rgba(255, 255, 255, 0.1); 
-    color: var(--text-light); 
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-    transform: scale(1.05); 
-}
-.prev-btn i { 
-    transition: transform 0.3s ease; 
-}
-.prev-btn:hover i { 
-    transform: translateX(-5px); 
-}
-
-/* NEW: Layout wrapper for buttons */
-.navigation-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    /* FIX: Use margin-top: auto and reduced margin-bottom for flush fit */
-    margin-top: auto; 
-    margin-bottom: 5px;
-}
-.navigation-row.only-prev {
-    /* If only one button is present, justify it to the start (left) */
-    justify-content: flex-start;
-}
-
-
-.section-title {
-    /* FIX: Adjusted ALL section titles to 2rem */
-    font-size: 2rem; 
-    color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom from 20px to 15px */
-    margin-bottom: 15px; 
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.timeline {
-    position: relative;
-    padding: 0; 
-    /* MODIFIED: Reduced margin-top from 15px to 10px */
-    margin-top: 10px;
-}
-
-/* The main vertical line */
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 4px;
-    background: linear-gradient(to bottom, var(--primary-purple), var(--cyber-blue));
-    margin-left: -2px;
-}
-
-.timeline-item {
-    position: relative;
-    /* MODIFIED: Reduced margin-bottom from 25px to 18px */
-    margin-bottom: 18px; 
-}
-
-/* Items on the left side of the line */
-.timeline-item:nth-child(odd) .timeline-content {
-    padding-right: 15px; /* FIX: Reduced padding to push card outwards */
-    text-align: right;
-    left: 0;
-    width: 48%; /* FIX: Increased card width */
-}
-
-/* Items on the right side of the line */
-.timeline-item:nth-child(even) .timeline-content {
-    padding-left: 15px; /* FIX: Reduced padding to push card outwards */
-    text-align: left;
-    left: 52%; /* FIX: Adjusted left position (was 55%) */
-    width: 48%; /* FIX: Increased card width */
-}
-
-/* NEW: Card container style */
-.timeline-content.edu-card {
-    position: relative;
-    background: #141416; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    /* MODIFIED: Reduced padding from 10px 15px to 8px 12px */
-    padding: 8px 12px; 
-    border-radius: 10px;
-    text-align: left !important; 
-    transition: transform 0.3s ease;
-}
-.timeline-content.edu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 8px 20px rgba(157, 0, 255, 0.3);
-}
-
-
-/* --- Card Header (Logo and Info) --- */
-.edu-header {
-    display: flex;
-    align-items: center;
-    /* MODIFIED: Reduced margin-bottom from 8px to 5px */
-    margin-bottom: 5px; 
-}
-
-.edu-logo {
-    width: 30px; /* Adjusted size */
-    height: 30px; /* Adjusted size */
-    object-fit: contain;
-    border-radius: 8px;
-    filter: none; 
-    /* MODIFIED: Reduced margin-right from 10px to 8px */
-    margin-right: 8px;
-}
-
-.edu-info {
-    line-height: 1.2;
-}
-
-.timeline-degree {
-    /* ADJUSTED: Reduced font size from 0.95rem to 0.9rem */
-    font-size: 0.9rem; 
-    font-weight: 600;
-    color: var(--text-light);
-    margin-bottom: 0;
-}
-
-.timeline-institution {
-    /* ADJUSTED: Reduced font size from 0.75rem to 0.7rem */
-    font-size: 0.7rem; 
-    color: var(--secondary-text);
-    margin-bottom: 0;
-    text-shadow: 0 0 1px var(--primary-purple);
-}
-
-.location {
-    font-size: 0.7rem; 
-    color: var(--primary-purple);
-}
-
-
-/* --- Status and Date Meta --- */
-.edu-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px; 
-    /* MODIFIED: Reduced padding-top from 5px to 3px */
-    padding-top: 3px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.edu-date {
-    font-size: 0.65rem; /* Adjusted size */
-    color: var(--secondary-text);
-    font-family: 'Poppins', sans-serif;
-}
-
-.edu-status {
-    padding: 1px 3px; /* FIX: Reduced horizontal padding */
-    border-radius: 5px;
-    font-size: 0.35rem; /* FIX: Aggressively reduced font size for status text */
-    font-weight: 700;
-    letter-spacing: 0.3px; /* FIX: Reduced letter spacing */
-    display: inline-block; /* FIX: Added to strictly contain minimal content size */
-}
-
-/* NEW: Background colors for status badges */
-.status-inprogress {
-    background-color: var(--cyber-blue);
-    color: var(--dark-bg);
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-}
-.status-completed {
-    background-color: var(--primary-purple);
-    color: var(--dark-bg);
-    box-shadow: 0 0 5px rgba(157, 0, 255, 0.5);
-}
-
-
-/* --- Description is the last element --- */
-.timeline-description {
-    /* ADJUSTED: Reduced font size from 0.75rem to 0.7rem */
-    font-size: 0.7rem; 
-    /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
-    line-height: 1.2;
-    color: var(--secondary-text);
-    margin-bottom: 0; 
-}
-
-
-/* The circular dot on the line */
-.timeline-dot {
-    position: absolute;
-    width: 12px; 
-    height: 12px; 
-    border-radius: 50%;
-    background: var(--dark-bg);
-    border: 3px solid var(--primary-purple);
-    box-shadow: 0 0 10px var(--primary-purple);
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Position dots correctly based on item type */
-.timeline-item:nth-child(odd) .timeline-dot {
-    right: 48%; /* Left side */
-}
-
-/* Items on the right side of the line */
-.timeline-item:nth-child(even) .timeline-dot {
-    left: 48%; /* Right side */
-}
-
-/* Hover effect on dot */
-.timeline-item:hover .timeline-dot {
-    transform: translateY(-50%) scale(1.3);
-    box-shadow: 0 0 20px var(--cyber-blue);
-}
-
-
-/* ============================================== */
-/* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (MATCHES SCREENSHOT) */
-/* ============================================== */
-.activities {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 5% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
-    /* Set min-height to take up the whole screen view */
-    min-height: 100vh; 
-    /* FIX: Set to flex column to control vertical layout */
-    display: flex;
-    flex-direction: column; 
-    /* MODIFIED: Removed justify-content: center to let content start from the top */
-    /* justify-content: center; */
-    align-items: center; 
-    text-align: center;
-}
-
-.activities-container {
-    max-width: 100%; 
-    width: 100%;
-    /* FIX: Use flex-grow to push navigation row down */
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.activities .section-title {
-    /* MODIFIED: Reduced font size to 2rem for compactness */
-    font-size: 2rem; 
-    color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom */
-    margin-bottom: 10px; 
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 3px;
-}
-
-/* --- HORIZONTAL 4-COLUMN LAYOUT --- */
-.activities-grid {
-    display: grid;
-    /* Default to 4 columns on large screens to match screenshot */
-    grid-template-columns: repeat(4, 1fr); 
-    /* MODIFIED: Reduced gap from 20px to 15px */
-    gap: 15px; 
-    /* MODIFIED: Reduced margin-top from 15px to 10px */
-    margin-top: 10px; 
-    /* MODIFIED: Reduced padding-bottom from 20px to 10px */
-    padding-bottom: 10px; 
-    align-items: stretch; /* Ensure all items stretch to the same height */
-}
-
-.activity-card {
-    background: #141416;
-    /* Stronger border and initial glow */
-    border: 2px solid var(--primary-purple);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(157, 0, 255, 0.5); 
-    padding: 0; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    display: flex;
-    flex-direction: column; 
-    /* FIX: INCREASED CARD SIZE */
-    height: auto; 
-    min-height: 380px; /* Set a minimum height for the card */
-    justify-content: space-between; /* Space out content/media/description */
-}
-
-.activity-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 30px var(--cyber-blue); /* Hover glow */
-    border-color: var(--cyber-blue); /* Hover border change */
-}
-
-/* Content Wrapper inside the card */
-.activity-card .activity-content {
-    /* MODIFIED: Reduced internal padding from 15px 15px 10px to 10px */
-    padding: 10px; 
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center; /* All text inside is centered */
-}
-
-.activity-title {
-    /* MODIFIED: Increased font size for better readability (was 0.9rem) */
-    font-size: 1.1rem; 
-    color: var(--cyber-blue);
-    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
-    margin-bottom: 2px; 
-    text-align: center;
-    width: 100%;
-    font-weight: 700;
-}
-
-.activity-meta {
-    /* MODIFIED: Increased font size for better readability (was 0.65rem) */
-    font-size: 0.8rem; 
-    color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px; 
-    text-align: center;
-    width: 100%;
-}
-
-/* Media Placeholder to fit the screenshot look */
-.media-placeholder {
-    width: 100%;
-    /* FIX: Increased aspect ratio height from 35% to 45% (taller image area) */
-    padding-top: 45%; 
-    height: 0; 
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* MODIFIED: Reduced margin-bottom from 10px to 5px */
-    margin-bottom: 5px; 
-    color: var(--secondary-text);
-    font-family: var(--code-font);
-    font-size: 0.8rem;
-    overflow: hidden;
-    position: relative; 
-    display: block; 
-    border-radius: 5px;
-}
-
-/* Style for the actual image inside the placeholder */
-.club-officer-image, .cheerdance-image, .activity-grid-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* FIX: Ensure image covers the placeholder without distortion */
-    object-fit: cover;
-    transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease; 
-}
-
-/* --- HOVER EFFECT FOR HIGHLIGHTING YOU (The person on the left) --- */
-.media-placeholder:hover .english-club-officer {
-    /* Increased zoom to 1.5x and adjusted shift to center on the person on the left */
-    transform: scale(1.5) translateX(-15%); 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+  
+  </head>
+<body>
+
+  <div id="welcome-overlay">
+    <div class="welcome-content">
+      <div class="welcome-icons">
+        <i class="fas fa-code"></i> 
+        <i class="fas fa-user-tie"></i>
+        <i class="fas fa-server"></i>
+      </div>
+      <h2 class="welcome-text">
+        Welcome To My <span class="portfolio-span">Portfolio</span> Website
+      </h2>
+      <p class="welcome-subtext">@karianne.talic</p>
+    </div>
+  </div>
+  
+  <header>
+    <nav id="navbar">
+      <h2 class="logo">K<span>T</span></h2> 
+      <ul>
+        <li><a href="#hero" id="nav-home" class="nav-link nav-active">Home</a></li>
+        <li><a href="#education" id="nav-education" class="nav-link">Education</a></li>
+        <li><a href="#achievements" id="nav-achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#family" id="nav-family" class="nav-link">My Family</a></li>
+        <li><a href="#batchmates" id="nav-batchmates" class="nav-link">Batchmates</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
     
-    /* FIX: White Outline/Border and Brightness for Clarity */
-    box-shadow: 0 0 0 3px white, 0 0 15px rgba(255, 255, 255, 0.8);
+    <div class="hero-bg-layer layer-1"></div>
+    <div class="hero-bg-layer layer-2"></div>
+    <div class="hero-bg-layer layer-3"></div>
     
-    /* Enhance clarity and brightness */
-    filter: brightness(1.3) drop-shadow(0 0 3px #ffffff); 
-}
-/* ------------------------------------------------------------------- */
+    <div class="content"> 
+      
+      <p class="hello-greeting content-anim delay-2">Hello, I am</p>
+      
+      <h1 data-glitch="Karianne Clarisse Talic">Karianne Clarisse Talic</h1>
+      
+      <h3 class="typing-container content-anim delay-3">
+        and I am a <span id="typing-text"></span><span class="cursor">|</span>
+      </h3>
+      
+      <p class="description content-anim delay-4">
+        As a highly motivated Information Technology student specializing in Enterprise Resource Planning (ERP) systems, I possess a strong foundation in core IT principles, logic, and data management. I focus on translating complex business requirements into clear, efficient digital architecture to create creative and functional solutions. My objective is continuous professional development through hands-on, practical experience, leveraging my passion for organization and problem-solving to contribute effectively to system integration and process optimization in collaborative projects.
+      </p>
 
-/* Styles for Cheerdance Dual Image Layout */
-.cheerdance-swap-container {
-    /* Inherits ratio from .media-placeholder */
-    padding-top: 45%; /* FIX: Adjusted size to match new media-placeholder size */
-    position: relative;
-    background: #000; 
-    border: none;
-    margin-bottom: 5px;
-}
+      <div class="social-links content-anim delay-5">
+        <a href="https://www.linkedin.com/in/karianne-clarisse-talic-b459a9395" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/kcut9786-oss" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:karianneclarissetalic@gmail.com" class="social-icon" target="_blank"><i class="fas fa-envelope"></i></a>
+      </div>
+      
+    </div>
 
-/* Hover logic for the slow photo swap */
-.media-placeholder:hover .image-front {
-    animation: smooth-swap-front 2s infinite alternate ease-in-out; 
-}
-.media-placeholder:hover .image-back {
-    animation: smooth-swap-back 2s infinite alternate ease-in-out; 
-}
-
-/* Styles for Academic/Cultural 3-Image Grid (Side-by-Side Logic) */
-.academic-grid-container {
-    /* OVERRIDE: Remove padding-top/height set by .media-placeholder */
-    padding-top: 0;
-    height: auto; 
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* MODIFIED: Reduced bottom margin */
-    margin-bottom: 5px;
-    display: flex; /* Use flexbox to line up thumbnails */
-    gap: 2px; /* Small gap between images */
-    overflow: hidden;
-    width: 100%;
-    border-radius: 5px;
-}
-
-.academic-thumbnail {
-    width: 33.33%; /* Each image takes 1/3 of the space */
-    height: auto; 
-    object-fit: cover; 
-    display: block;
-    /* MODIFIED: Adjusted aspect ratio for taller images */
-    aspect-ratio: 4 / 3; 
-}
-
-/* NEW: Styles for video links (Cheerdance card only) */
-.video-links {
-    margin-top: auto; 
-    /* MODIFIED: Reduced padding from 10px 15px 15px to 8px 10px 10px */
-    padding: 8px 10px 10px; 
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 5px; 
-    text-align: center;
-    width: 100%;
-}
-
-.video-cta {
-    /* MODIFIED: Increased font size for better readability (was 0.65rem) */
-    font-size: 0.8rem; 
-    color: var(--primary-purple);
-    margin: 0;
-    width: 100%; 
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px;
-}
-
-.video-btn {
-    flex-grow: 1;
-    /* MODIFIED: Reduced padding from 5px 8px to 3px 5px */
-    padding: 3px 5px; 
-    background: var(--primary-purple);
-    color: var(--dark-bg) !important;
-    font-weight: 600;
-    /* MODIFIED: Increased font size for better readability (was 0.6rem) */
-    font-size: 0.7rem; 
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.video-btn:hover {
-    background: var(--cyber-blue);
-    transform: scale(1.05);
-}
-/* END NEW STYLING */
-
-
-.activity-description {
-    /* MODIFIED: Increased font size for better readability (was 0.7rem) */
-    font-size: 0.85rem; 
-    /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
-    line-height: 1.2;
-    color: var(--secondary-text);
-    margin-bottom: 0; 
-    padding: 0 5px; /* slight horizontal padding inside content box */
-    /* ADDED: Justify text */
-    text-align: justify;
-}
-
-
-/* Style for the card with no media (e.g., Other Achievements) */
-.activity-card.no-media-card {
-    /* Ensures this card maintains its place in the grid layout */
-    grid-column: auto; 
-    height: auto; /* Ensure minimum height still applies */
-    min-height: 380px; 
-}
-.activity-card.no-media-card .media-placeholder {
-    display: none; 
-}
-
-.no-style-list {
-    list-style: none;
-    padding-left: 0;
-    /* MODIFIED: Reduced margin-top from 10px to 5px */
-    margin-top: 5px;
-    width: 100%;
-    text-align: left; /* List should be left-justified within its container */
-}
-.no-style-list li {
-    /* MODIFIED: Increased font size for better readability (was 0.7rem) */
-    font-size: 0.85rem; 
-    color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px; 
-    line-height: 1.4; 
-    /* CHANGED: Align list items to justify (was left) */
-    text-align: justify;
-    padding: 0 10px; /* Indent list items slightly */
-}
-
-/* ADDED: Move the navigation row up */
-.activities .navigation-row {
-    /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
-    margin-top: auto; 
-    /* FIX: Removed padding-bottom entirely to push the buttons flush against the bottom section padding */
-    padding-bottom: 0; 
-    position: relative;
-    z-index: 100; 
-}
-
-
-/* ============================================== */
-/* REVISED: My Family Page Styling (Diary/Book Design) */
-/* ============================================== */
-.family-page {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 10% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
-    /* Keep this min-height calculation for button visibility */
-    min-height: calc(100vh); 
-    display: flex;
-    flex-direction: column; /* Stack title/book/button vertically */
-    margin-top: 0; 
-    /* FIX: Change justify-content from center to flex-start/space-between */
-    justify-content: flex-start; /* Start content from top */
-    align-items: center; 
-    text-align: center;
-}
-.family-container {
-    max-width: 900px;
-    width: 100%;
-    margin-bottom: 0; 
-    /* FIX: Use flex-grow to push navigation row down */
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.family-page .section-title {
-    /* FIX: Set to 2rem */
-    font-size: 2rem;
-    margin-top: 0; 
-    margin-bottom: 15px; /* Reduced margin */
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.family-page .description {
-    display: none; /* Hide the previous description */
-}
-
-/* --- DIARY/OPEN BOOK CONTAINER --- */
-.diary-container {
-    position: relative;
-    /* FIX: Increased Book Width/Height (750x420) */
-    width: 750px; 
-    height: 420px; 
-    max-width: 90vw;
-    /* MODIFIED: Increased max-height */
-    max-height: 65vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* MODIFIED: Reduced vertical margin to give more space around the book */
-    margin: 5px auto 5px; 
-    box-shadow: 0 10px 40px var(--diary-shadow);
-    background: var(--diary-spine);
-    border-radius: 5px;
-    overflow: hidden;
-    /* Use perspective for 3D open effect */
-    perspective: 1500px;
-}
-
-/* --- BOOK SPINE --- */
-.diary-spine-deco {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    width: 30px; /* Central spine width */
-    height: 100%;
-    background: linear-gradient(to right, #2a1e4a, var(--diary-spine), #2a1e4a);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7) inset;
-    z-index: 10;
-}
-
-/* --- LEFT AND RIGHT PAGES --- */
-.diary-page {
-    position: relative;
-    width: 50%;
-    height: 100%;
-    background-color: var(--diary-paper-bg);
-    border-radius: 0;
-    /* ADJUSTED: Reduced vertical padding */
-    padding: 15px 25px; /* Reduced padding */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    /* Reset alignment for manual absolute positioning on the left page */
-    align-items: center; 
-    color: var(--diary-text);
     
-    /* 3D Transform for the open book effect - Slightly flatter */
-    transform-origin: 100% 50%; /* Right page hinges on the right edge */
-    transform: rotateY(-5deg); /* Less rotation */
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 
-        5px 0 15px rgba(0, 0, 0, 0.1), /* Softer shadow */
-        inset 1px 0 3px rgba(0, 0, 0, 0.1); 
-    z-index: 5;
-    
-    /* ADDED: Ruled Paper Lines */
-    /* ADJUSTED: Reduced line spacing for denser fit */
-    background-image: 
-        linear-gradient(to bottom, transparent 20px, var(--ruling-line) 20px, var(--ruling-line) 21px, transparent 21px);
-    background-size: 100% 22px; /* Set line spacing */
-    background-position: 0 10px; /* Offset to start lines correctly */
-}
+    <div class="image-wrapper content-anim delay-6">
+        <div class="image-frame">
+            <img src="images/Profile.png" alt="Karianne Clarisse Talic" class="profile-img">
+        </div>
+        
+        <div class="image-details">
+            <p class="detail-line">// Information Technology</p>
+            <p class="detail-line">// Core ERP Modules</p>
+            <p class="detail-line">// Data Management</p>
+        </div>
 
-/* LEFT PAGE: Use relative positioning for photo wrapper */
-.diary-page.left {
-    transform-origin: 0% 50%; 
-    transform: rotateY(5deg); 
-    box-shadow: 
-        -5px 0 15px rgba(0, 0, 0, 0.1), 
-        inset -1px 0 3px rgba(0, 0, 0, 0.1); 
-    
-    /* Change flex behavior to allow absolute positioning of internal elements */
-    align-items: flex-start; 
-    position: relative;
-}
-/* Ensure the Heading is still centered on the left page */
-.diary-page.left h3 {
-    width: 100%;
-    text-align: center;
-    position: relative; /* Keep it in flow */
-}
+        <!-- Added section-nav-btn class -->
+        <a href="#education" class="btn image-btn section-nav-btn">See Education <i class="fas fa-arrow-right"></i></a>
+    </div>
 
-/* Margin Line for Diary Pages */
-.diary-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: var(--margin-line);
-    z-index: 6;
-}
-.diary-page.left::before {
-    right: 20px; /* Margin on the right side of the left page */
-}
-.diary-page.right::before {
-    left: 20px; /* Margin on the left side of the right page */
-}
+  </section>
+  
+  
+  <section class="education" id="education">
+      <div class="edu-container">
+          <h2 class="section-title">Educational Attainment</h2>
+          
+          <div class="timeline">
+              
+              <div class="timeline-item">
+                  <div class="timeline-content edu-card">
+                      <div class="edu-header">
+                          <img src="images/uc logo.png" alt="UC Logo" class="edu-logo">
+                          <div class="edu-info">
+                              <h4 class="timeline-degree">BS Information Technology</h4>
+                              <p class="timeline-institution">University of the Cordilleras | <span class="location">Baguio City</span></p>
+                          </div>
+                      </div>
+                      <div class="edu-meta">
+                          <span class="edu-date">2025 - Present</span>
+                          <span class="status-inprogress">IN PROGRESS</span>
+                      </div>
+                      <p class="timeline-description">
+                          Currently enrolled as a 1st-year student, focusing on core IT principles, logic, and laying the foundation for enterprise systems knowledge.
+                      </p>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
 
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content edu-card">
+                      <div class="edu-header">
+                          <img src="images/dbhs logo.png" alt="DBHS Logo" class="edu-logo">
+                          <div class="edu-info">
+                              <h4 class="timeline-degree">Junior & Senior High School</h4>
+                              <p class="timeline-institution">Don Bosco High School Incorporated | <span class="location">Lagawe, Ifugao</span></p>
+                          </div>
+                      </div>
+                      <div class="edu-meta">
+                          <span class="edu-date">2019 - 2025</span>
+                          <span class="status-completed">GRADUATED</span>
+                      </div>
+                      <p class="timeline-description">
+                          Completed Secondary Education (JHS & SHS), fostering strong organizational and academic discipline.
+                      </p>
+                  </div>
+              </div>
 
-/* --- DIARY CONTENT: Photos and Text --- */
-.diary-page h3 {
-    font-size: 1.5rem;
-    color: var(--diary-spine);
-    /* MODIFIED: Reduced margin-bottom slightly for the heading */
-    margin-bottom: 5px; 
-    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
-    padding-bottom: 5px;
-    font-family: var(--handwriting-font); /* Apply handwriting font to headings */
-}
+              <div class="timeline-item">
+                  <div class="timeline-content edu-card">
+                      <div class="edu-header">
+                          <img src="images/lcs logo.png" alt="LCS Logo" class="edu-logo">
+                          <div class="edu-info">
+                              <h4 class="timeline-degree">Elementary School</h4>
+                              <p class="timeline-institution">Lagawe Central School | <span class="location">Lagawe, Ifugao</span></p>
+                          </div>
+                      </div>
+                      <div class="edu-meta">
+                          <span class="edu-date">2012 - 2019</span>
+                          <span class="status-completed">GRADUATED</span>
+                      </div>
+                      <p class="timeline-description">
+                          Completed primary education.
+                      </p>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
 
-/* NEW: Individual Photo Titles */
-.diary-page .photo-title {
-    position: absolute;
-    font-family: var(--handwriting-font);
-    /* FIX: Reduced font size */
-    font-size: 0.9rem; 
-    font-weight: 600;
-    color: var(--diary-text);
-    z-index: 15;
-    white-space: nowrap;
-}
-.diary-page .photo-title.title-top-left {
-    top: 25px; /* Adjusted top position */
-    left: 25px; /* Adjusted left position */
-    transform: rotate(-3deg);
-}
-.diary-page .photo-title.title-bottom-right {
-    /* Title position aligned horizontally with left title */
-    top: 25px; /* Adjusted top position */
-    right: 20px; /* Adjusted right position */
-    transform: rotate(2deg);
-}
-.diary-page .hidden-title {
-    visibility: hidden; /* Hide the flow title */
-    height: 0;
-    padding: 0;
-    margin: 0;
-}
+          </div>
+          
+          <div class="navigation-row">
+              <!-- Changed href to #hero -->
+              <a href="#hero" class="btn prev-btn section-nav-btn">
+                  <i class="fas fa-arrow-left"></i> Back to Home
+              </a>
+              <!-- Added section-nav-btn class -->
+              <a href="#achievements" class="btn edu-btn section-nav-btn">
+                  See Achievements <i class="fas fa-arrow-right"></i>
+              </a>
+          </div>
+          
+      </div>
+  </section>
 
+  <section class="activities" id="achievements">
+      <div class="activities-container">
+          <h2 class="section-title">Extra/Co-curricular Achievements</h2>
+          
+          <div class="activities-grid">
+              
+              <div class="activity-card">
+                  <div class="activity-content">
+                      <h3 class="activity-title">English Club Officer (Temporalities)</h3>
+                      <p class="activity-meta">Don Bosco High School | Grade 12 (2024 - 2025)</p>
+                      
+                      <div class="media-placeholder">
+                          <img src="images/Club officer.png" alt="English Club Meeting" class="club-officer-image english-club-officer"> 
+                      </div>
+                      
+                      <p class="activity-description">
+                          Served as a Club Officer with responsibilities for managing temporary documentation and records. This role developed precise organizational skills and accountability within a specialized academic group.
+                      </p>
+                  </div>
+              </div>
+              
+              <div class="activity-card cheerdance-card">
+                  <div class="activity-content">
+                      <h3 class="activity-title">Intrams Cheerdance Competitor (Winner)</h3>
+                      <p class="activity-meta">Don Bosco High School | Grade 10 & 11</p>
+                      
+                      <div class="media-placeholder cheerdance-swap-container">
+                          <img src="images/Makidammu.jpeg" alt="Team Makidammu Cheerdance" class="cheerdance-image image-front">
+                          <img src="images/Visionaries.jpg" alt="Team Visionaries Cheerdance" class="cheerdance-image image-back">
+                      </div>
+                      
+                      <p class="activity-description">
+                          Completed and won in the Cheerdance Competition for two consecutive years in respective teams: <b>Grade 10 - Team Makidammu</b> & <b>Grade 11 - Team Visionaries</b>. Demonstrated high levels of teamwork, discipline, and performance artistry.
+                      </p>
+                      
+                      <div class="video-links">
+                          <p class="video-cta">For our full video cheerdance performance:</p>
+                          <a href="https://youtu.be/Ohk_Pq7mYD0" target="_blank" class="video-btn">Team Makidammu (G10)</a> 
+                          <a href="https://youtu.be/SSyy5uIMfI8" target="_blank" class="video-btn">Team Visionaries (G11)</a>
+                      </div>
+                  </div>
+              </div>
 
-/* Default photo container (mostly horizontal) */
-.diary-photo {
-    /* Use absolute positioning or default to flow layout depending on the page */
-    position: relative; 
-    /* FIX: Increased size */
-    width: 68%; 
-    padding-top: 38%; 
-    height: 0; 
-    margin-bottom: 5px; 
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 3px solid #ffffff; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition wrapper shadow only */
-    transform: rotate(-1deg); 
-}
+              <div class="activity-card">
+                  <div class="activity-content">
+                      <h3 class="activity-title">Academic & Cultural Event Participation</h3>
+                      <p class="activity-meta">Multiple School Events | Grade 11 & 12</p>
+                      
+                      <div class="media-placeholder academic-grid-container">
+                          <img src="images/Interpretative.jpg" alt="Interpretative Dance" class="academic-thumbnail">
+                          <img src="images/FinLit.png" alt="Financial Literacy Seminar" class="academic-thumbnail">
+                          <img src="images/Cultural.jpg" alt="Cultural Day Cooking" class="academic-thumbnail">
+                      </div>
+                      
+                      <p class="activity-description">
+                          Active involvement in various events including FinLit Seminars, Interpretative Dance (3rd place), and Cultural Day performances (Munbakle - 1st place).
+                      </p>
+                  </div>
+              </div>
+              
+              <div class="activity-card no-media-card">
+                  <div class="activity-content">
+                      <h3 class="activity-title">Other Achievements & Service Activities</h3>
+                      
+                      <ul class="no-style-list">
+                          <li>School Initiated Clean-up Drive (Grade 12 Service)</li>
+                          <li>Cheer Dance during Intrams - 4th Place (Grade 7)</li>
+                          <li>Spelling Bee Competition - 1st place (Grade 7)</li>
+                          <li>Poem Competition - 2nd place (Grade 6)</li>                          
+                          <li>Story Telling Competition - 4th place (Grade 5)</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="navigation-row">
+              <!-- Added section-nav-btn class -->
+              <a href="#education" class="btn prev-btn section-nav-btn">
+                  <i class="fas fa-arrow-left"></i> Back to Education
+              </a>
+              <!-- Added section-nav-btn class -->
+              <a href="#family" class="btn edu-btn section-nav-btn">
+                  See My Family <i class="fas fa-arrow-right"></i>
+              </a>
+          </div>
+          
+      </div>
+  </section>
+  
+  <section class="family-page" id="family">
+      <div class="family-container">
+          <h2 class="section-title">My Family Diary</h2>
+          
+          <div class="diary-container"> 
+              
+              <div class="diary-page left">
+                  <h3 class="hidden-title">Family Photos</h3> <p class="photo-title title-top-left">My dad Brian Talic</p>
+                  <div class="diary-photo vertical-frame top-left">
+                      <img src="images/dowd.jpg" alt="My Dad"> 
+                  </div>
+                  
+                  <p class="photo-title title-bottom-right">My brother Kevin Talic</p>
+                  <div class="diary-photo vertical-frame bottom-right">
+                      <img src="images/kuys.png" alt="My Brother">
+                  </div>
+                  
+                  <p class="photo-caption central-description">
+                      Dad and brother, my source of strength and laughter, first <br>friend and partner in crime.
+                  </p>
+              </div>
+              
+              <div class="diary-spine-deco"></div>
+              
+              <div class="diary-page right">
+                  <h3>My Mom Evelyn Talic</h3>
+                  <div class="diary-photo vertical-frame">
+                      <img src="images/mowm.jpg" alt="My Mom">
+                  </div>
+                  <p class="photo-caption">Mom, my constant guide and inspiration.</p>
+                  
+                  
+              </div>
+          </div>
+          
+          <div class="navigation-row">
+              <!-- Added section-nav-btn class -->
+              <a href="#achievements" class="btn prev-btn section-nav-btn">
+                  <i class="fas fa-arrow-left"></i> Back to Achievements
+              </a>
+              <!-- Added section-nav-btn class -->
+              <a href="#batchmates" class="btn edu-btn section-nav-btn">
+                See Batchmates <i class="fas fa-arrow-right"></i>
+              </a>
+          </div>
+      </div>
+  </section>
 
-/* NEW: Vertical Frame Style Override */
-.diary-photo.vertical-frame {
-    /* FIX: Increased size */
-    width: 45%; 
-    padding-top: 60%; 
-    height: 0; 
-    margin: 0; /* Remove default margin for precise placement */
-}
+  <section class="batchmates" id="batchmates">
+    <div class="batchmates-container">
+        <h2 class="section-title">My Batchmates</h2>
+        <h3 class="batch-subtitle">The Dyislers</h3>
+        
+        <div class="batchmates-content-grid">
+            
+            <div class="names-list boys-list">
+                <h4>Boys:</h4>
+                <ul>
+                    <li>ABANCE, ALVIN</li>
+                    <li>ABIADO, MARK JHON</li>
+                    <li>BANGGUIYAO, MARK KEVIN</li>
+                    <li>BARRIOGA, ESTEBAN JR.</li>
+                    <li>BUCATAN, JANRYL</li>
+                    <li>BULLAGAY, HEZEKIAH</li>
+                    <li>CELINO, LAWRENCE DAVE</li>
+                    <li>COSTINA, EUGENE REY</li>
+                    <li>DULNUAN, JESSIE</li>
+                    <li>EKWASEN, JAN MARK</li>
+                    <li>ESTEPA, BENCY BLUE</li>
+                    <li>FERNANDEZ, SAM ARCHER</li>
+                    <li>KINDAHAN, JOSHUA</li>
+                    <li>LICUPA, JEREMIE CRAIG</li>
+                    <li>LISKING, GYAHN</li>
+                    <li>LUNAG, AZRIEL JARED</li>
+                    <li>MARKUB, JUSTIN</li>
+                    <li>NAGEN, IVAN TROY</li>
+                    <li>ONNON, BRIAN BRUCE</li>
+                    <li>PADIOS, JIMUEL</li>
+                    <li>PANELO, PRINCE MARKY</li>
+                    <li>PANES, RALPH MATTHEW</li>
+                    <li>QUINTINITA, LANZ JYRO</li>
+                    <li>REQUIERO, JAY-R</li>
+                    <li>RICO, LOUIS INIGO</li>
+                    <li>SAGAPEN, BENJAMIN</li>
+                    <li>SAN PEDRO, RALPH MATTHEW</li>
+                    <li>SANTIAGO, ARTHUR JOHN</li>
+                    <li>SARMIENTO, JUSTINE VON</li>
+                    <li>SOLEY, LEAN JOBELLE</li>
+                    <li>TACIO, REYAN</li>
+                    <li>UMAGING, KAZLER CARL</li>
+                    <li>VENTURA, JAMAL</li>
+                </ul>
+            </div>
+            
+            <div class="batchmates-photo-wrapper">
+                <img src="images/1 - A.jpg" alt="IT Batchmates Group Photo" class="batchmates-photo">
+                <p class="photo-caption">A memorable photo with the entire batch.</p>
+            </div>
 
-/* SPECIAL POSITIONING FOR LEFT PAGE (Two vertical pictures) */
+            <div class="names-list girls-list">
+                <h4>Girls:</h4>
+                <ul>
+                    <li>BACUN, JOHANNA CHRISTINE</li>
+                    <li>BEKISAN, SHANIA FAITH</li>
+                    <li>CASTELLANO, KATHERINE NICOLLE</li>
+                    <li>NOVENTA, GLAIZA MAE</li>
+                    <li>PATAUEG, JEHNNIE LYN</li>
+                    <li>QUIROS, JECA</li>
+                    <li>TALIC, KARIANNE CLARISSE</li>
+                </ul>
+            </div>
+        </div>
 
-.diary-page.left .diary-photo.top-left {
-    position: absolute;
-    /* FIX: Adjusted top position to clear the title */
-    top: 45px; /* Adjusted position */
-    left: 25px; /* Adjusted position */
-    transform: rotate(-3deg);
-    z-index: 11;
-}
-
-.diary-page.left .diary-photo.bottom-right {
-    position: absolute;
-    /* FIX: Adjusted top position to align pictures visually */
-    top: 45px; /* Adjusted position */
-    right: 25px; /* Adjusted position */
-    transform: rotate(2deg);
-    z-index: 12;
-}
-
-/* LEFT PAGE CAPTIONS/DESCRIPTION */
-.diary-page.left .photo-caption {
-    position: absolute;
-    /* Reset flow control */
-    width: auto;
-    left: auto;
-    right: auto;
-    /* Reset margins for captions under absolute photos */
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.diary-page.left .photo-caption.central-description {
-    /* Center the new description text */
-    /* FIX: Pushed lower (from 70px to 35px) */
-    bottom: 35px; 
-    left: 50%;
-    transform: translateX(-50%);
-    /* FIX: Ensure 100% width for perfect centering */
-    width: 100%; 
-    text-align: center; /* Ensures text is horizontally centered */
-    /* FIX: Reduced font size */
-    font-size: 0.8rem; 
-    font-style: normal;
-}
-
-/* Right page content positioning */
-.diary-page.right {
-    /* Ensure right page content is centered when one photo is present */
-    align-items: center;
-}
-.diary-page.right .diary-photo.vertical-frame {
-    /* Override absolute positioning from .left page */
-    position: relative; 
-    /* Center the block element */
-    /* FIX: Increased size */
-    width: 55%; 
-    padding-top: 75%;
-    margin-top: 15px; /* Reduced margin */
-    margin-bottom: 5px; 
-    transform: rotate(1deg);
-}
-
-.diary-photo img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Ensure only transform scales the image, filter remains separate */
-    transition: transform 0.3s ease, filter 0.4s ease; 
-    filter: sepia(0.1);
-}
-
-/* Remove alternate rotation which clashes with absolute position transforms */
-.diary-photo:nth-child(even) {
-    transform: rotate(-1deg); 
-}
-
-/* Hover effects for photo wrapper (shadow lift) */
-.diary-photo:hover {
-    transform: scale(1.05) rotate(0deg); 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Hover effects for image content (Scale 1.5 effect) */
-.diary-photo:hover img {
-    /* FIX: Applied transform: scale(1.5) to the inner image element */
-    transform: scale(1.5);
-    filter: sepia(0);
-}
-
-.photo-caption {
-    font-family: var(--handwriting-font); 
-    /* FIX: Reduced font size */
-    font-size: 0.9rem; 
-    font-style: italic;
-    color: var(--diary-text);
-    /* FIX: Ensure caption is visible (Relative captions) */
-    margin-top: -3px;
-    margin-bottom: 5px; 
-    padding: 0 5px;
-    text-align: center;
-}
-/* Ensure the standard caption style applies only to the right page's caption */
-.diary-page.right .photo-caption {
-    position: relative;
-    width: 80%;
-}
-
-
-/* NEW: Navigation row for Family Page */
-.family-page .navigation-row {
-    /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
-    margin-top: auto; 
-    /* FIX: Reduced padding bottom */
-    padding-bottom: 5px; /* Reduced for flush fit */
-}
-
-
-/* --- Styles for the New Batchmates Section --- */
-.batchmates {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 5% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
-    /* Set min-height to take up the whole screen view */
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-.batchmates-container {
-    /* REMOVED MAX-WIDTH CONSTRAINT to allow full horizontal spread */
-    max-width: none; 
-    width: 100%;
-    /* FIX: Use flex-grow to push navigation row down */
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.batchmates .section-title {
-    /* FIX: Set to 2rem */
-    font-size: 2rem;
-    color: var(--primary-purple);
-    margin-bottom: 15px; 
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-.batch-subtitle {
-    font-size: 1.1rem; /* Adjusted size */
-    color: var(--cyber-blue);
-    margin-bottom: 5px; 
-    text-shadow: 0 0 4px rgba(0, 255, 255, 0.5);
-}
-
-/* New 3-Column Layout */
-.batchmates-content-grid {
-    display: grid;
-    /* ADJUSTED: Small ratio for lists, large ratio for the photo (1:2:1) */
-    grid-template-columns: 1fr 2fr 1fr; /* Changed from 1.2fr 1.2fr 1.2fr */
-    gap: 5px; 
-    text-align: center;
-    margin-top: 5px; 
-    width: 100%;
-    /* Max width is controlled by batchmates-container now */
-    max-width: none; 
-    margin-left: auto;
-    margin-right: auto;
-    align-items: start; 
-}
-
-.batchmates-photo-wrapper {
-    /* Drastically INCREASED max-height to make the photo taller */
-    max-width: 100%; 
-    height: auto;
-    /* ADJUSTED: Reduced max-height */
-    max-height: 350px; 
-    padding: 2px; /* Minimal padding */
-    background: #141416;
-    border: 1px solid var(--cyber-blue); 
-    border-radius: 4px; 
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.1); 
-    overflow: hidden;
-    margin-bottom: 0; 
-    justify-self: center;
-    align-self: start;
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.batchmates-photo {
-    /* Ensure the ENTIRE image is visible and scaled down */
-    object-fit: contain; 
-    display: block;
-    width: 100%;
-    height: 100%; 
-    border-radius: 2px; 
-    transition: transform 0.5s ease;
-    filter: brightness(0.9);
-}
-.batchmates-photo:hover {
-    transform: scale(1.01); 
-    filter: brightness(1.0);
-}
-
-.batchmates-photo-wrapper .photo-caption {
-    font-size: 0.65rem; 
-    font-style: italic; 
-    color: var(--secondary-text);
-    margin-top: 3px;
-    margin-bottom: 0;
-    line-height: 1.1;
-    text-align: center;
-}
-
-.names-list {
-    text-align: left; 
-    align-self: start; 
-    padding: 0 5px; /* Small horizontal padding to push content away from edge of grid column */
-}
-.names-list h4 {
-    color: var(--primary-purple);
-    /* ADJUSTED: Reduced font size */
-    font-size: 0.7rem; 
-    margin-bottom: 3px; 
-    border-bottom: 1px dashed rgba(157, 0, 255, 0.3); 
-    padding-bottom: 1px; 
-    /* ENSURE BOYS LIST TITLE IS LEFT-ALIGNED (Default) */
-    text-align: left; 
-}
-.names-list ul {
-    list-style: none;
-    padding: 0;
-    column-count: 1; 
-    /* FIX: Constrain height and enable scroll to prevent overlap */
-    max-height: 350px; /* Set max height roughly equal to the photo height */
-    overflow-y: auto;
-    padding-right: 5px; /* Add padding for scrollbar visibility */
-}
-.names-list li {
-    /* ADJUSTED: Reduced font size */
-    font-size: 0.6rem; 
-    color: var(--secondary-text);
-    /* ADJUSTED: Reduced line height further to pack more text in */
-    line-height: 1.05; 
-    /* Removed nowrap/ellipsis to prevent clipping on small screens if possible, 
-       but keeping font small should help */
-}
-
-/* NEW: Specific style for Girls' List items (Larger font for better visibility) */
-.names-list.girls-list li {
-    /* INCREASED FONT SIZE FURTHER TO 1.0rem */
-    font-size: 1.0rem; 
-    /* Push list item content to the right edge of its container */
-    padding-right: 0; 
-    padding-left: 0;
-}
-
-
-/* Girls List Alignment - PUSH TO RIGHT */
-.names-list.girls-list {
-    /* Overwrite names-list. Set text alignment to the right */
-    text-align: right; 
-    /* Add padding to the left to push text away from the right edge of the screen, if needed */
-    padding: 0 5%; 
-}
-.names-list.girls-list h4 {
-    /* Align the title to the right side of the girls' column */
-    text-align: right; 
-}
-.names-list.girls-list ul {
-    /* Remove padding on list to ensure names align flush right */
-    padding: 0;
-    padding-left: 5px; /* Add padding for scrollbar visibility */
-}
-/* .names-list.girls-list li already updated above for size */
-
-
-/* FIX: Push Back Button Down */
-.batchmates .navigation-row {
-    /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
-    margin-top: auto; 
-    /* FIX: Reduced bottom margin for flush fit */
-    margin-bottom: 5px; 
-}
-
-
-/* --- Responsive Adjustments for Activities Grid --- */
-
-/* 2 columns for medium screens/tablets */
-@media (max-width: 1200px) {
-    .activities-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
-/* --- Responsive Adjustments for Diary --- */
-@media (max-width: 900px) {
-    /* Education/Experience Timeline Collapse to Single Column */
-    .timeline::before {
-        left: 20px; 
-    }
-    .timeline-item:nth-child(odd) .timeline-content,
-    .timeline-item:nth-child(even) .timeline-content {
-        width: calc(100% - 60px); 
-        left: 60px;
-        padding-left: 20px;
-        padding-right: 20px;
-        text-align: left; 
-    }
-    .timeline-item:nth-child(odd) .timeline-dot,
-    .timeline-item:nth-child(even) .timeline-dot {
-        left: 20px; 
-        transform: translate(-50%, -50%);
-    }
-    .timeline-item:hover .timeline-dot {
-        transform: translate(-50%, -50%) scale(1.3);
-    }
-
-    /* Keep book size small on mid-screens */
-    .diary-container {
-        width: 95vw;
-        height: 380px; 
-        max-height: 60vh;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Stack content vertically on smaller tablets/mobiles */
-    .batchmates-content-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    .names-list {
-        text-align: center;
-    }
-    .names-list h4 {
-        text-align: center;
-    }
-    .names-list ul {
-        column-count: 2; /* Switch to 2 columns to save height on mobile */
-        column-gap: 10px;
-        /* Increase max height slightly for mobile view to show more names */
-        max-height: 250px; 
-    }
-    .names-list li {
-        font-size: 0.75rem; /* Default size for all list items on mobile */
-    }
-    /* NEW: Ensure girls' font size is larger on mobile too */
-    .names-list.girls-list li {
-        /* INCREASED FONT SIZE FURTHER TO 1.1rem ON MOBILE */
-        font-size: 1.1rem; 
-        padding-right: 0; 
-        padding-left: 0;
-    }
-    
-    .batchmates-photo-wrapper {
-        order: -1; /* Move photo to the top */
-        max-width: 90%;
-        max-height: 250px; /* Allow slightly taller on tablet view */
-    }
-    /* Reset list alignments on mobile */
-    .names-list.girls-list, 
-    .names-list.girls-list h4 {
-        text-align: center;
-    }
-}
-
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 5%;
-    }
-    nav ul {
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .hero {
-        padding: 50px 5%;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .image-wrapper {
-        display: none; 
-    }
-    .social-links {
-        justify-content: center;
-    }
-    /* Activities Grid Collapse to 1 column on smaller mobile */
-    .activities-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .diary-container {
-        /* On mobile, collapse to a single, stacked page */
-        width: 95vw;
-        height: auto;
-        flex-direction: column;
-        transform: none;
-        box-shadow: none;
-        overflow-y: auto;
-    }
-    .diary-page, .diary-page.left {
-        width: 100%;
-        height: auto;
-        transform: none;
-        box-shadow: none;
-        border-radius: 0;
-        padding: 20px 20px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        background-image: none; 
-        align-items: center;
-    }
-    /* Mobile Override for Vertical frame to look good in portrait view */
-    .diary-photo.vertical-frame {
-        width: 80%; 
-        padding-top: 100%; 
-        margin-bottom: 10px;
-    }
-}
+        <div class="navigation-row only-prev">
+            <!-- Added section-nav-btn class -->
+            <a href="#family" class="btn prev-btn section-nav-btn">
+                <i class="fas fa-arrow-left"></i> Back to My Family
+            </a>
+        </div>
+        
+    </div>
+  </section>
+  
+  <script src="js/script.js"></script> 
+</body>
+</html>
