@@ -96,10 +96,93 @@ function handleAllNavClicks() {
     });
 }
 
+
+// --- Image Magnification Lens Functions ---
+
+/* Function from the provided image to calculate cursor position relative to an element */
+function getCursorPos(element, e) {
+    e = e || window.event;
+    let rect = element.getBoundingClientRect();
+    
+    // Calculate X and Y coordinates of the cursor relative to the element
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+    
+    // Return the cursor's position
+    return { x: x, y: y };
+}
+
+/* Function to create and manage the magnifying lens */
+function magnify(imgID, zoom) {
+    let img = document.getElementById(imgID);
+    let container = img.parentElement;
+    let glass = container.querySelector(".magnify-glass");
+    
+    // Ensure elements exist
+    if (!img || !glass) return;
+
+    /* Calculate dimensions and offsets */
+    let w = img.offsetWidth;
+    let h = img.offsetHeight;
+    let lens_size = 150; // Size defined in CSS
+
+    /* Set the background size of the lens to the zoom factor of the image */
+    glass.style.backgroundSize = (w * zoom) + "px " + (h * zoom) + "px";
+    
+    /* Function to move the lens */
+    function moveMagnifier(e) {
+        let pos = getCursorPos(img, e);
+        let x = pos.x;
+        let y = pos.y;
+
+        /* Prevent the lens from running out of the image borders (based on the magnified image size) */
+        // x must be > lens_size/zoom and < w - lens_size/zoom
+        let limitX_max = w - (lens_size / zoom);
+        let limitX_min = lens_size / zoom;
+        let limitY_max = h - (lens_size / zoom);
+        let limitY_min = lens_size / zoom;
+
+        if (x > limitX_max) {x = limitX_max;}
+        if (x < limitX_min) {x = limitX_min;}
+        if (y > limitY_max) {y = limitY_max;}
+        if (y < limitY_min) {y = limitY_min;}
+
+        /* Set the position of the lens element (offset by half its size) */
+        glass.style.left = (x - lens_size / 2) + "px";
+        glass.style.top = (y - lens_size / 2) + "px";
+
+        /* Display what the lens is magnifying by setting the background position */
+        // We invert the position and multiply by zoom
+        glass.style.backgroundPosition = "-" + ((x * zoom) - lens_size / 2) + "px -" + ((y * zoom) - lens_size / 2) + "px";
+    }
+
+    /* Set up events on the container (where the cursor moves) */
+    container.addEventListener("mousemove", moveMagnifier);
+    
+    container.addEventListener("mouseenter", function() {
+        // Show the lens and set the background image URL
+        glass.style.opacity = 1;
+        glass.style.backgroundImage = "url('" + img.src + "')";
+    });
+    
+    container.addEventListener("mouseleave", function() {
+        // Hide the lens
+        glass.style.opacity = 0;
+    });
+}
+
+
 // Initialization on load
 window.onload = function() {
     type();
     handleAllNavClicks();
+    
+    // --- Initialize Magnifier on Batchmate Photo ---
+    const batchmateImg = document.getElementById('batchmate-img');
+    if (batchmateImg) {
+        // Set zoom level (e.g., 2 for 200%)
+        magnify('batchmate-img', 2.5); // Using 2.5x zoom for visual clarity
+    }
     
     // Initial load state check: Highlights the link corresponding to the current URL hash
     const currentHash = window.location.hash || '#hero';
