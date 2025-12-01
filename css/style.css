@@ -1495,6 +1495,9 @@ nav ul li a::after {
     list-style: none;
     padding: 0;
     column-count: 1; 
+    /* FIX: Constrain height and enable scroll to prevent overlap */
+    max-height: 350px; /* Set max height roughly equal to the photo height */
+    overflow-y: auto;
     padding-right: 5px; /* Add padding for scrollbar visibility */
 }
 .names-list li {
@@ -1524,8 +1527,6 @@ nav ul li a::after {
     padding-left: 5px; /* Add padding for scrollbar visibility */
 }
 .names-list.girls-list li {
-    /* ADDED: Increased font size for girls' names (was 0.6rem inherited) */
-    font-size: 0.8rem;
     /* Push list item content to the right edge of its container */
     padding-right: 0; 
     padding-left: 0;
