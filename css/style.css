@@ -1495,9 +1495,6 @@ nav ul li a::after {
     list-style: none;
     padding: 0;
     column-count: 1; 
-    /* FIX: Constrain height and enable scroll to prevent overlap */
-    /* max-height: 350px; */ /* Removed height constraint to allow full list view */
-    /* overflow-y: auto; */ /* Removed scrolling */
     padding-right: 5px; /* Add padding for scrollbar visibility */
 }
 .names-list li {
