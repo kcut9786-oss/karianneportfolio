@@ -162,8 +162,8 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
-  /* MODIFIED: Reduced vertical padding from 20px to 15px */
-  padding: 15px 10%;
+  /* MODIFIED: Reduced vertical padding from 15px to 10px */
+  padding: 10px 10%;
   background-color: var(--header-bg);
   box-shadow: 0 4px 15px rgba(0,0,0,0.6);
   /* FIX: Changed from sticky to fixed for permanent visibility */
@@ -195,7 +195,8 @@ nav ul li a {
   color: var(--secondary-text);
   font-weight: 600;
   transition: color 0.3s, background-color 0.3s; /* Smooth transition for color and background */
-  padding: 10px 15px;
+  /* MODIFIED: Reduced vertical padding from 10px to 8px */
+  padding: 8px 15px;
   display: block;
   position: relative;
   text-align: center;
@@ -753,7 +754,6 @@ nav ul li a::after {
     padding: 70px 5% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
     /* Set min-height to take up the whole screen view */
     min-height: 100vh; 
-    /* FIX: Set to flex column to control vertical layout */
     display: flex;
     flex-direction: column; 
     /* MODIFIED: Removed justify-content: center to let content start from the top */
@@ -789,12 +789,12 @@ nav ul li a::after {
     display: grid;
     /* Default to 4 columns on large screens to match screenshot */
     grid-template-columns: repeat(4, 1fr); 
-    /* MODIFIED: Reduced gap from 20px to 15px */
-    gap: 15px; 
-    /* MODIFIED: Reduced margin-top from 15px to 10px */
-    margin-top: 10px; 
-    /* MODIFIED: Reduced padding-bottom from 20px to 10px */
-    padding-bottom: 10px; 
+    /* MODIFIED: Reduced gap from 15px to 10px */
+    gap: 10px; 
+    /* MODIFIED: Reduced margin-top from 10px to 5px */
+    margin-top: 5px; 
+    /* MODIFIED: Reduced padding-bottom from 10px to 5px */
+    padding-bottom: 5px; 
     align-items: stretch; /* Ensure all items stretch to the same height */
 }
 
@@ -822,8 +822,8 @@ nav ul li a::after {
 
 /* Content Wrapper inside the card */
 .activity-card .activity-content {
-    /* MODIFIED: Reduced internal padding from 15px 15px 10px to 10px */
-    padding: 10px; 
+    /* MODIFIED: Reduced internal padding from 10px to 8px */
+    padding: 8px; 
     height: 100%;
     width: 100%;
     display: flex;
@@ -833,22 +833,22 @@ nav ul li a::after {
 }
 
 .activity-title {
-    /* MODIFIED: Increased font size for better readability (was 0.9rem) */
-    font-size: 1.1rem; 
+    /* MODIFIED: Reduced font size from 1.1rem to 1.0rem */
+    font-size: 1.0rem; 
     color: var(--cyber-blue);
-    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
-    margin-bottom: 2px; 
+    /* MODIFIED: Reduced margin-bottom from 2px to 1px */
+    margin-bottom: 1px; 
     text-align: center;
     width: 100%;
     font-weight: 700;
 }
 
 .activity-meta {
-    /* MODIFIED: Increased font size for better readability (was 0.65rem) */
-    font-size: 0.8rem; 
+    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
+    font-size: 0.75rem; 
     color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px; 
+    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
+    margin-bottom: 2px; 
     text-align: center;
     width: 100%;
 }
@@ -861,8 +861,8 @@ nav ul li a::after {
     height: 0; 
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* MODIFIED: Reduced margin-bottom from 10px to 5px */
-    margin-bottom: 5px; 
+    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
+    margin-bottom: 3px; 
     color: var(--secondary-text);
     font-family: var(--code-font);
     font-size: 0.8rem;
@@ -943,8 +943,8 @@ nav ul li a::after {
 /* NEW: Styles for video links (Cheerdance card only) */
 .video-links {
     margin-top: auto; 
-    /* MODIFIED: Reduced padding from 10px 15px 15px to 8px 10px 10px */
-    padding: 8px 10px 10px; 
+    /* MODIFIED: Reduced padding from 8px 10px 10px to 5px */
+    padding: 5px; 
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-wrap: wrap; 
@@ -955,24 +955,24 @@ nav ul li a::after {
 }
 
 .video-cta {
-    /* MODIFIED: Increased font size for better readability (was 0.65rem) */
-    font-size: 0.8rem; 
+    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
+    font-size: 0.75rem; 
     color: var(--primary-purple);
     margin: 0;
     width: 100%; 
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px;
+    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
+    margin-bottom: 2px;
 }
 
 .video-btn {
     flex-grow: 1;
-    /* MODIFIED: Reduced padding from 5px 8px to 3px 5px */
-    padding: 3px 5px; 
+    /* MODIFIED: Reduced padding from 3px 5px to 2px 4px */
+    padding: 2px 4px; 
     background: var(--primary-purple);
     color: var(--dark-bg) !important;
     font-weight: 600;
-    /* MODIFIED: Increased font size for better readability (was 0.6rem) */
-    font-size: 0.7rem; 
+    /* MODIFIED: Reduced font size from 0.7rem to 0.65rem */
+    font-size: 0.65rem; 
     transition: transform 0.3s ease;
     text-decoration: none;
     text-transform: uppercase;
@@ -986,10 +986,10 @@ nav ul li a::after {
 
 
 .activity-description {
-    /* MODIFIED: Increased font size for better readability (was 0.7rem) */
-    font-size: 0.85rem; 
-    /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
-    line-height: 1.2;
+    /* MODIFIED: Reduced font size from 0.85rem to 0.8rem */
+    font-size: 0.8rem; 
+    /* MODIFIED: Reduced line-height from 1.2 to 1.15 */
+    line-height: 1.15;
     color: var(--secondary-text);
     margin-bottom: 0; 
     padding: 0 5px; /* slight horizontal padding inside content box */
@@ -1012,21 +1012,21 @@ nav ul li a::after {
 .no-style-list {
     list-style: none;
     padding-left: 0;
-    /* MODIFIED: Reduced margin-top from 10px to 5px */
-    margin-top: 5px;
+    /* MODIFIED: Reduced margin-top from 5px to 3px */
+    margin-top: 3px;
     width: 100%;
     text-align: left; /* List should be left-justified within its container */
 }
 .no-style-list li {
-    /* MODIFIED: Increased font size for better readability (was 0.7rem) */
-    font-size: 0.85rem; 
+    /* MODIFIED: Reduced font size from 0.85rem to 0.8rem */
+    font-size: 0.8rem; 
     color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
-    margin-bottom: 3px; 
-    line-height: 1.4; 
+    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
+    margin-bottom: 2px; 
+    line-height: 1.3; 
     /* CHANGED: Align list items to justify (was left) */
     text-align: justify;
-    padding: 0 10px; /* Indent list items slightly */
+    padding: 0 5px; /* Reduced list item padding */
 }
 
 /* ADDED: Move the navigation row up */
@@ -1497,7 +1497,8 @@ nav ul li a::after {
 .names-list ul {
     list-style: none;
     padding: 0;
-    column-count: 1; 
+    column-count: 2; /* ADDED: Two columns for boys' names */
+    column-gap: 10px;
     /* FIX: Constrain height to align with photo and enable scroll */
     max-height: 340px; 
     overflow-y: auto;
@@ -1505,42 +1506,45 @@ nav ul li a::after {
     padding-top: 5px; /* Added small internal top padding */
 }
 .names-list li {
-    /* ADJUSTED: Reduced font size */
-    font-size: 0.6rem; 
+    /* INCREASED FONT SIZE for boys */
+    font-size: 0.75rem; 
     color: var(--secondary-text);
     /* ADJUSTED: Reduced line height further to pack more text in */
     line-height: 1.05; 
-    /* Removed nowrap/ellipsis to prevent clipping on small screens if possible, 
-       but keeping font small should help */
+    /* FIXED: Ensure text alignment for individual list items */
+    text-align: left; 
 }
 
 /* NEW: Specific style for Girls' List items (Larger font for better visibility) */
 .names-list.girls-list li {
     /* INCREASED FONT SIZE FURTHER TO 1.4rem */
     font-size: 1.4rem; 
-    /* Push list item content to the right edge of its container */
+    /* Push list item content to the left edge of its container */
     padding-right: 0; 
     padding-left: 0;
 }
 
+/* NEW: Remove Scrollbar from Girls' List and allow natural height */
+.names-list.girls-list ul {
+    max-height: none; /* Allow natural height based on content */
+    overflow-y: visible; /* Disable scrollbar */
+    padding-right: 0; 
+    padding-left: 0;
+    column-count: 1; /* Ensure girls' list is not split into 2 columns on desktop */
+}
 
-/* Girls List Alignment - PUSH TO RIGHT */
+
+/* Girls List Alignment - PUSH TO LEFT (Justified) */
 .names-list.girls-list {
-    /* Overwrite names-list. Set text alignment to the right */
-    text-align: right; 
+    /* Overwrite names-list. Set text alignment to the LEFT */
+    text-align: left; 
     /* Add padding to the left to push text away from the right edge of the screen, if needed */
     padding: 5px 5%; /* Adjusted padding for background fill */
 }
 .names-list.girls-list h4 {
-    /* Align the title to the right side of the girls' column */
-    text-align: right; 
+    /* Align the title to the left side of the girls' column */
+    text-align: left; 
 }
-.names-list.girls-list ul {
-    /* Remove padding on list to ensure names align flush right */
-    padding: 0;
-    padding-left: 5px; /* Add padding for scrollbar visibility */
-}
-/* .names-list.girls-list li already updated above for size */
 
 
 /* FIX: Push Back Button Down */
@@ -1607,13 +1611,14 @@ nav ul li a::after {
         text-align: center;
     }
     .names-list ul {
-        column-count: 2; /* Switch to 2 columns to save height on mobile */
+        column-count: 2; /* Boys list uses 2 columns on mobile */
         column-gap: 10px;
         /* Increase max height slightly for mobile view to show more names */
         max-height: 250px; 
     }
     .names-list li {
         font-size: 0.75rem; /* Default size for all list items on mobile */
+        text-align: left; /* Ensure list items are left-aligned on mobile */
     }
     /* NEW: Ensure girls' font size is larger on mobile too */
     .names-list.girls-list li {
@@ -1621,6 +1626,15 @@ nav ul li a::after {
         font-size: 1.5rem; 
         padding-right: 0; 
         padding-left: 0;
+    }
+
+    /* Override mobile list height/scroll settings: Girls' list should wrap/scroll in 2 columns */
+    .names-list.girls-list ul {
+        max-height: 250px; /* Re-apply max height for mobile wrapping */
+        overflow-y: auto;
+        padding-right: 5px;
+        column-count: 2; /* Girls list uses 2 columns on mobile */
+        text-align: left;
     }
     
     .batchmates-photo-wrapper {
