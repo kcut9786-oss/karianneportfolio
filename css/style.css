@@ -1515,7 +1515,7 @@ nav ul li a::after {
 /* NEW: Specific style for Girls' List items (Larger font for better visibility) */
 .names-list.girls-list li {
     /* INCREASED FONT SIZE FURTHER TO 1.2rem */
-    font-size: 1.3rem; 
+    font-size: 1.2rem; 
     /* Push list item content to the right edge of its container */
     padding-right: 0; 
     padding-left: 0;
@@ -1689,6 +1689,3 @@ nav ul li a::after {
         margin-bottom: 10px;
     }
 }
-
-
-
