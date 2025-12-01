@@ -1478,9 +1478,10 @@ nav ul li a::after {
 .names-list {
     text-align: left; 
     align-self: start; 
-    padding: 5px 5px; /* Added vertical padding for background fill */
-    margin: 0; /* REMOVED vertical margin to reduce blank space */
-    background-color: rgba(157, 0, 255, 0.1); /* ADDED: Translucent background */
+    /* ADDED PADDING AND BACKGROUND FILL FOR VISUAL SEPARATION */
+    padding: 5px 5px; 
+    margin: 0; /* Removed margin to minimize blank space */
+    background-color: rgba(157, 0, 255, 0.1); 
     border-radius: 5px;
 }
 .names-list h4 {
@@ -1497,10 +1498,11 @@ nav ul li a::after {
     list-style: none;
     padding: 0;
     column-count: 1; 
-    /* FIX: Constrain height and enable scroll to prevent overlap */
-    max-height: 340px; /* Reduced max-height slightly to fit new padding/title space */
+    /* FIX: Constrain height to align with photo and enable scroll */
+    max-height: 340px; 
     overflow-y: auto;
     padding-right: 5px; /* Add padding for scrollbar visibility */
+    padding-top: 5px; /* Added small internal top padding */
 }
 .names-list li {
     /* ADJUSTED: Reduced font size */
@@ -1514,8 +1516,8 @@ nav ul li a::after {
 
 /* NEW: Specific style for Girls' List items (Larger font for better visibility) */
 .names-list.girls-list li {
-    /* INCREASED FONT SIZE FURTHER TO 1.2rem */
-    font-size: 1.2rem; 
+    /* INCREASED FONT SIZE FURTHER TO 1.4rem */
+    font-size: 1.4rem; 
     /* Push list item content to the right edge of its container */
     padding-right: 0; 
     padding-left: 0;
@@ -1615,8 +1617,8 @@ nav ul li a::after {
     }
     /* NEW: Ensure girls' font size is larger on mobile too */
     .names-list.girls-list li {
-        /* INCREASED FONT SIZE FURTHER TO 1.3rem ON MOBILE */
-        font-size: 1.3rem; 
+        /* INCREASED FONT SIZE FURTHER TO 1.5rem ON MOBILE */
+        font-size: 1.5rem; 
         padding-right: 0; 
         padding-left: 0;
     }
