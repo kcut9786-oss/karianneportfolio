@@ -184,12 +184,6 @@ window.onload = function() {
         magnify('batchmate-img', 2.5); 
     }
     
-    // --- Initialize Magnifier on English Club Photo ---
-    const englishClubImg = document.getElementById('english-club-img');
-    if (englishClubImg) {
-        magnify('english-club-img', 2.5); 
-    }
-    
     // Initial load state check: Highlights the link corresponding to the current URL hash
     const currentHash = window.location.hash || '#hero';
     const initialActiveLink = document.querySelector(`nav ul a[href="${currentHash}"]`);
