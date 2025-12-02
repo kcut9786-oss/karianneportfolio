@@ -1501,7 +1501,9 @@ nav ul li a::after {
 
 /* NEW MAGNIFICATION LENS STYLES */
 .magnify-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -1510,6 +1512,7 @@ nav ul li a::after {
 /* Ensure the image takes up the container space and has no conflicting hover styles */
 .magnify-container .batchmates-photo, 
 .magnify-container .club-officer-image {
+    position: relative !important; /* Overriding position: absolute for magnify content */
     width: 100%;
     height: 100%;
     object-fit: contain; 
