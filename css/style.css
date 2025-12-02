@@ -1,3 +1,5 @@
+/* style.css (Modified) */
+
 * {
   margin: 0;
   padding: 0;
@@ -7,37 +9,39 @@
 
 /* --- THEME COLORS (Futuristic Dark/Cyber Purple) --- */
 :root {
-    --primary-purple: #9d0dff;      /* Deep, vibrant purple for accents */
-    --dark-bg: #0d0113;             /* Near-black, deep space background */
-    --text-light: #e0e0e0;          /* Bright white/light gray text */
-    --header-bg: rgba(13, 1, 19, 0.95); /* Nearly opaque header */
-    --secondary-text: #b3b3b3;      /* Muted light gray */
-    --cyber-blue: #00ffff;          /* Secondary accent color */
+    --primary-purple: #9d0dff;      
+    --dark-bg: #0d0113;             
+    --text-light: #e0e0e0;          
+    --header-bg: rgba(13, 1, 19, 0.95); 
+    --secondary-text: #b3b3b3;      
+    --cyber-blue: #00ffff;          
     --code-font: 'Courier New', Courier, monospace;
     --frame-width: 380px;
     --frame-height: 480px;
     
-    /* NEW: Skill Icon Colors (Kept just in case) */
     --java-color: #5382a1;
     --python-color: #3776ab;
     --js-color: #f7df1e;
     --html-color: #e34c26;
-    --neon-green: #39ff14; /* Defined a standard neon green color */
+    --neon-green: #39ff14; 
 
-    /* ADDED: Wood Grain and Shadow Colors for Family Page (Adjusted for warmer tone like in the photo) */
-    --frame-wood-light: #d4a57b; /* Lighter, warmer wood tone */
-    --frame-wood-dark: #a87d5a;  /* Darker, warmer wood tone */
-    --frame-shadow: rgba(0, 0, 0, 0.5); /* Stronger shadow */
-    --frame-highlight: rgba(255, 255, 255, 0.5); /* Added for fake reflection */
+    --frame-wood-light: #d4a57b; 
+    --frame-wood-dark: #a87d5a;  
+    --frame-shadow: rgba(0, 0, 0, 0.5); 
+    --frame-highlight: rgba(255, 255, 255, 0.5); 
     
-    /* NEW: Diary Colors */
-    --diary-spine: #4a2f80; /* Darker purple/indigo for the spine */
-    --diary-paper-bg: #f7f7e8; /* Off-white, slightly cream paper */
-    --diary-text: #333333; /* Dark text for paper */
+    --diary-spine: #4a2f80; 
+    --diary-paper-bg: #f7f7e8; 
+    --diary-text: #333333; 
     --diary-shadow: rgba(0, 0, 0, 0.4);
-    --ruling-line: rgba(100, 100, 200, 0.3); /* Light blue/purple for ruling */
-    --margin-line: rgba(255, 100, 100, 0.5); /* Light red for margin */
-    --handwriting-font: 'Gochi Hand', cursive; /* The handwriting font */
+    --ruling-line: rgba(100, 100, 200, 0.3); 
+    --margin-line: rgba(255, 100, 100, 0.5); 
+    --handwriting-font: 'Gochi Hand', cursive; 
+    
+    /* NEW FAMILY COLORS */
+    --dad-color: #ff9933; 
+    --mom-color: #c93498; 
+    --brother-color: #34c9c9; 
 }
 
 /* --- Keyframe Animations --- */
@@ -84,9 +88,9 @@
 /* SMOOTH FADE ANIMATION KEYFRAMES for Cheerdance Card */
 @keyframes smooth-swap-front {
     0% { opacity: 1; }
-    45% { opacity: 1; } /* Hold full opacity */
-    55% { opacity: 0; } /* Start smooth fade out */
-    100% { opacity: 0; } /* Hold zero opacity */
+    45% { opacity: 1; } 
+    55% { opacity: 0; } 
+    100% { opacity: 0; } 
 }
 @keyframes smooth-swap-back {
     0% { opacity: 0; }
@@ -96,19 +100,30 @@
 }
 
 /* --- Global Styles --- */
+html, body {
+    /* STRICTLY ENFORCE NO SCROLL ON ENTIRE BODY/HTML */
+    overflow: hidden; 
+    height: 100%;
+    min-height: 100%; 
+}
+
 body {
-  /* FIX: Removed overflow-y: hidden; to allow natural scrolling on all devices */
-  overflow-y: auto; 
-  
   background: var(--dark-bg);
   color: var(--text-light);
-  min-height: 100vh;
   background-image: 
     radial-gradient(var(--primary-purple) 0.5px, transparent 0.5px), 
     radial-gradient(var(--primary-purple) 0.5px, transparent 0.5px);
   background-size: 80px 80px;
   background-position: 0 0, 40px 40px;
 }
+/* Ensure all sections are the full viewport height and hide overflow */
+section {
+    height: 100vh;
+    width: 100%;
+    position: relative; 
+    overflow: hidden; 
+}
+
 
 /* ============================================== */
 /* WELCOME OVERLAY STYLES */
@@ -125,7 +140,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* REDUCED LOADING TIME */
+    
     animation: fade-out 0.5s ease-out 1.5s forwards; 
 }
 
@@ -162,11 +177,9 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
-  /* MODIFIED: Reduced vertical padding from 15px to 10px */
   padding: 10px 10%;
   background-color: var(--header-bg);
   box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-  /* FIX: Changed from sticky to fixed for permanent visibility */
   position: fixed; 
   top: 0;
   width: 100%;
@@ -194,8 +207,7 @@ nav ul li a {
   text-decoration: none;
   color: var(--secondary-text);
   font-weight: 600;
-  transition: color 0.3s, background-color 0.3s; /* Smooth transition for color and background */
-  /* MODIFIED: Reduced vertical padding from 10px to 8px */
+  transition: color 0.3s, background-color 0.3s; 
   padding: 8px 15px;
   display: block;
   position: relative;
@@ -207,8 +219,8 @@ nav ul li a {
 /* Active State: Solid Background Fill */
 nav ul li a.nav-active {
     background-color: var(--cyber-blue);
-    color: var(--dark-bg); /* Dark text for contrast */
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Slight glow */
+    color: var(--dark-bg); 
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
 }
 
 /* Hover State */
@@ -216,7 +228,7 @@ nav ul li a:hover {
     background-color: var(--cyber-blue);
     color: var(--dark-bg);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-    transform: scale(1.05); /* Optional: slight scale effect on hover */
+    transform: scale(1.05); 
 }
 
 /* Ensure active state prevents scaling on hover to keep position fixed */
@@ -238,10 +250,9 @@ nav ul li a::after {
 .hero {
   display: flex;
   justify-content: space-between;
-  /* FIX: Reduced bottom padding to push content/button down */
-  padding: 100px 10% 0; /* FIX: Changed bottom padding to 0px */
-  /* FIX: Refined min-height calculation */
-  min-height: calc(100vh - 70px); /* Deduct approx nav bar height to push button lower */
+  /* Increased top padding to push content slightly downward */
+  padding: 105px 10% 0; 
+  height: 100vh; 
   position: relative; 
   z-index: 1; 
   perspective: 1000px;
@@ -273,9 +284,8 @@ nav ul li a::after {
   z-index: 2; 
   margin-right: 50px; 
   animation: wobble 15s infinite alternate ease-in-out;
-  /* MODIFIED: Added max-width for readability on large screens */
-  max-width: 700px;
-  /* MODIFIED: Added small bottom margin to reduce space after content */
+  /* Adjusted max-width to allow more space for the wider image */
+  max-width: 600px; 
   margin-bottom: 20px; 
 }
 
@@ -295,21 +305,17 @@ nav ul li a::after {
 }
 
 .hero .content .hello-greeting {
-    /* MODIFIED: Reduced font size from 1.4rem to 1.2rem */
     font-size: 1.2rem; 
     font-weight: 600;
     color: var(--primary-purple);
-    margin-bottom: 5px; 
     text-shadow: 0 0 8px rgba(157, 0, 255, 0.7); 
 }
 
 
 /* H1 Glitch Effect */
 .hero h1 {
-  /* MODIFIED: Reduced font size from 3rem to 2rem */
   font-size: 2rem; 
   color: var(--text-light);
-  /* MODIFIED: Reduced margin-bottom from 10px to 5px */
   margin-bottom: 5px; 
   font-weight: 900; 
   letter-spacing: 2px;
@@ -331,26 +337,19 @@ nav ul li a::after {
 
 /* Typing Animation Container */
 .hero .typing-container {
-  /* MODIFIED: Reduced font size from 1.6rem to 1.4rem */
   font-size: 1.4rem; 
   font-weight: 600; 
-  /* MODIFIED: Reduced min-height from 45px to 40px */
   min-height: 40px; 
   display: flex; align-items: center; 
-  /* MODIFIED: Reduced margin-bottom from 30px to 20px */
   margin-bottom: 20px; 
   font-family: var(--code-font);
 }
 
 #typing-text { color: var(--primary-purple); margin-left: 8px; text-shadow: 0 0 5px var(--primary-purple); }
-/* Reduced bottom margin for multi-paragraph description */
 .hero .description { 
-    /* MODIFIED: Reduced font size from 1.1rem to 1rem */
     font-size: 1rem; 
-    /* MODIFIED: Reduced line-height from 1.7 to 1.6 */
     line-height: 1.6; 
     color: var(--secondary-text); 
-    /* MODIFIED: Reduced margin-bottom from 15px to 10px */
     margin-bottom: 10px; 
 } 
 
@@ -371,21 +370,33 @@ nav ul li a::after {
 
 /* --- IMAGE STYLES (Hero) */
 .image-wrapper {
-    /* MODIFIED: Reduced width from 380px to 350px */
+    /* Set the height to fill the space from the image top to the bottom of the viewport */
+    height: 100vh; 
+    /* MODIFIED: Increased width from 900px to 1000px */
     width: 350px; 
-    /* MODIFIED: Reduced height from 480px to 440px */
-    height: 440px;
+    position: relative;
+    /* FIX: Force image wrapper to align to the bottom of the visible hero area */
+    margin-top: auto;
+    
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     z-index: 2;
-    /* FIX: Removed top padding to allow full vertical flex control */
     padding-top: 0; 
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     transform-style: preserve-3d;
 }
+
 .image-frame {
-    width: 100%; height: 100%;
+    /* MODIFIED: Reduced height from calc(100% - 110px) to 65% */
+    height: 65%; 
+    width: 100%;
+    /* ADDED: Use Flexbox to position the image */
+    display: flex;
+    justify-content: center;
+    /* MODIFIED: Push image contents to the bottom */
+    align-items: flex-end; 
+    /* END MODIFIED */
     background: linear-gradient(145deg, var(--primary-purple), var(--dark-bg));
     padding: 3px; border-radius: 10px; overflow: hidden; position: relative;
     box-shadow: 0 0 30px rgba(157, 0, 255, 0.5); 
@@ -393,8 +404,16 @@ nav ul li a::after {
     transition: box-shadow 0.4s ease; 
 }
 .profile-img {
-    width: 100%; height: 100%; object-fit: contain; border-radius: 8px; display: block;
-    /* FIX: Add scale for photo hover animation */
+    /* MODIFIED: Restore to 100% width/height to maximize contain sizing */
+    width: 100%; 
+    height: 100%; 
+    margin: auto;
+    /* MODIFIED: Prevent cropping (cover -> contain) */
+    object-fit: contain; 
+    /* NEW: Push the image down within the frame container (only works if parent is flex) */
+    align-self: flex-end;
+    /* END MODIFIED */
+    border-radius: 8px; display: block;
     transition: transform 0.3s ease, filter 0.4s ease, box-shadow 0.4s ease; 
     filter: grayscale(0.2) brightness(0.95); 
 }
@@ -402,8 +421,7 @@ nav ul li a::after {
 .image-wrapper:hover .image-frame { box-shadow: 0 0 70px var(--primary-purple); animation-play-state: paused; }
 .image-wrapper:hover .profile-img { transform: scale(1.08) rotate(1deg); filter: grayscale(0) brightness(1.05); }
 .image-details {
-    /* FIX: Pushed top down to clear the navigation bar when the hero section padding is increased */
-    position: absolute; top: 10px; /* Adjusted to be slightly lower than fixed nav */
+    position: absolute; top: 10px; 
     right: -20px; background: var(--header-bg);
     border: 1px solid var(--cyber-blue); padding: 10px 15px; border-radius: 5px;
     box-shadow: 0 0 10px var(--cyber-blue); font-family: var(--code-font);
@@ -412,9 +430,9 @@ nav ul li a::after {
 }
 .image-wrapper:hover .image-details { transform: rotate(0deg) scale(1.1); box-shadow: 0 0 20px var(--cyber-blue), 0 0 40px rgba(0, 255, 255, 0.5); }
 .image-btn {
-    /* FIX: Used auto margin to push button to the bottom of the image-wrapper */
     margin-top: auto; 
-    margin-bottom: 0; /* FIX: Reduced margin to 0 for flush fit */
+    /* Pushed a very little upward: increased margin to 125px */
+    margin-bottom: 125px; 
     display: flex; align-items: center; gap: 8px; background: none;
     color: var(--cyber-blue); padding: 12px 25px; font-weight: 700; border-radius: 5px;
     border: 2px solid var(--cyber-blue); box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
@@ -435,9 +453,9 @@ nav ul li a::after {
 /* GENERAL SECTION STYLES (Placeholder Sections) */
 /* ============================================== */
 .section-title {
-    font-size: 3rem;
+    font-size: 2rem; 
     color: var(--primary-purple);
-    margin-bottom: 50px;
+    margin-bottom: 15px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -445,32 +463,65 @@ nav ul li a::after {
 }
 
 /* ============================================== */
-/* EDUCATION SECTION STYLES (FIT FIX APPLIED) */
+/* EDUCATION SECTION STYLES (MODIFIED FOR TWO-COLUMN) */
 /* ============================================== */
 .education {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 10% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
-    /* Set min-height to take up the whole screen view */
-    min-height: calc(100vh - 5px); /* Adjusted min-height calculation */
-    /* FIX: Set to flex column to control vertical layout */
+    /* FULL HEIGHT, NO SCROLL */
+    padding: 70px 10% 5px;
+    height: 100vh; 
     display: flex;
     flex-direction: column; 
-    justify-content: flex-start; /* Start content from top */
     align-items: center; 
     text-align: center;
+    overflow: hidden; 
 }
 
+/* New main container for photo and timeline, taking remaining vertical space */
 .edu-container {
-    max-width: 900px;
+    max-width: 1200px;
     width: 100%;
-    margin: 0 auto; /* Center content on wide screens */
-    /* ADDED: Extra margin to push buttons down and ensure bottom padding works effectively */
-    margin-bottom: 0; /* FIX: Removed bottom margin */
-    /* FIX: Use flex-grow to push navigation row down */
-    flex-grow: 1;
+    margin: 0 auto; 
+    flex-grow: 1; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: stretch; 
+    height: calc(100% - 120px); 
+}
+
+/* --- LEFT SIDE: Graduation Photo --- */
+.edu-photo-wrapper {
+    width: 40%; 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 10px;
+    height: 100%;
+    position: relative;
+    border-right: 3px dashed var(--primary-purple);
+}
+
+.grad-pic {
+    max-width: 100%;
+    max-height: 85%; 
+    height: auto;
+    object-fit: contain; 
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.grad-pic:hover {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 0 0 50px var(--cyber-blue);
+}
+
+/* --- RIGHT SIDE: Timeline Container --- */
+.timeline-wrapper {
+    width: 100%; 
+    overflow-y: hidden; 
+    height: 100%; 
+    padding: 10px 0;
+    text-align: left; 
 }
 
 /* NEW: Button Style for Education Section */
@@ -541,33 +592,20 @@ nav ul li a::after {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    /* FIX: Use margin-top: auto and reduced margin-bottom for flush fit */
-    margin-top: auto; 
+    margin-top: 10px; 
     margin-bottom: 5px;
+    max-width: 1200px;
 }
 .navigation-row.only-prev {
-    /* If only one button is present, justify it to the start (left) */
     justify-content: flex-start;
 }
 
 
-.section-title {
-    /* FIX: Adjusted ALL section titles to 2rem */
-    font-size: 2rem; 
-    color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom from 20px to 15px */
-    margin-bottom: 15px; 
-    text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
-    border-bottom: 3px solid var(--cyber-blue);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
 .timeline {
     position: relative;
     padding: 0; 
-    /* MODIFIED: Reduced margin-top from 15px to 10px */
     margin-top: 10px;
+    width: 100%; 
 }
 
 /* The main vertical line */
@@ -576,33 +614,29 @@ nav ul li a::after {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 50%;
+    left: 10px; 
     width: 4px;
     background: linear-gradient(to bottom, var(--primary-purple), var(--cyber-blue));
-    margin-left: -2px;
+    margin-left: 0; 
 }
 
 .timeline-item {
     position: relative;
-    /* MODIFIED: Reduced margin-bottom from 25px to 18px */
     margin-bottom: 18px; 
-}
-
-/* Items on the left side of the line */
-.timeline-item:nth-child(odd) .timeline-content {
-    padding-right: 15px; /* FIX: Reduced padding to push card outwards */
-    text-align: right;
-    left: 0;
-    width: 48%; /* FIX: Increased card width */
-}
-
-/* Items on the right side of the line */
-.timeline-item:nth-child(even) .timeline-content {
-    padding-left: 15px; /* FIX: Reduced padding to push card outwards */
+    padding-left: 40px; 
     text-align: left;
-    left: 52%; /* FIX: Adjusted left position (was 55%) */
-    width: 48%; /* FIX: Increased card width */
 }
+
+/* FIX: Remove all left/right positioning logic for single-column timeline */
+.timeline-item:nth-child(odd) .timeline-content,
+.timeline-item:nth-child(even) .timeline-content {
+    padding-right: 0; 
+    text-align: left;
+    left: auto;
+    width: 100%; 
+    transform: none;
+}
+
 
 /* NEW: Card container style */
 .timeline-content.edu-card {
@@ -610,7 +644,6 @@ nav ul li a::after {
     background: #141416; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    /* MODIFIED: Reduced padding from 10px 15px to 8px 12px */
     padding: 8px 12px; 
     border-radius: 10px;
     text-align: left !important; 
@@ -626,17 +659,15 @@ nav ul li a::after {
 .edu-header {
     display: flex;
     align-items: center;
-    /* MODIFIED: Reduced margin-bottom from 8px to 5px */
     margin-bottom: 5px; 
 }
 
 .edu-logo {
-    width: 30px; /* Adjusted size */
-    height: 30px; /* Adjusted size */
+    width: 30px; 
+    height: 30px; 
     object-fit: contain;
     border-radius: 8px;
     filter: none; 
-    /* MODIFIED: Reduced margin-right from 10px to 8px */
     margin-right: 8px;
 }
 
@@ -645,7 +676,6 @@ nav ul li a::after {
 }
 
 .timeline-degree {
-    /* ADJUSTED: Reduced font size from 0.95rem to 0.9rem */
     font-size: 0.9rem; 
     font-weight: 600;
     color: var(--text-light);
@@ -653,7 +683,6 @@ nav ul li a::after {
 }
 
 .timeline-institution {
-    /* ADJUSTED: Reduced font size from 0.75rem to 0.7rem */
     font-size: 0.7rem; 
     color: var(--secondary-text);
     margin-bottom: 0;
@@ -671,26 +700,24 @@ nav ul li a::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
     margin-bottom: 3px; 
-    /* MODIFIED: Reduced padding-top from 5px to 3px */
     padding-top: 3px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .edu-date {
-    font-size: 0.65rem; /* Adjusted size */
+    font-size: 0.65rem; 
     color: var(--secondary-text);
     font-family: 'Poppins', sans-serif;
 }
 
 .edu-status {
-    padding: 1px 3px; /* FIX: Reduced horizontal padding */
+    padding: 1px 3px; 
     border-radius: 5px;
-    font-size: 0.35rem; /* FIX: Aggressively reduced font size for status text */
+    font-size: 0.35rem; 
     font-weight: 700;
-    letter-spacing: 0.3px; /* FIX: Reduced letter spacing */
-    display: inline-block; /* FIX: Added to strictly contain minimal content size */
+    letter-spacing: 0.3px; 
+    display: inline-block; 
 }
 
 /* NEW: Background colors for status badges */
@@ -708,9 +735,7 @@ nav ul li a::after {
 
 /* --- Description is the last element --- */
 .timeline-description {
-    /* ADJUSTED: Reduced font size from 0.75rem to 0.7rem */
-    font-size: 0.7rem; 
-    /* MODIFIED: Reduced line-height from 1.3 to 1.2 */
+    font-size: 0.9rem; 
     line-height: 1.2;
     color: var(--secondary-text);
     margin-bottom: 0; 
@@ -730,16 +755,15 @@ nav ul li a::after {
     top: 50%;
     transform: translateY(-50%);
     transition: transform 0.3s, box-shadow 0.3s;
+    left: 10px; 
+    margin-left: -6px; 
 }
 
-/* Position dots correctly based on item type */
-.timeline-item:nth-child(odd) .timeline-dot {
-    right: 48%; /* Left side */
-}
-
-/* Items on the right side of the line */
+/* FIX: Remove specific positioning for odd/even items */
+.timeline-item:nth-child(odd) .timeline-dot,
 .timeline-item:nth-child(even) .timeline-dot {
-    left: 48%; /* Right side */
+    right: auto;
+    left: 10px; 
 }
 
 /* Hover effect on dot */
@@ -753,57 +777,50 @@ nav ul li a::after {
 /* EXTRA/CO-CURRICULAR ACTIVITIES STYLES (MATCHES SCREENSHOT) */
 /* ============================================== */
 .activities {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 2% 5px; /* FIX: Reduced horizontal padding to 2% for better wide screen fill */
-    /* Set min-height to take up the whole screen view */
-    min-height: 100vh; 
+    padding: 70px 2% 5px; 
+    height: 100vh; 
     display: flex;
     flex-direction: column; 
-    /* MODIFIED: Removed justify-content: center to let content start from the top */
-    /* justify-content: center; */
     align-items: center; 
     text-align: center;
+    overflow: hidden; 
 }
 
 .activities-container {
-    max-width: 1400px; /* Allow content to expand more horizontally */
+    max-width: 1400px; 
     width: 100%;
-    /* FIX: Use flex-grow to push navigation row down */
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: hidden; 
+    height: calc(100vh - 120px); 
 }
 
 .activities .section-title {
-    /* FIX: Adjusted ALL section titles to 2rem */
     font-size: 2rem; 
     color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom */
-    margin-bottom: 15px; /* Increased margin for consistency */
+    margin-bottom: 15px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
-    padding-bottom: 3px;
+    padding-bottom: 5px;
 }
 
 /* --- HORIZONTAL 4-COLUMN LAYOUT --- */
 .activities-grid {
     display: grid;
-    /* Default to 4 columns on large screens to match screenshot */
     grid-template-columns: repeat(4, 1fr); 
-    /* MODIFIED: Reduced gap from 15px to 10px */
     gap: 10px; 
-    /* MODIFIED: Reduced margin-top from 10px to 5px */
     margin-top: 5px; 
-    /* MODIFIED: Reduced padding-bottom from 10px to 5px */
     padding-bottom: 5px; 
-    align-items: stretch; /* Ensure all items stretch to the same height */
+    align-items: stretch; 
+    height: 75%; 
+    overflow: hidden; 
 }
 
 .activity-card {
     background: #141416;
-    /* Stronger border and initial glow */
     border: 2px solid var(--primary-purple);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(157, 0, 255, 0.5); 
@@ -811,35 +828,24 @@ nav ul li a::after {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column; 
-    /* FIX: INCREASED CARD SIZE */
-    height: auto; 
-    min-height: 380px; /* Set a minimum height for the card */
-    justify-content: space-between; /* Space out content/media/description */
-}
-
-.activity-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 30px var(--cyber-blue); /* Hover glow */
-    border-color: var(--cyber-blue); /* Hover border change */
+    min-height: 0; 
+    justify-content: space-between; 
 }
 
 /* Content Wrapper inside the card */
 .activity-card .activity-content {
-    /* MODIFIED: Reduced internal padding from 10px to 8px */
     padding: 8px; 
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center; /* All text inside is centered */
+    text-align: center; 
 }
 
 .activity-title {
-    /* MODIFIED: Reduced font size from 1.1rem to 1.0rem */
     font-size: 1.0rem; 
     color: var(--cyber-blue);
-    /* MODIFIED: Reduced margin-bottom from 2px to 1px */
     margin-bottom: 1px; 
     text-align: center;
     width: 100%;
@@ -847,10 +853,8 @@ nav ul li a::after {
 }
 
 .activity-meta {
-    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
     font-size: 0.75rem; 
     color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
     margin-bottom: 2px; 
     text-align: center;
     width: 100%;
@@ -859,12 +863,10 @@ nav ul li a::after {
 /* Media Placeholder to fit the screenshot look */
 .media-placeholder {
     width: 100%;
-    /* FIX: Increased aspect ratio height from 35% to 45% (taller image area) */
     padding-top: 45%; 
     height: 0; 
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* MODIFIED: Reduced margin-bottom from 5px to 3px */
     margin-bottom: 3px; 
     color: var(--secondary-text);
     font-family: var(--code-font);
@@ -872,7 +874,6 @@ nav ul li a::after {
     position: relative; 
     display: block; 
     border-radius: 5px;
-    /* Set perspective for 3D flip effects */
     perspective: 1000px;
 }
 
@@ -897,11 +898,11 @@ nav ul li a::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    backface-visibility: hidden; /* Hide the reverse side of the element */
+    backface-visibility: hidden; 
     transition: transform 0.6s;
     top: 0;
     left: 0;
-    border-radius: 5px; /* Keep the same border radius as placeholder */
+    border-radius: 5px; 
 }
 
 .flip-front {
@@ -920,23 +921,23 @@ nav ul li a::after {
     left: 0;
     width: 100%;
     height: 100%;
-    /* FIX: Ensure image covers the placeholder without distortion */
     object-fit: cover;
     transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease; 
 }
 
-/* --- REMOVED ORIGINAL HOVER EFFECT FOR ENGLISH CLUB (CONFLICTS WITH MAGNIFIER) --- */
+/* --- HOVER EFFECT FOR HIGHLIGHTING YOU (The person on the left) --- */
 .media-placeholder:hover .english-club-officer {
-    transform: none; 
-    box-shadow: none;
-    filter: none;
+    transform: scale(5) translateX(-20%); 
+    
+    box-shadow: 0 0 0 3px white, 0 0 15px rgba(255, 255, 255, 0.8);
+    
+    filter: brightness(1.3) drop-shadow(0 0 3px #ffffff); 
 }
 /* ------------------------------------------------------------------- */
 
 /* Styles for Cheerdance Dual Image Layout */
 .cheerdance-swap-container {
-    /* Inherits ratio from .media-placeholder */
-    padding-top: 45%; /* FIX: Adjusted size to match new media-placeholder size */
+    padding-top: 45%; 
     position: relative;
     background: #000; 
     border: none;
@@ -953,33 +954,29 @@ nav ul li a::after {
 
 /* Styles for Academic/Cultural 3-Image Grid (Side-by-Side Logic) */
 .academic-grid-container {
-    /* OVERRIDE: Remove padding-top/height set by .media-placeholder */
     padding-top: 0;
     height: auto; 
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* MODIFIED: Reduced bottom margin */
     margin-bottom: 5px;
-    display: flex; /* Use flexbox to line up thumbnails */
-    gap: 2px; /* Small gap between images */
+    display: flex; 
+    gap: 2px; 
     overflow: hidden;
     width: 100%;
     border-radius: 5px;
 }
 
 .academic-thumbnail {
-    width: 33.33%; /* Each image takes 1/3 of the space */
+    width: 33.33%; 
     height: auto; 
     object-fit: cover; 
     display: block;
-    /* MODIFIED: Adjusted aspect ratio for taller images */
     aspect-ratio: 4 / 3; 
 }
 
 /* NEW: Styles for video links (Cheerdance card only) */
 .video-links {
     margin-top: auto; 
-    /* MODIFIED: Reduced padding from 8px 10px 10px to 5px */
     padding: 5px; 
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
@@ -991,23 +988,19 @@ nav ul li a::after {
 }
 
 .video-cta {
-    /* MODIFIED: Reduced font size from 0.8rem to 0.75rem */
     font-size: 0.75rem; 
     color: var(--primary-purple);
     margin: 0;
     width: 100%; 
-    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
     margin-bottom: 2px;
 }
 
 .video-btn {
     flex-grow: 1;
-    /* MODIFIED: Reduced padding from 3px 5px to 2px 4px */
     padding: 2px 4px; 
     background: var(--primary-purple);
     color: var(--dark-bg) !important;
     font-weight: 600;
-    /* MODIFIED: Reduced font size from 0.7rem to 0.65rem */
     font-size: 0.65rem; 
     transition: transform 0.3s ease;
     text-decoration: none;
@@ -1021,25 +1014,41 @@ nav ul li a::after {
 /* END NEW STYLING */
 
 
+/* *** ACADEMIC ACHIEVEMENTS CARD: INCREASED FONT SIZE *** */
+/* Applies to the 'Academic Achievements' card and 'Other Achievements' list */
 .activity-description {
-    /* MODIFIED: Reduced font size from 0.85rem to 0.8rem */
-    font-size: 0.8rem; 
-    /* MODIFIED: Reduced line-height from 1.2 to 1.15 */
-    line-height: 1.15;
+    font-size: 0.85rem; 
+    line-height: 1.35; 
     color: var(--secondary-text);
     margin-bottom: 0; 
-    padding: 0 5px; /* slight horizontal padding inside content box */
-    /* ADDED: Justify text */
+    padding: 0 5px; 
     text-align: justify;
+}
+.no-style-list li {
+    font-size: 0.85rem; 
+    color: var(--secondary-text);
+    margin-bottom: 3px; 
+    line-height: 1.4; 
+    text-align: justify;
+    padding: 0 5px; 
+}
+
+/* *** CHEERDANCE CARD: DECREASED FONT SIZE TO PREVENT OVERFLOW *** */
+.activity-card.cheerdance-card .activity-description {
+    font-size: 0.8rem; 
+    line-height: 1.15;
+}
+.activity-card.cheerdance-card .activity-content .video-cta {
+    font-size: 0.7rem;
 }
 
 
 /* Style for the card with no media (e.g., Other Achievements) */
 .activity-card.no-media-card {
-    /* Ensures this card maintains its place in the grid layout */
     grid-column: auto; 
-    height: auto; /* Ensure minimum height still applies */
-    min-height: 380px; 
+    height: auto; 
+    min-height: 0; 
+    
 }
 .activity-card.no-media-card .media-placeholder {
     display: none; 
@@ -1048,28 +1057,15 @@ nav ul li a::after {
 .no-style-list {
     list-style: none;
     padding-left: 0;
-    /* MODIFIED: Reduced margin-top from 5px to 3px */
     margin-top: 3px;
     width: 100%;
-    text-align: left; /* List should be left-justified within its container */
+    text-align: left; 
 }
-.no-style-list li {
-    /* MODIFIED: Reduced font size from 0.85rem to 0.8rem */
-    font-size: 0.8rem; 
-    color: var(--secondary-text);
-    /* MODIFIED: Reduced margin-bottom from 3px to 2px */
-    margin-bottom: 2px; 
-    line-height: 1.3; 
-    /* CHANGED: Align list items to justify (was left) */
-    text-align: justify;
-    padding: 0 5px; /* Reduced list item padding */
-}
+
 
 /* ADDED: Move the navigation row up */
 .activities .navigation-row {
-    /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
     margin-top: auto; 
-    /* FIX: Removed padding-bottom entirely to push the buttons flush against the bottom section padding */
     padding-bottom: 0; 
     position: relative;
     z-index: 100; 
@@ -1080,35 +1076,31 @@ nav ul li a::after {
 /* REVISED: My Family Page Styling (Diary/Book Design) */
 /* ============================================== */
 .family-page {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 2% 5px; /* FIX: Reduced horizontal padding to 2% for better wide screen fill */
-    /* Set min-height to take up the whole screen view */
-    min-height: calc(100vh); 
+    padding: 70px 2% 5px; 
+    height: 100vh; 
     display: flex;
-    flex-direction: column; /* Stack title/book/button vertically */
-    margin-top: 0; 
-    /* FIX: Change justify-content from center to flex-start/space-between */
-    justify-content: flex-start; /* Start content from top */
+    flex-direction: column; 
+    justify-content: flex-start; 
     align-items: center; 
     text-align: center;
+    overflow: hidden; 
 }
 .family-container {
     max-width: 900px;
     width: 100%;
-    margin: 0 auto; /* Center content on wide screens */
+    margin: 0 auto; 
     margin-bottom: 0; 
-    /* FIX: Use flex-grow to push navigation row down */
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: calc(100vh - 120px);
+    overflow: hidden; 
 }
 
 .family-page .section-title {
-    /* FIX: Adjusted ALL section titles to 2rem */
     font-size: 2rem; 
     color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom from 20px to 15px */
     margin-bottom: 15px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
@@ -1117,97 +1109,95 @@ nav ul li a::after {
 }
 
 .family-page .description {
-    display: none; /* Hide the previous description */
+    display: none; 
 }
 
-/* --- DIARY/OPEN BOOK CONTAINER --- */
+/* --- DIARY/OPEN BOOK CONTAINER (Tri-Fold Layout) --- */
 .diary-container {
     position: relative;
-    /* FIX: Increased Book Width/Height (750x420) */
-    width: 750px; 
-    height: 420px; 
-    max-width: 90vw;
-    /* MODIFIED: Increased max-height */
-    max-height: 65vh; 
+    width: 900px; 
+    height: 95%; 
+    max-width: 98vw; 
+    max-height: 100%; 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    /* MODIFIED: Reduced vertical margin to give more space around the book */
-    margin: 5px auto 5px; 
+    justify-content: space-between; 
+    align-items: stretch;
+    margin: 5px auto; 
     box-shadow: 0 10px 40px var(--diary-shadow);
     background: var(--diary-spine);
     border-radius: 5px;
-    overflow: hidden;
-    /* Use perspective for 3D open effect */
+    overflow: hidden; 
     perspective: 1500px;
 }
 
-/* --- BOOK SPINE --- */
+/* --- BOOK SPINE DECORATION (Only separating pages visually now) --- */
 .diary-spine-deco {
     position: absolute;
-    left: 50%;
+    width: 5px; 
     top: 0;
-    transform: translateX(-50%);
-    width: 30px; /* Central spine width */
     height: 100%;
     background: linear-gradient(to right, #2a1e4a, var(--diary-spine), #2a1e4a);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7) inset;
     z-index: 10;
 }
+.diary-spine-deco.spine-1 {
+    left: 33.33%; 
+    transform: translateX(-50%);
+}
+.diary-spine-deco.spine-2 {
+    left: 66.66%; 
+    transform: translateX(-50%);
+}
 
-/* --- LEFT AND RIGHT PAGES --- */
+
+/* --- LEFT, CENTER, AND RIGHT PAGES (Tri-fold Pages) --- */
 .diary-page {
     position: relative;
-    width: 50%;
+    width: 33.33%; 
     height: 100%;
     background-color: var(--diary-paper-bg);
     border-radius: 0;
-    /* ADJUSTED: Reduced vertical padding */
-    padding: 15px 25px; /* Reduced padding */
+    padding: 15px 20px; 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    /* Reset alignment for manual absolute positioning on the left page */
     align-items: center; 
     color: var(--diary-text);
+    overflow: hidden; 
     
-    /* 3D Transform for the open book effect - Slightly flatter */
-    transform-origin: 100% 50%; /* Right page hinges on the right edge */
-    transform: rotateY(-5deg); /* Less rotation */
+    transform-origin: center center; 
+    transform: rotateY(0deg); 
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 
-        5px 0 15px rgba(0, 0, 0, 0.1), /* Softer shadow */
-        inset 1px 0 3px rgba(0, 0, 0, 0.1); 
+    box-shadow: none; 
     z-index: 5;
     
-    /* ADDED: Ruled Paper Lines */
-    /* ADJUSTED: Reduced line spacing for denser fit */
+    /* Ruled Paper Lines */
     background-image: 
         linear-gradient(to bottom, transparent 20px, var(--ruling-line) 20px, var(--ruling-line) 21px, transparent 21px);
-    background-size: 100% 22px; /* Set line spacing */
-    background-position: 0 10px; /* Offset to start lines correctly */
+    background-size: 100% 22px; 
+    background-position: 0 10px; 
 }
 
-/* LEFT PAGE: Use relative positioning for photo wrapper */
-.diary-page.left {
+/* Page 1 (Dad): Left Fold */
+.diary-page.page-1 {
+    transform-origin: 100% 50%; 
+    transform: rotateY(10deg); 
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Page 3 (Brother): Right Fold */
+.diary-page.page-3 {
     transform-origin: 0% 50%; 
-    transform: rotateY(5deg); 
-    box-shadow: 
-        -5px 0 15px rgba(0, 0, 0, 0.1), 
-        inset -1px 0 3px rgba(0, 0, 0, 0.1); 
-    
-    /* Change flex behavior to allow absolute positioning of internal elements */
-    align-items: flex-start; 
-    position: relative;
+    transform: rotateY(-10deg); 
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 }
-/* Ensure the Heading is still centered on the left page */
-.diary-page.left h3 {
-    width: 100%;
-    text-align: center;
-    position: relative; /* Keep it in flow */
+/* Page 2 (Mom): Center Page */
+.diary-page.page-2 {
+    z-index: 15; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Margin Line for Diary Pages */
+
+/* Margin Line for Diary Pages (Adjusted positions for 3 pages) */
 .diary-page::before {
     content: '';
     position: absolute;
@@ -1217,144 +1207,79 @@ nav ul li a::after {
     background-color: var(--margin-line);
     z-index: 6;
 }
-.diary-page.left::before {
-    right: 20px; /* Margin on the right side of the left page */
-}
-.diary-page.right::before {
-    left: 20px; /* Margin on the left side of the right page */
-}
+/* Margin line positions */
+.diary-page.page-1::before { right: 20px; } 
+.diary-page.page-2::before { left: 20px; } 
+.diary-page.page-3::before { left: 20px; } 
 
 
 /* --- DIARY CONTENT: Photos and Text --- */
 .diary-page h3 {
     font-size: 1.5rem;
     color: var(--diary-spine);
-    /* MODIFIED: Reduced margin-bottom slightly for the heading */
     margin-bottom: 5px; 
     border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
     padding-bottom: 5px;
-    font-family: var(--handwriting-font); /* Apply handwriting font to headings */
+    font-family: var(--handwriting-font); 
+    width: 100%;
+    text-align: center;
 }
-
-/* NEW: Individual Photo Titles */
-.diary-page .photo-title {
-    position: absolute;
-    font-family: var(--handwriting-font);
-    /* FIX: Reduced font size */
-    font-size: 0.9rem; 
-    font-weight: 600;
-    color: var(--diary-text);
-    z-index: 15;
-    white-space: nowrap;
-}
-.diary-page .photo-title.title-top-left {
-    top: 25px; /* Adjusted top position */
-    left: 25px; /* Adjusted left position */
-    transform: rotate(-3deg);
-}
-.diary-page .photo-title.title-bottom-right {
-    /* Title position aligned horizontally with left title */
-    top: 25px; /* Adjusted top position */
-    right: 20px; /* Adjusted right position */
-    transform: rotate(2deg);
-}
-.diary-page .hidden-title {
-    visibility: hidden; /* Hide the flow title */
-    height: 0;
-    padding: 0;
-    margin: 0;
+.diary-page .photo-title,
+.diary-page.left .photo-caption.central-description {
+    display: none;
 }
 
 
-/* Default photo container (mostly horizontal) */
+/* Photo styles (Centered in each page) */
 .diary-photo {
-    /* Use absolute positioning or default to flow layout depending on the page */
     position: relative; 
-    /* FIX: Increased size */
-    width: 68%; 
-    padding-top: 38%; 
-    height: 0; 
+    width: 80%; 
+    height: auto;
+    padding-top: 100%; 
     margin-bottom: 5px; 
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border: 3px solid #ffffff; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition wrapper shadow only */
-    transform: rotate(-1deg); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+    transform: rotate(0deg); 
 }
 
-/* NEW: Vertical Frame Style Override */
+/* Vertical Photo Frame Style */
 .diary-photo.vertical-frame {
-    /* FIX: Increased size */
-    width: 45%; 
-    padding-top: 60%; 
+    width: 65%; 
+    padding-top: 90%; 
     height: 0; 
-    margin: 0; /* Remove default margin for precise placement */
-}
-
-/* SPECIAL POSITIONING FOR LEFT PAGE (Two vertical pictures) */
-
-.diary-page.left .diary-photo.top-left {
-    position: absolute;
-    /* FIX: Adjusted top position to clear the title */
-    top: 45px; /* Adjusted position */
-    left: 25px; /* Adjusted position */
-    transform: rotate(-3deg);
-    z-index: 11;
-}
-
-.diary-page.left .diary-photo.bottom-right {
-    position: absolute;
-    /* FIX: Adjusted top position to align pictures visually */
-    top: 45px; /* Adjusted position */
-    right: 25px; /* Adjusted position */
-    transform: rotate(2deg);
-    z-index: 12;
-}
-
-/* LEFT PAGE CAPTIONS/DESCRIPTION */
-.diary-page.left .photo-caption {
-    position: absolute;
-    /* Reset flow control */
-    width: auto;
-    left: auto;
-    right: auto;
-    /* Reset margins for captions under absolute photos */
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.diary-page.left .photo-caption.central-description {
-    /* Center the new description text */
-    /* FIX: Pushed lower (from 70px to 35px) */
-    bottom: 35px; 
-    left: 50%;
-    transform: translateX(-50%);
-    /* FIX: Ensure 100% width for perfect centering */
-    width: 100%; 
-    text-align: center; /* Ensures text is horizontally centered */
-    /* FIX: Reduced font size */
-    font-size: 0.8rem; 
-    font-style: normal;
-}
-
-/* Right page content positioning */
-.diary-page.right {
-    /* Ensure right page content is centered when one photo is present */
-    align-items: center;
-}
-.diary-page.right .diary-photo.vertical-frame {
-    /* Override absolute positioning from .left page */
-    position: relative; 
-    /* Center the block element */
-    /* FIX: Increased size */
-    width: 55%; 
-    padding-top: 75%;
-    margin-top: 15px; /* Reduced margin */
-    margin-bottom: 5px; 
+    margin-top: 10px;
+    margin-bottom: 5px;
     transform: rotate(1deg);
 }
 
+/* === FAMILY HOVER DESIGNS/ANIMATIONS === */
+
+/* Dad: Warm Glow + Slight Lift */
+.diary-photo.dad-frame:hover {
+    box-shadow: 0 0 20px var(--dad-color), 0 5px 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--dad-color);
+    transform: translateY(-5px) rotate(0deg) scale(1.03);
+}
+
+/* Mom: Subtle Pulse + Perspective Tilt */
+.diary-photo.mom-frame:hover {
+    box-shadow: 0 0 20px var(--mom-color), 0 5px 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--mom-color);
+    transform: rotateY(2deg) scale(1.03);
+}
+
+/* Brother: Cool Aqua Border + Twist */
+.diary-photo.brother-frame:hover {
+    box-shadow: 0 0 20px var(--brother-color), 0 5px 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--brother-color);
+    transform: rotate(-3deg) scale(1.03);
+}
+
+
+/* Ensure images fill the box */
 .diary-photo img {
     position: absolute;
     top: 0;
@@ -1362,84 +1287,61 @@ nav ul li a::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Ensure only transform scales the image, filter remains separate */
     transition: transform 0.3s ease, filter 0.4s ease; 
     filter: sepia(0.1);
 }
 
-/* Remove alternate rotation which clashes with absolute position transforms */
-.diary-photo:nth-child(even) {
-    transform: rotate(-1deg); 
-}
-
-/* Hover effects for photo wrapper (shadow lift) */
-.diary-photo:hover {
-    transform: scale(1.05) rotate(0deg); 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Hover effects for image content (Scale 1.5 effect) */
 .diary-photo:hover img {
-    /* FIX: Applied transform: scale(1.5) to the inner image element */
-    transform: scale(1.5);
+    transform: scale(1.05); 
     filter: sepia(0);
 }
 
 .photo-caption {
     font-family: var(--handwriting-font); 
-    /* FIX: Reduced font size */
-    font-size: 0.9rem; 
+    font-size: 0.8rem; 
     font-style: italic;
     color: var(--diary-text);
-    /* FIX: Ensure caption is visible (Relative captions) */
-    margin-top: -3px;
+    margin-top: 5px;
     margin-bottom: 5px; 
     padding: 0 5px;
     text-align: center;
-}
-/* Ensure the standard caption style applies only to the right page's caption */
-.diary-page.right .photo-caption {
-    position: relative;
-    width: 80%;
 }
 
 
 /* NEW: Navigation row for Family Page */
 .family-page .navigation-row {
-    /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
     margin-top: auto; 
-    /* FIX: Reduced padding bottom */
-    padding-bottom: 5px; /* Reduced for flush fit */
+    padding-bottom: 5px; 
 }
 
 
+/* ============================================== */
 /* --- Styles for the New Batchmates Section --- */
+/* ============================================== */
 .batchmates {
-    /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 2% 5px; /* FIX: Reduced horizontal padding to 2% for better wide screen fill */
-    /* Set min-height to take up the whole screen view */
-    min-height: 100vh; 
+    padding: 70px 2% 5px; 
+    height: 100vh; 
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow: hidden; 
 }
 .batchmates-container {
-    max-width: 1400px; /* Allow content to expand more horizontally */
+    max-width: 1400px; 
     width: 100%;
-    margin: 0 auto; /* Center content on wide screens */
-    /* FIX: Use flex-grow to push navigation row down */
+    margin: 0 auto; 
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: calc(100vh - 120px);
+    overflow: hidden; 
 }
 
 .batchmates .section-title {
-    /* FIX: Adjusted ALL section titles to 2rem */
     font-size: 2rem; 
     color: var(--primary-purple);
-    /* MODIFIED: Reduced margin-bottom from 20px to 15px */
     margin-bottom: 15px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
@@ -1447,7 +1349,7 @@ nav ul li a::after {
     padding-bottom: 5px;
 }
 .batch-subtitle {
-    font-size: 1.1rem; /* Adjusted size */
+    font-size: 1.1rem; 
     color: var(--cyber-blue);
     margin-bottom: 5px; 
     text-shadow: 0 0 4px rgba(0, 255, 255, 0.5);
@@ -1456,26 +1358,24 @@ nav ul li a::after {
 /* New 3-Column Layout */
 .batchmates-content-grid {
     display: grid;
-    /* ADJUSTED: Small ratio for lists, large ratio for the photo (1:2:1) */
-    grid-template-columns: 1fr 2fr 1fr; /* Changed from 1.2fr 1.2fr 1.2fr */
+    grid-template-columns: 1fr 2fr 1fr; 
     gap: 5px; 
     text-align: center;
     margin-top: 5px; 
-    width: 100%; /* Use 100% of the centered batchmates-container */
-    /* Max width is controlled by batchmates-container now */
+    width: 100%; 
     max-width: none; 
     margin-left: auto;
     margin-right: auto;
     align-items: start; 
+    height: 69%; 
+    overflow: hidden; 
 }
 
 .batchmates-photo-wrapper {
-    /* Drastically INCREASED max-height to make the photo taller */
-    max-width: 100%; 
-    height: auto;
-    /* ADJUSTED: Reduced max-height */
-    max-height: 350px; 
-    padding: 2px; /* Minimal padding */
+    max-width: 105%; 
+    height: 99%; 
+    max-height: 100%; 
+    padding: 2px; 
     background: #141416;
     border: 1px solid var(--cyber-blue); 
     border-radius: 4px; 
@@ -1489,7 +1389,6 @@ nav ul li a::after {
     align-items: center;
     justify-content: center;
 }
-/* REMOVED ORIGINAL HOVER STYLES THAT CONFLICT WITH JS MAGNIFIER */
 .batchmates-photo-wrapper:hover {
     transform: none; 
     box-shadow: none; 
@@ -1501,19 +1400,13 @@ nav ul li a::after {
 
 /* NEW MAGNIFICATION LENS STYLES */
 .magnify-container {
-    /* FIX for Bug 1 & 2: Set magnify container to be absolute inside placeholder */
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
     border-radius: 4px; 
 }
-/* Ensure the image takes up the container space and has no conflicting hover styles */
-.magnify-container .batchmates-photo, 
-.magnify-container .club-officer-image {
-    position: static; /* FIX for Bug 1: Overriding position: absolute for magnify content */
+.magnify-container .batchmates-photo {
     width: 100%;
     height: 100%;
     object-fit: contain; 
@@ -1527,8 +1420,8 @@ nav ul li a::after {
     border: 3px solid #eee;
     border-radius: 50%;
     cursor: none; 
-    width: 150px; /* Lens size */
-    height: 150px; /* Lens size */
+    width: 150px; 
+    height: 150px; 
     opacity: 0; 
     pointer-events: none; 
     background-repeat: no-repeat;
@@ -1551,79 +1444,64 @@ nav ul li a::after {
 .names-list {
     text-align: left; 
     align-self: start; 
-    /* ADDED PADDING AND BACKGROUND FILL FOR VISUAL SEPARATION */
     padding: 5px 5px; 
-    margin: 0; /* Removed margin to minimize blank space */
+    margin: 0; 
     background-color: rgba(157, 0, 255, 0.1); 
     border-radius: 5px;
+    height: 100%; 
+    overflow-y: hidden; 
 }
 .names-list h4 {
     color: var(--primary-purple);
-    /* ADJUSTED: Reduced font size */
-    font-size: 0.7rem; 
+    font-size: 1 rem; 
     margin-bottom: 3px; 
     border-bottom: 1px dashed rgba(157, 0, 255, 0.3); 
     padding-bottom: 1px; 
-    /* ENSURE BOYS LIST TITLE IS LEFT-ALIGNED (Default) */
     text-align: left; 
 }
 .names-list ul {
     list-style: none;
     padding: 0;
-    column-count: 2; /* ADDED: Two columns for boys' names */
+    column-count: 2; 
     column-gap: 10px;
-    /* FIX: Constrain height to align with photo and enable scroll */
-    max-height: 340px; 
-    overflow-y: auto;
-    padding-right: 5px; /* Add padding for scrollbar visibility */
-    padding-top: 5px; /* Added small internal top padding */
+    max-height: none; 
+    overflow-y: hidden; 
+    padding-right: 0; 
+    padding-top: 5px; 
 }
 .names-list li {
-    /* INCREASED FONT SIZE for boys */
     font-size: 0.75rem; 
     color: var(--secondary-text);
-    /* ADJUSTED: Reduced line height further to pack more text in */
     line-height: 1.05; 
-    /* FIXED: Ensure text alignment for individual list items */
     text-align: left; 
 }
 
-/* NEW: Specific style for Girls' List items (Larger font for better visibility) */
 .names-list.girls-list li {
-    /* INCREASED FONT SIZE FURTHER TO 1.4rem */
-    font-size: 1.4rem; 
-    /* Push list item content to the left edge of its container */
+    font-size: 1.3rem; 
     padding-right: 0; 
     padding-left: 0;
 }
 
-/* NEW: Remove Scrollbar from Girls' List and allow natural height */
 .names-list.girls-list ul {
-    max-height: none; /* Allow natural height based on content */
-    overflow-y: visible; /* Disable scrollbar */
+    max-height: none; 
+    overflow-y: hidden; 
     padding-right: 0; 
     padding-left: 0;
-    column-count: 1; /* Ensure girls' list is not split into 2 columns on desktop */
+    column-count: 1; 
 }
 
 
 /* Girls List Alignment - PUSH TO LEFT (Justified) */
 .names-list.girls-list {
-    /* Overwrite names-list. Set text alignment to the LEFT */
     text-align: left; 
-    /* Add padding to the left to push text away from the right edge of the screen, if needed */
-    padding: 5px 5%; /* Adjusted padding for background fill */
+    padding: 5px 5%; 
 }
 .names-list.girls-list h4 {
-    /* Align the title to the left side of the girls' column */
     text-align: left; 
 }
 
 
 /* --- FLIP CARD STYLES (Academic Achievements) --- */
-
-/* Inherits: .media-placeholder, .flip-container, .flip-image */
-/* The parent .media-placeholder already sets the perspective and ratio */
 .flip-container {
     position: absolute; 
     top: 0;
@@ -1644,11 +1522,11 @@ nav ul li a::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    backface-visibility: hidden; /* Hide the reverse side of the element */
+    backface-visibility: hidden; 
     transition: transform 0.6s;
     top: 0;
     left: 0;
-    border-radius: 5px; /* Keep the same border radius as placeholder */
+    border-radius: 5px; 
 }
 
 .flip-front {
@@ -1662,9 +1540,8 @@ nav ul li a::after {
 
 /* FIX: Push Back Button Down */
 .batchmates .navigation-row {
-    /* FIX: Use margin-top: auto to push it to the bottom of the flex container */
     margin-top: auto; 
-    /* FIX: Reduced bottom margin for flush fit */
+    padding-top: 10px; 
     margin-bottom: 5px; 
 }
 
@@ -1681,140 +1558,178 @@ nav ul li a::after {
 
 /* --- Responsive Adjustments for Diary --- */
 @media (max-width: 900px) {
-    /* Education/Experience Timeline Collapse to Single Column */
+    /* Education Section */
+    .edu-container {
+        flex-direction: column;
+        height: 100%; 
+        max-width: 90vw;
+    }
+    .edu-photo-wrapper {
+        width: 100%;
+        height: 40%; 
+        border-right: none;
+        border-bottom: 1px dashed var(--primary-purple);
+        margin-bottom: 5px;
+        max-height: 40vh; 
+    }
+    .grad-pic {
+        max-height: 95%;
+    }
+    .timeline-wrapper {
+        width: 100%;
+        overflow-y: hidden; 
+        height: 60%; 
+        padding: 0;
+        
+    }
     .timeline::before {
-        left: 20px; 
+        left: 50%;
+        margin-left: -2px;
     }
-    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item {
+        padding-left: 0;
+    }
+    .timeline-item:nth-child(odd) .timeline-content {
+        padding-right: 15px; 
+        text-align: right;
+        left: 0;
+        width: 48%; 
+    }
     .timeline-item:nth-child(even) .timeline-content {
-        width: calc(100% - 60px); 
-        left: 60px;
-        padding-left: 20px;
-        padding-right: 20px;
-        text-align: left; 
+        padding-left: 15px; 
+        text-align: left;
+        left: 52%; 
+        width: 48%; 
     }
-    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: 48%; 
+        left: auto;
+        margin-left: 0;
+    }
     .timeline-item:nth-child(even) .timeline-dot {
-        left: 20px; 
-        transform: translate(-50%, -50%);
+        left: 48%; 
+        margin-left: 0;
     }
-    .timeline-item:hover .timeline-dot {
-        transform: translate(-50%) scale(1.3);
-    }
-
-    /* Keep book size small on mid-screens */
+    
+    /* Diary adjustments for Tablet/Medium Screens */
     .diary-container {
-        width: 95vw;
-        height: 380px; 
-        max-height: 60vh;
+        width: 95vw; 
+        height: 100%; 
+        max-width: 95vw;
+        overflow: hidden; 
+    }
+    .diary-page {
+        padding: 10px; 
+    }
+    .diary-page.page-1 {
+        transform: rotateY(5deg);
+    }
+    .diary-page.page-3 {
+        transform: rotateY(-5deg);
+    }
+    .diary-page.page-1::before { right: 10px; }
+    .diary-page.page-2::before { left: 10px; }
+    .diary-page.page-3::before { left: 10px; }
+    
+    .diary-photo.vertical-frame {
+        width: 80%; 
+        padding-top: 100%; 
     }
 }
 
 @media (max-width: 768px) {
-    /* Stack content vertically on smaller tablets/mobiles */
+    /* Batchmates section - enforce zero scroll */
     .batchmates-content-grid {
         grid-template-columns: 1fr;
         gap: 15px;
+        height: 100%; 
+        overflow: hidden;
     }
     .names-list {
-        text-align: center;
-        width: 100%; /* Ensure it spans the grid on mobile */
+        height: 0; 
+        overflow: hidden;
+        display: none; 
     }
-    .names-list h4 {
-        text-align: center;
+    .names-list h4, .names-list ul {
+        display: none;
     }
-    .names-list ul {
-        column-count: 2; /* Boys list uses 2 columns on mobile */
-        column-gap: 10px;
-        /* Increase max height slightly for mobile view to show more names */
-        max-height: 250px; 
-    }
-    .names-list li {
-        font-size: 0.75rem; /* Default size for all list items on mobile */
-        text-align: left; /* Ensure list items are left-aligned on mobile */
-    }
-    /* NEW: Ensure girls' font size is larger on mobile too */
-    .names-list.girls-list li {
-        /* INCREASED FONT SIZE FURTHER TO 1.5rem ON MOBILE */
-        font-size: 1.5rem; 
-        padding-right: 0; 
-        padding-left: 0;
-    }
-
-    /* Override mobile list height/scroll settings: Girls' list should wrap/scroll in 2 columns */
-    .names-list.girls-list ul {
-        max-height: 250px; /* Re-apply max height for mobile wrapping */
-        overflow-y: auto;
-        padding-right: 5px;
-        column-count: 2; /* Girls list uses 2 columns on mobile */
-        text-align: left;
+    .batchmates-photo-wrapper {
+        order: -1; 
+        max-width: 90%;
+        max-height: 90%;
+        height: 90%; 
     }
     
-    .batchmates-photo-wrapper {
-        order: -1; /* Move photo to the top */
-        max-width: 90%;
-        max-height: 250px; /* Allow slightly taller on tablet view */
+    /* Family Page - Stack vertically on small screens */
+    .diary-container {
+        flex-direction: column; 
+        height: 100%;
+        width: 100%;
+        max-width: 100%; 
+        transform: none; 
+        box-shadow: none;
     }
-    /* Reset list alignments on mobile */
-    .names-list.girls-list, 
-    .names-list.girls-list h4 {
-        text-align: center;
+    .diary-page {
+        width: 100%;
+        height: 33.33%; 
+        max-height: 33.33%;
+        transform: none !important; 
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 15px;
+    }
+    .diary-spine-deco {
+        display: none;
+    }
+    .diary-photo.vertical-frame {
+        width: 40%; 
+        padding-top: 50%;
+        margin: 5px auto;
+        transform: none;
+    }
+    .diary-page::before {
+        display: none;
     }
 }
 
 @media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 5%;
+    /* EDUCATION SECTION ON MOBILE: ENFORCE NO SCROLL */
+    .education {
+        height: 100vh;
+        overflow: hidden; 
+        padding: 70px 5% 5px; 
     }
-    nav ul {
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
+    .edu-container {
+        height: 100%; 
     }
-    .hero {
-        padding: 50px 5%;
+    .edu-photo-wrapper {
+        height: 40%; 
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 1px dashed var(--primary-purple);
+        padding-bottom: 10px;
     }
-    .hero h1 {
-        font-size: 2.5rem;
+    .grad-pic {
+        max-height: 100%;
+        max-width: 90%;
     }
-    .image-wrapper {
-        display: none; 
-    }
-    .social-links {
-        justify-content: center;
-    }
-    /* Activities Grid Collapse to 1 column on smaller mobile */
-    .activities-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+    .timeline-wrapper {
+        height: 45%; 
+        overflow-y: hidden; 
+        padding-top: 15px;
     }
     
+    /* Diary adjustments for small mobile */
     .diary-container {
-        /* On mobile, collapse to a single, stacked page */
-        width: 95vw;
-        height: auto;
-        flex-direction: column;
-        transform: none;
-        box-shadow: none;
-        overflow-y: auto;
-    }
-    .diary-page, .diary-page.left {
         width: 100%;
-        height: auto;
-        transform: none;
-        box-shadow: none;
-        border-radius: 0;
-        padding: 20px 20px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        background-image: none; 
-        align-items: center;
+        height: 100%;
+        overflow: hidden; 
     }
-    /* Mobile Override for Vertical frame to look good in portrait view */
+    .diary-page {
+        height: 33.33%; 
+        max-height: 33.33%;
+    }
     .diary-photo.vertical-frame {
-        width: 80%; 
-        padding-top: 100%; 
-        margin-bottom: 10px;
+        width: 60%; 
+        padding-top: 70%; 
     }
 }
