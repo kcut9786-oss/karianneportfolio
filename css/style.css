@@ -97,8 +97,8 @@
 
 /* --- Global Styles --- */
 body {
-  /* FIX: Disable vertical scrolling globally */
-  overflow-y: hidden;
+  /* FIX: Removed overflow-y: hidden; to allow natural scrolling on all devices */
+  overflow-y: auto; 
   
   background: var(--dark-bg);
   color: var(--text-light);
@@ -273,6 +273,8 @@ nav ul li a::after {
   z-index: 2; 
   margin-right: 50px; 
   animation: wobble 15s infinite alternate ease-in-out;
+  /* MODIFIED: Added max-width for readability on large screens */
+  max-width: 700px;
   /* MODIFIED: Added small bottom margin to reduce space after content */
   margin-bottom: 20px; 
 }
@@ -461,6 +463,7 @@ nav ul li a::after {
 .edu-container {
     max-width: 900px;
     width: 100%;
+    margin: 0 auto; /* Center content on wide screens */
     /* ADDED: Extra margin to push buttons down and ensure bottom padding works effectively */
     margin-bottom: 0; /* FIX: Removed bottom margin */
     /* FIX: Use flex-grow to push navigation row down */
@@ -751,7 +754,7 @@ nav ul li a::after {
 /* ============================================== */
 .activities {
     /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 5% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
+    padding: 70px 2% 5px; /* FIX: Reduced horizontal padding to 2% for better wide screen fill */
     /* Set min-height to take up the whole screen view */
     min-height: 100vh; 
     display: flex;
@@ -763,7 +766,7 @@ nav ul li a::after {
 }
 
 .activities-container {
-    max-width: 100%; 
+    max-width: 1400px; /* Allow content to expand more horizontally */
     width: 100%;
     /* FIX: Use flex-grow to push navigation row down */
     flex-grow: 1; 
@@ -875,7 +878,7 @@ nav ul li a::after {
 
 /* New Flip Container (Used by Academic Card) */
 .flip-container {
-    position: absolute; /* Absolute position inside the padded media-placeholder */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
@@ -1083,8 +1086,8 @@ nav ul li a::after {
 /* ============================================== */
 .family-page {
     /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 10% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
-    /* Keep this min-height calculation for button visibility */
+    padding: 70px 2% 5px; /* FIX: Reduced horizontal padding to 2% for better wide screen fill */
+    /* Set min-height to take up the whole screen view */
     min-height: calc(100vh); 
     display: flex;
     flex-direction: column; /* Stack title/book/button vertically */
@@ -1097,6 +1100,7 @@ nav ul li a::after {
 .family-container {
     max-width: 900px;
     width: 100%;
+    margin: 0 auto; /* Center content on wide screens */
     margin-bottom: 0; 
     /* FIX: Use flex-grow to push navigation row down */
     flex-grow: 1;
@@ -1106,10 +1110,11 @@ nav ul li a::after {
 }
 
 .family-page .section-title {
-    /* FIX: Set to 2rem */
-    font-size: 2rem;
-    margin-top: 0; 
-    margin-bottom: 15px; /* Reduced margin */
+    /* FIX: Adjusted ALL section titles to 2rem */
+    font-size: 2rem; 
+    color: var(--primary-purple);
+    /* MODIFIED: Reduced margin-bottom from 20px to 15px */
+    margin-bottom: 15px; 
     text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
     border-bottom: 3px solid var(--cyber-blue);
     display: inline-block;
@@ -1416,7 +1421,7 @@ nav ul li a::after {
 /* --- Styles for the New Batchmates Section --- */
 .batchmates {
     /* UPDATED: Reduced top padding to 70px for fixed nav bar */
-    padding: 70px 5% 5px; /* FIX: Reduced bottom padding significantly for flush fit */
+    padding: 70px 2% 5px; /* FIX: Reduced horizontal padding to 2% for better wide screen fill */
     /* Set min-height to take up the whole screen view */
     min-height: 100vh; 
     display: flex;
@@ -1425,9 +1430,9 @@ nav ul li a::after {
     text-align: center;
 }
 .batchmates-container {
-    /* REMOVED MAX-WIDTH CONSTRAINT to allow full horizontal spread */
-    max-width: none; 
+    max-width: 1400px; /* Allow content to expand more horizontally */
     width: 100%;
+    margin: 0 auto; /* Center content on wide screens */
     /* FIX: Use flex-grow to push navigation row down */
     flex-grow: 1;
     display: flex;
@@ -1461,9 +1466,9 @@ nav ul li a::after {
     gap: 5px; 
     text-align: center;
     margin-top: 5px; 
-    width: 90%; /* Adjusted max width to 90% for better large screen fill */
+    width: 100%; /* Use 100% of the centered batchmates-container */
     /* Max width is controlled by batchmates-container now */
-    max-width: 1200px; /* Introduce a max-width for very large screens */
+    max-width: none; 
     margin-left: auto;
     margin-right: auto;
     align-items: start; 
