@@ -180,8 +180,14 @@ window.onload = function() {
     // --- Initialize Magnifier on Batchmate Photo ---
     const batchmateImg = document.getElementById('batchmate-img');
     if (batchmateImg) {
-        // Set zoom level (e.g., 2 for 200%)
-        magnify('batchmate-img', 2.5); // Using 2.5x zoom for visual clarity
+        // Set zoom level (e.g., 2.5x zoom)
+        magnify('batchmate-img', 2.5); 
+    }
+    
+    // --- Initialize Magnifier on English Club Photo ---
+    const englishClubImg = document.getElementById('english-club-img');
+    if (englishClubImg) {
+        magnify('english-club-img', 2.5); 
     }
     
     // Initial load state check: Highlights the link corresponding to the current URL hash
