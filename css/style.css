@@ -1512,7 +1512,8 @@ nav ul li a::after {
 /* Ensure the image takes up the container space and has no conflicting hover styles */
 .magnify-container .batchmates-photo, 
 .magnify-container .club-officer-image {
-    position: relative !important; /* Overriding position: absolute for magnify content */
+    /* FIX: Changed to relative to resolve conflict with position: absolute and visibility issue */
+    position: relative !important; 
     width: 100%;
     height: 100%;
     object-fit: contain; 
